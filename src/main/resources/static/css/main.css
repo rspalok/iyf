@@ -1,0 +1,5 @@
+body{
+        background: url(/img/bg.jpg) no-repeat center center fixed;
+        backdrop-filter: blur(15px); 
+        height: 100%;
+    }

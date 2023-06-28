@@ -4,6 +4,6 @@ import net.model.GbltRolMst;
 
 public interface RoleDao {
 
-	public GbltRolMst findRoleByName(String theRoleName);
+	public GbltRolMst findRoleByName(Integer integer);
 	
 }

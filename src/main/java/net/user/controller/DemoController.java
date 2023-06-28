@@ -1,5 +1,7 @@
 package net.user.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -7,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class DemoController {
 
 	@GetMapping("/")
-	public String showHome() {
+	public String showHome(HttpServletRequest request) {
 		
 		return "home";
 	}
@@ -15,7 +17,7 @@ public class DemoController {
 	// add request mapping for /leaders
 
 	@GetMapping("/leaders")
-	public String showLeaders() {
+	public String showLeaders(HttpServletRequest request) {
 		
 		return "leaders";
 	}
@@ -23,7 +25,7 @@ public class DemoController {
 	// add request mapping for /systems
 	
 	@GetMapping("/systems")
-	public String showSystems() {
+	public String showSystems(HttpServletRequest request) {
 		
 		return "systems";
 	}

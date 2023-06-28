@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
@@ -35,15 +36,17 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
 		theUser = userService.findByUserName(userName);
 
-		System.out.println("\n\nIn customAuthenticationSuccessHandler\n\n theUser: "+theUser);
-		System.out.println("\n\nIn customAuthenticationSuccessHandler\n\n request: "+request);
+		System.out.println("\n\nIn customAuthenticationSuccessHandler\n\n theUser: "+theUser); 
 		// now place in the session
 		HttpSession session = request.getSession();
 		session.setAttribute("user", theUser);
-		
+		System.out.println("\n\nIn customAuthenticationSuccessHandler\n\n theUser: 123 "+session.getAttribute("user")); 
 		// forward to home page
-		
-		response.sendRedirect(request.getContextPath() + "/");
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+		System.out.println("====url======"+request.getContextPath()
+		+"-==\n=="+auth);
+		response.sendRedirect(request.getContextPath() + "/iyf");
 	}
 
 }

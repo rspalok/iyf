@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Common UI Features &amp; Elements" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+
+		<!-- bootstrap & fontawesome -->
+		<link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+
+		<!-- page specific plugin styles -->
+		<link rel="stylesheet" href="/assets/css/jquery-ui.custom.min.css" />
+		<link rel="stylesheet" href="/assets/css/jquery.gritter.min.css" />
+
+		<!-- text fonts -->
+		<link rel="stylesheet" href="/assets/css/fonts.googleapis.com.css" />
+
+		<!-- ace styles -->
+		<link rel="stylesheet" href="/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+ 
+		<link rel="stylesheet" href="/assets/css/ace-skins.min.css" />
+		<link rel="stylesheet" href="/assets/css/ace-rtl.min.css" />
+
+		 
+		<script src="/assets/js/ace-extra.min.js"></script> 
+<link th:href="@{/css/main.css}" rel="stylesheet" />
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+<title>OTP Directory</title>
+
+ <style>
+h2 {
+  font-family: "Lobster", Sans-serif;
+  text-shadow:1px 1px 0 #444;
+}</style>
+</head>
+<body class="no-skin">
+	
+  <div th:insert="/../com/header" >  </div>
+	 
+	<div class="container" style="hight:100%"> 
+			<div class="row"> 
+										
+				<div class="col-xs-4">
+				
+				
+				<h2><i class="pink ace-icon fa fa-tachometer bigger-310"></i>Transactions</h2>
+					<table>
+						<tr th:each="element : ${transections}">
+							<td><a th:href="@{${element.mStURL}}" th:text="${element.mStMenuName}"> </a></td>
+						</tr>
+					</table>
+				</div>
+				<div class="col-xs-4">
+				
+				<h2><i class="pink ace-icon fa fa-cog bigger-310"></i> Setup</h2>
+					<table>
+						<tr th:each="element : ${setups}">
+							<td><a th:href="@{${element.mStURL}}" th:text="${element.mStMenuName}"> </a></td> 
+						</tr> 
+					</table>
+				</div>
+				<div class="col-xs-4">
+				<h2><i class="pink ace-icon fa fa-print bigger-310"></i>
+				Report</h2>
+					<table>
+						<tr th:each="element : ${reports}">
+							<td><a th:href="@{${element.mStURL}}" th:text="${element.mStMenuName}"> </a></td> 
+						</tr> 
+					</table>
+				</div>
+			</div>
+			
+		</div> 
+		
+	<div th:insert="/../com/footer" >  </div>
+	
+	<script src="/assets/js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" th:src="@{/js/main.js}"></script>
+	<script src="/assets/js/jquery-2.1.4.min.js"></script>
+ 
+		<script type="text/javascript">
+			if('ontouchstart' in document.documentElement) document.write("<script src='/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+		</script>
+		<script src="/assets/js/bootstrap.min.js"></script>
+
+		
+		<script src="/assets/js/jquery-ui.custom.min.js"></script>
+		<script src="/assets/js/jquery.ui.touch-punch.min.js"></script>
+		<script src="/assets/js/bootbox.js"></script>
+		<script src="/assets/js/jquery.easypiechart.min.js"></script>
+		<script src="/assets/js/jquery.gritter.min.js"></script>
+		<script src="/assets/js/spin.js"></script>
+
+		<!-- ace scripts -->
+		<script src="/assets/js/ace-elements.min.js"></script>
+		<script src="/assets/js/ace.min.js"></script>
+
+		<!-- inline scripts related to this page -->
+		 
+</body>
+</html>

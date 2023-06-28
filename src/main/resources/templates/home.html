@@ -2,11 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
-	<title>luv2code Company Home Page</title>
+	<title>Home Page</title>
 </head>
 
-<body>
-	<h2>luv2code Company Home Page</h2>
+<body> 
 	<hr>
 	
 	<p>
@@ -17,9 +16,7 @@
 	
 	<!-- display user name and role -->
 	
-	<div>
-		User: <span sec:authentication="name"></span>
-		<br><br>
+	<div> User: <span sec:authentication="name"></span> <br><br>
 		Role(s): <span sec:authentication="principal.authorities"></span>
 		<br><br>
 
@@ -55,8 +52,7 @@
 	
 	
 	<!-- Add a logout button -->
-	<form th:action="@{/logout}" 
-			   method="POST">
+	<form th:action="@{/logout}" method="POST">
 	
 		<input type="submit" value="Logout" />
 	

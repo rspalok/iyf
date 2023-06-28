@@ -18,13 +18,13 @@ public class RoleDaoImpl implements RoleDao {
 	private EntityManager entityManager;
 
 	@Override
-	public GbltRolMst findRoleByName(String theRoleName) {
+	public GbltRolMst findRoleByName(Integer theRoleName) {
 
 		// get the current hibernate session
 		Session currentSession = entityManager.unwrap(Session.class);
 
 		// now retrieve/read from database using name
-		Query<GbltRolMst> theQuery = currentSession.createQuery("from GbltRolMst where stName=:roleName", GbltRolMst.class);
+		Query<GbltRolMst> theQuery = currentSession.createQuery("from GbltRolMst where IRoleId=:roleName", GbltRolMst.class);
 		theQuery.setParameter("roleName", theRoleName);
 
 		GbltRolMst theRole = null;

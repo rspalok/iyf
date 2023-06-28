@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  
+<!-- bootstrap & fontawesome <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />-->
+<link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/assets/font-awesome/4.5.0/css/font-awesome.min.css" /> 
+<!-- page specific plugin styles -->
+<link rel="stylesheet" href="/assets/css/jquery-ui.custom.min.css" />
+<link rel="stylesheet" href="/assets/css/chosen.min.css" />
+<link rel="stylesheet" href="/assets/css/bootstrap-datepicker3.min.css" />
+<link rel="stylesheet" href="/assets/css/bootstrap-timepicker.min.css" />
+<link rel="stylesheet" href="/assets/css/daterangepicker.min.css" />
+<link rel="stylesheet" href="/assets/css/bootstrap-datetimepicker.min.css" />
+<link rel="stylesheet" href="/assets/css/bootstrap-colorpicker.min.css" />
+
+<!-- text fonts -->
+<link rel="stylesheet" href="/assets/css/fonts.googleapis.com.css" />
+
+<!-- ace styles -->
+<link rel="stylesheet" href="/assets/css/ace.min.css"
+	class="ace-main-stylesheet" id="main-ace-style" />
+
+<link rel="stylesheet" href="/assets/css/ace-skins.min.css" />
+<link rel="stylesheet" href="/assets/css/ace-rtl.min.css" />
+
+<!-- ace settings handler -->
+<script src="/assets/js/ace-extra.min.js"></script>
+
+<link th:href="@{/css/main.css}" rel="stylesheet" />
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+<title>OTP Directory</title>
+<style th:inline="text">
+</style>
+
+</head>
+<body class="no-skin">
+
+ 	<div th:insert="/../com/header" >  </div>
+	<div class="container">
+		<hr>
+		<h2>Batch</h2>
+		<div class="page-content">
+		<hr>
+			<form action="#" th:action="@{/course-reg/save}" th:object="${gbltStudentBean}" method="POST">   
+			<div class="row">
+			 
+				<div class="col-xs-12"> 
+					<input type="hidden" th:field="*{stStudentId}" />			
+					
+					<div class="col-xs-4 col-sm-4">
+						<label for="mDtCourseEnd">Mobile No</label> 
+						<input th:type="number" required="required" th:field="*{IMobile}" autocomplete="off" th:maxlength="10" onBlur="checkFormDatabase(this.value)" placeholder="Student Mobile" class="form-control mb-4 col-4">
+					</div>
+					<div class="col-xs-4 col-sm-4">
+						<label for="mICourseConfig">Course</label> 
+						<select class="form-control" required="required" th:field="*{mICourseConfig}" >
+						    <option th:each="option : ${courseConfig}" th:value="${option.mICourseConfig}" th:text="${option.stName}"></option>
+						</select>
+					</div>
+					<div class="col-xs-4 col-sm-4">
+						<label for="mDtCourseEnd">First Name</label>
+					<input type="text" required="required" th:field="*{firstName}" placeholder="Student First Name" class="form-control mb-4 col-4">
+					</div>
+					<div class="col-xs-4 col-sm-4">
+						<label for="mDtCourseEnd">Last Name</label>
+					<input type="text" th:field="*{lastName}" placeholder="Student Last Name" class="form-control mb-4 col-4"> 
+					</div>
+					<div class="col-xs-4 col-sm-4">
+						<label for="mDtCourseEnd">Email</label>
+					<input type="text" th:field="*{email}" placeholder="Student Email" class="form-control mb-4 col-4">
+					</div>
+					<div class="col-xs-4 col-sm-4">
+						<label for="mDtCourseEnd">Occupation</label>
+					<input th:type="text" required="required" th:field="*{stOccupation}" placeholder="Student Occupation" class="form-control mb-4 col-4">
+					</div>
+					<div class="col-xs-4 col-sm-4">
+						<label for="mDtCourseEnd">Total No of Round Chanting Daily</label>
+					<input th:type="number" required="required" th:field="*{mChanting}" th:max="16" placeholder="Total No of Round Chanting" class="form-control mb-4 col-4">
+					</div>
+					<div class="col-xs-4 col-sm-4">
+						<label for="mDtCourseEnd">Address</label> 
+						<input type="text" required="required" th:field="*{stAddress}" placeholder="Student Address" class="form-control mb-4 col-4">   
+					</div>
+				</div>  
+		 	</div>
+		 	<hr>
+		 	<div class="center">
+		 		<button type="submit" class="btn btn-info">Save</button>
+		 	</div>
+		 	</form>
+			<hr>
+			<label for="">Registered Student List</label>
+				<table class="table">
+				  <thead>
+				    <tr>
+				      <th scope="col">#</th>
+				      <th scope="col">First</th>
+				      <th scope="col">Last</th>
+				      <th scope="col">Email</th>
+				      <th scope="col">Mobile</th>
+				      <th scope="col">Address</th>
+				      <th scope="col">Occupation</th>
+				      <th scope="col">Action</th>
+				    </tr>
+				  </thead>
+				  
+				  <tbody>
+				  <tr th:each="student : ${allRegStudent}">
+					<td th:text="${student.stStudentId}"></td>
+					<td th:text="${student.firstName}"></td>
+					<td th:text="${student.lastName}"></td>
+					<td th:text="${student.email}"></td>
+					<td th:text="${student.IMobile}"></td>
+					<td th:text="${student.stAddress}"></td>
+					<td th:text="${student.stOccupation}"></td>
+					<td>
+					<!--  a th:href="@{/course-reg/delete/{id}/{configId}(id=${student.stStudentId},configId=${student.mICourseConfig})}" class="btn btn-danger">Delete /{configId}(configId=${student.mICourseConfig}</a>-->
+					<a th:href="@{/course-reg/delete/{id}/(id=${student.stStudentId})/{id}/(id=${student.stStudentId})}"></a>
+					<a th:href="@{/course-reg/delete/{id}/{configId}(id = ${student.stStudentId}, configId = ${gbltStudentBean.mICourseConfig})}">delete</a>
+					</td>
+					</tr>
+				  </tbody>
+				</table>
+			<hr>
+		</div>
+		<a th:href="@{/course-config/list}"> Back to Student List</a>
+		<hr>
+</div> 
+
+	<div th:insert="/../com/footer" >  </div>
+	<script src="/assets/js/jquery-2.1.4.min.js"></script>
+
+	<script type="text/javascript" th:src="@{/js/CourseRegistrationNew.js}"></script>
+	<script type="text/javascript">
+		if ('ontouchstart' in document.documentElement)
+			document
+					.write("<script src='assets/js/jquery.mobile.custom.min.js'>"
+							+ "<"+"/script>");
+	</script>
+	<script src="/assets/js/bootstrap.min.js"></script>
+
+	<script src="/assets/js/jquery-ui.custom.min.js"></script>
+	<script src="/assets/js/jquery.ui.touch-punch.min.js"></script>
+	<script src="/assets/js/chosen.jquery.min.js"></script>
+	<script src="/assets/js/spinbox.min.js"></script>
+	<script src="/assets/js/bootstrap-datepicker.min.js"></script>
+	<script src="/assets/js/bootstrap-timepicker.min.js"></script>
+	<script src="/assets/js/moment.min.js"></script>
+	<script src="/assets/js/daterangepicker.min.js"></script>
+	<script src="/assets/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="/assets/js/bootstrap-colorpicker.min.js"></script>
+	<script src="/assets/js/jquery.knob.min.js"></script>
+	<script src="/assets/js/autosize.min.js"></script>
+	<script src="/assets/js/jquery.inputlimiter.min.js"></script>
+	<script src="/assets/js/jquery.maskedinput.min.js"></script>
+	<script src="/assets/js/bootstrap-tag.min.js"></script>
+
+	<!-- ace scripts -->
+	<script src="/assets/js/ace-elements.min.js"></script>
+	<script src="/assets/js/ace.min.js"></script>
+
+	<!-- inline scripts related to this page -->
+	<script type="text/javascript">
+		jQuery(function($) {
+
+			$('.date-picker').datepicker({
+				autoclose : true,
+				todayHighlight : true
+			})
+			//show datepicker when clicking on the icon
+			.next().on(ace.click_event, function() {
+				$(this).prev().focus();
+			});
+
+			//or change it into a date range picker
+			$('.input-daterange').datepicker({
+				autoclose : true
+			});
+			
+			$('text.limited').inputlimiter({
+				remText: '%n character%s remaining...',
+				limitText: 'max allowed : %n.'
+			});
+			 
+
+		});
+	</script>
+</body>
+</html>

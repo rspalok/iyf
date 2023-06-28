@@ -1,5 +1,7 @@
 package net.user.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -9,7 +11,9 @@ public class LoginController {
 	@GetMapping("/showMyLoginPage")
 	public String showMyLoginPage() {
 		
-		return "fancy-login";
+		
+		return "login";
+		//return "fancy-login";
 		
 	}
 	 
@@ -17,7 +21,7 @@ public class LoginController {
 	// add request mapping for /access-denied
 	
 	@GetMapping("/access-denied")
-	public String showAccessDenied() {
+	public String showAccessDenied(HttpServletRequest request) {
 		
 		return "access-denied";
 		

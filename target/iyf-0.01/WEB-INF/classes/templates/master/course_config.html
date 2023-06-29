@@ -1,21 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="com/base::layout(~{::body})">
+<head th:include="com/base :: headerFragment"> <title id="pageTitle">Course configured</title>
 <meta charset="ISO-8859-1">
 <title>Student Management System</title>
   
-<link th:href="@{/css/main.css}" rel="stylesheet" />
 </head>
 <body  class="no-skin">
-
- 	<div th:insert="/../com/header" >  </div>
-	<div class="container">
-
 		<div class="page-content"> 
 		<h1>
 			Course Configure List <i class="bi bi-download"></i>
-		</h1>
+		</h1><hr>
 		<a th:href="@{/course-config/form}" class="btn btn-primary btn-sm mb-3">
 			Configure a course</a>
 
@@ -25,9 +19,9 @@
 					<th>
 					<a th:href="@{'/page/' + ${currentPage} + '?sortField=stName&sortDir=' + ${reverseSortDir}}"> Name</a></th>
 					<th>
-					<a th:href="@{'/page/' + ${currentPage} + '?sortField=stName&sortDir=' + ${reverseSortDir}}"> Batch Id </a></th>
+					<a th:href="@{'/page/' + ${currentPage} + '?sortField=stName&sortDir=' + ${reverseSortDir}}"> Batch </a></th>
 					<th>
-					<a th:href="@{'/page/' + ${currentPage} + '?sortField=stName&sortDir=' + ${reverseSortDir}}"> Name</a></th>
+					<a th:href="@{'/page/' + ${currentPage} + '?sortField=stName&sortDir=' + ${reverseSortDir}}"> Course Name</a></th>
 					<th>
 					<a th:href="@{'/page/' + ${currentPage} + '?sortField=stName&sortDir=' + ${reverseSortDir}}"> Start Date</a></th>
 					<th>
@@ -39,8 +33,8 @@
 			<tbody>
 				<tr th:each="student : ${listGbltOtpStudentRegTrns}"> 
 					<td th:text="${student.stName}"></td>
-					<td th:text="${student.mIBatch}"></td>
-					<td th:text="${student.mICourse}"></td>
+					<td th:text="${student.iyfBatchMst.stName}"></td>
+					<td th:text="${student.iyfCourseMst.mStName}"></td>
 					<td th:text="${student.mDtCourseStart}"></td>
 					<td th:text="${student.mDtCourseEnd}"></td> 
 					<td>
@@ -52,8 +46,8 @@
 
 		<div th:if="${totalPages > 1}">
 			<div class="row col-sm-10">
-				<div class="col-sm-3">Total Rows: [[${totalItems}]]</div>
-				<div class="col-sm-7"
+				<div class="col-md-3">Total Rows: [[${totalItems}]]</div>
+				<div class="col-md-7"
 					style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
 					<span th:each="i: ${#numbers.sequence(1, totalPages)}"> <a
 						th:if="${currentPage != i}"
@@ -62,22 +56,19 @@
 						&nbsp;
 					</span>
 				</div>
-				<div class="col-sm-1">
+				<div class="col-md-1">
 					<a th:if="${currentPage < totalPages}"
 						th:href="@{'/course-config/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
 					<span th:unless="${currentPage < totalPages}">Next</span>
 				</div>
 
-				<div class="col-sm-1">
+				<div class="col-md-1">
 					<a th:if="${currentPage < totalPages}"
 						th:href="@{'/course-config/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
 					<span th:unless="${currentPage < totalPages}">Last</span>
 				</div>
 			</div>
 		</div>
- </div>
- </div>
- 
-	<div th:insert="/../com/footer" >  </div>
+ 	</div>
 </body>
 </html>

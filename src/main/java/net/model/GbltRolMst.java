@@ -73,10 +73,6 @@ public class GbltRolMst implements Serializable {
 		this.dtEntry = dtEntry;
 	}
 
-	@Override
-	public String toString() {
-		return "GbltRolMst [IRoleId=" + IRoleId +  ", stName=" + stName + ", IIsValid="
-				+ IIsValid + ", stOrgId="  + ", dtEntry=" + dtEntry + "]";
-	}
+	
 	
 }

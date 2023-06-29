@@ -1,165 +1,142 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-<head>
-<meta charset="ISO-8859-1">
-<title>Student Management System</title>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="com/base::layout(~{::body})">
+<head th:include="com/base :: headerFragment"> <title id="pageTitle">Registration</title>
+<meta charset="utf-8">
 
-<link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
-<link rel="stylesheet" href="/assets/font-awesome/4.5.0/css/font-awesome.min.css" />  
-<link rel="stylesheet" href="/assets/css/jquery-ui.custom.min.css" />
-<link rel="stylesheet" href="/assets/css/chosen.min.css" />
-<link rel="stylesheet" href="/assets/css/bootstrap-datepicker3.min.css" />
-<link rel="stylesheet" href="/assets/css/bootstrap-timepicker.min.css" />
-<link rel="stylesheet" href="/assets/css/daterangepicker.min.css" />
-<link rel="stylesheet" href="/assets/css/bootstrap-datetimepicker.min.css" />
-<link rel="stylesheet" href="/assets/css/bootstrap-colorpicker.min.css" />
+<title>OTP Directory</title>
 
-<!-- text fonts -->
-<link rel="stylesheet" href="/assets/css/fonts.googleapis.com.css" />
-
-<!-- ace styles -->
-<link rel="stylesheet" href="/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
-
-<link rel="stylesheet" href="/assets/css/ace-skins.min.css" />
-<link rel="stylesheet" href="/assets/css/ace-rtl.min.css" />
-
-<!-- ace settings handler -->
-<script src="/assets/js/ace-extra.min.js"></script>
-
-<link th:href="@{/css/main.css}" rel="stylesheet" />
-<script type="text/javascript" th:src="@{/js/main.js}"></script>
 </head>
-<body class="no-skin">
-
- 	<div th:insert="/../com/header" >  </div>
-	<div class="container">
+<body>
+	<div class="page-content">
 		
-		<div class="page-content"> 
-		<h1>
-			Course Configure List <i class="bi bi-download"></i>
-		</h1>
-		<a th:href="@{/course-config/form}" class="btn btn-primary btn-sm mb-3">
-			Configure a course</a>
-
-		<table   class="table table-striped table-responsive-md">
-			<thead>
-				<tr>
-					<th>
-					<a th:href="@{'/page/' + ${currentPage} + '?sortField=stName&sortDir=' + ${reverseSortDir}}"> Name</a></th>
-					<th>
-					<a th:href="@{'/page/' + ${currentPage} + '?sortField=stName&sortDir=' + ${reverseSortDir}}"> Batch Id </a></th>
-					<th>
-					<a th:href="@{'/page/' + ${currentPage} + '?sortField=stName&sortDir=' + ${reverseSortDir}}"> Name</a></th>
-					<th>
-					<a th:href="@{'/page/' + ${currentPage} + '?sortField=stName&sortDir=' + ${reverseSortDir}}"> Start Date</a></th>
-					<th>
-					<a th:href="@{'/page/' + ${currentPage} + '?sortField=stName&sortDir=' + ${reverseSortDir}}"> End Date</a></th>
-					 
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="student : ${listGbltOtpStudentRegTrns}"> 
-					<td th:text="${student.stName}"></td>
-					<td th:text="${student.mIBatch}"></td>
-					<td th:text="${student.mICourse}"></td>
-					<td th:text="${student.mDtCourseStart}"></td>
-					<td th:text="${student.mDtCourseEnd}"></td> 
-					<td>
-					<a th:href="@{/course-reg/add-student/{id}(id=${student.mICourseConfig})}" class="btn btn-primary">Register Student</a> 
-					<a th:href="@{/course-reg/take-attendance/{id}(id=${student.mICourseConfig})}" class="btn btn-danger">Take Attendance</a></td>
-				</tr>
-			</tbody>
-		</table>
-
-		<div th:if="${totalPages > 1}">
-			<div class="row col-sm-10">
-				<div class="col-sm-3">Total Rows: [[${totalItems}]]</div>
-				<div class="col-sm-7"
-					style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
-					<span th:each="i: ${#numbers.sequence(1, totalPages)}"> <a
-						th:if="${currentPage != i}"
-						th:href="@{'/course-config/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
-						<span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp;
-						&nbsp;
-					</span>
-				</div>
-				<div class="col-sm-1">
-					<a th:if="${currentPage < totalPages}"
-						th:href="@{'/course-config/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
-					<span th:unless="${currentPage < totalPages}">Next</span>
-				</div>
-
-				<div class="col-sm-1">
-					<a th:if="${currentPage < totalPages}"
-						th:href="@{'/course-config/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
-					<span th:unless="${currentPage < totalPages}">Last</span>
-				</div>
-			</div>
-		</div>
- </div>
- </div>
- 
-	<div th:insert="/../com/footer" >  </div>
-	<script src="/assets/js/jquery-2.1.4.min.js"></script>
-
-
-	<script type="text/javascript">
-		if ('ontouchstart' in document.documentElement)
-			document
-					.write("<script src='assets/js/jquery.mobile.custom.min.js'>"
-							+ "<"+"/script>");
-	</script>
-	<script src="/assets/js/bootstrap.min.js"></script>
-
-	<script src="/assets/js/jquery-ui.custom.min.js"></script>
-	<script src="/assets/js/jquery.ui.touch-punch.min.js"></script>
-	<script src="/assets/js/chosen.jquery.min.js"></script>
-	<script src="/assets/js/spinbox.min.js"></script>
-	<script src="/assets/js/bootstrap-datepicker.min.js"></script>
-	<script src="/assets/js/bootstrap-timepicker.min.js"></script>
-	<script src="/assets/js/moment.min.js"></script>
-	<script src="/assets/js/daterangepicker.min.js"></script>
-	<script src="/assets/js/bootstrap-datetimepicker.min.js"></script>
-	<script src="/assets/js/bootstrap-colorpicker.min.js"></script>
-	<script src="/assets/js/jquery.knob.min.js"></script>
-	<script src="/assets/js/autosize.min.js"></script>
-	<script src="/assets/js/jquery.inputlimiter.min.js"></script>
-	<script src="/assets/js/jquery.maskedinput.min.js"></script>
-	<script src="/assets/js/bootstrap-tag.min.js"></script>
-
-	<!-- ace scripts -->
-	<script src="/assets/js/ace-elements.min.js"></script>
-	<script src="/assets/js/ace.min.js"></script>
-	
-	<script type="text/javascript" th:src="@{/js/course_attendance.js}"></script>
-	<!-- inline scripts related to this page -->
-	<script type="text/javascript">
-		jQuery(function($) {
-
-			$('.date-picker').datepicker({
-				autoclose : true,
-				todayHighlight : true
-			})
-			//show datepicker when clicking on the icon
-			.next().on(ace.click_event, function() {
-				$(this).prev().focus();
-			});
-
-			//or change it into a date range picker
-			$('.input-daterange').datepicker({
-				autoclose : true
-			});
+		
+		<div class="row content">
+			<div class="col-sm-4"> 
+				<h2>Register for the Course</h2> 
 			
-			$('text.limited').inputlimiter({
-				remText: '%n character%s remaining...',
-				limitText: 'max allowed : %n.'
-			});
+				<a th:href="@{/home}"> Home Menu</a> >
+				<a th:href="@{*{CourseList}}"> Course Config List</a> >
+				<a th:href="@{*{CurrentUrlForRefresh}}"> refresh the List</a>
+			</div>
+		    <div class="col-sm-4 center">
+			    <div class="easy-pie-chart percentage" th:data-percent="${regStudentCount}" data-color="#87B87F">
+					<span class="percent" th:text="${regStudentCount}">90</span>%
+				</div>
+		    </div>
+		    <div class="col-sm-4 center"> 
+		    	<div><br></div>
+		    	<div class="btn btn-primary" th:attr="onclick=|getRegiteredStudentList()|"><i class="ace-icon fa fa-eye align-top bigger-125"></i> Register Student : <span th:text="${regStudentCount}"></span></div>
+		    	
+					
+		    </div>
+		    
+	    </div>		
+		<hr>
+			<form action="#" id="myForm" th:action="@{/course/registerd}" th:object="${gbltStudentBean}" method="POST">   
+			<div class="row p-t-20">
 			 
+				<div class="col-xs-12"> 
+					<div class="col-md-4 col-sm-4">
+						<label for="mICourseConfig">Course Configured</label> 
+						<select class="form-control" required="required" th:field="*{mICourseConfig}" >
+						    <option th:each="option : ${courseConfig}" th:value="${option.mICourseConfig}" th:text="${option.stName}"></option>
+						</select>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<label for="mDtCourseEnd">Mobile No<span class="text-danger"> *</span></label> 
+						<input th:type="number" required="required" th:field="*{IMobile}" autocomplete="off" th:maxlength="10" onBlur="checkFormDatabase(this.value)" placeholder="Student Mobile" class="form-control mb-4 col-4">
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label class="control-label" for="">Student<span class="text-danger"> *</span> </label> 
+							<select id="stStudentId" class="form-control custom-select" th:field="*{stStudentId}"
+								data-placeholder="Choose a Category" tabindex="1" th:value="*{stStudentId}" > 
+								<option value=''>New</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<label for="mDtCourseEnd">First Name<span class="text-danger"> *</span></label>
+					<input type="text" required="required" th:field="*{firstName}" placeholder="Student First Name" class="form-control mb-4 col-4">
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<label for="mDtCourseEnd">Last Name</label>
+					<input type="text" th:field="*{lastName}" placeholder="Student Last Name" class="form-control mb-4 col-4"> 
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<label for="mDtCourseEnd">Email</label>
+					<input type="text" th:field="*{email}" placeholder="Student Email" class="form-control mb-4 col-4">
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<label for="mDtCourseEnd">Occupation<span class="text-danger"> *</span></label>
+					<input th:type="text" required="required" th:field="*{stOccupation}" placeholder="Student Occupation" class="form-control mb-4 col-4">
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<label for="mDtCourseEnd">Total No of Round Chanting Daily<span class="text-danger"> *</span></label>
+					<input th:type="number" required="required" th:field="*{mChanting}" th:max="99" placeholder="Total No of Round Chanting" class="form-control mb-4 col-4">
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<label for="mDtCourseEnd">Address<span class="text-danger"> *</span></label> 
+						<input type="text" required="required" th:field="*{stAddress}" placeholder="Student Address" class="form-control mb-4 col-4">   
+					</div>
+				</div>  
+		 	</div>
+		 	<hr>
+		 	<div class="center">
+		 		<button type="submit" class="btn btn-info">Save</button>
+		 	</div>
+		 	</form>
+			<hr>
+			<!-- Modal -->
+				<div id="myModal" class="modal fade" role="dialog">
+				  <div class="modal-dialog modal-lg">
+				
+				    <!-- Modal content-->
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal">&times;</button>
+				        <h4 class="modal-title">List</h4>
+				      </div>
+				      <div class="modal-body">
+				      	<div id="reportMainHeaderDivId"></div>
+						<div id="reportMainBodyDivId"></div>
+						<div id="reportMainFooterDivId"></div>
+						<div style="text-align: center;" class="noPrint"> <br>
+							<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Close&nbsp;</button><br>
+						</div>
+				      </div>
+				     <!-- <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				      </div>-->
+				    </div>
+				
+				  </div>
+				</div>
+		</div>
+		<a th:href="@{/course-config/list}"> Back to Student List</a>
+	<script th:src="@{/iyf/course_registration.js}"></script>
+	<script type="text/javascript">
+	function removeThis(stStudentId,mICourseConfig){
 
-		});
-		
+		$('#stStudentId').val(stStudentId);
+		$('#mICourseConfig').val(mICourseConfig);
+		$("#myForm").attr("action", '../removeRegistration');
+		$( "#myForm" ).submit();
+	}
+	$('.easy-pie-chart.percentage').each(function(){
+		$(this).easyPieChart({
+			barColor: $(this).data('color'),
+			trackColor: '#EEEEEE',
+			scaleColor: false,
+			lineCap: 'butt',
+			lineWidth: 8,
+			animate: ace.vars['old_ie'] ? false : 1000,
+			size:75
+		}).css('color', $(this).data('color'));
+	});
+	
+	
+	
 	</script>
 </body>
 </html>

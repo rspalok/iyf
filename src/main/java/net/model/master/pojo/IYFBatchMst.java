@@ -2,18 +2,23 @@ package net.model.master.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import net.model.transection.IyfClassSchedTrnPk;
+
 @Entity 
 @Table(name = "iyf_batch_mst", schema = "iyf") 
+@IdClass(IYFBatchMstPk.class)
 public class IYFBatchMst implements Serializable{
 	 
 	private static final long serialVersionUID = 1L;
@@ -38,6 +43,7 @@ public class IYFBatchMst implements Serializable{
 	@Column(name = "str_owner_id", nullable = false, columnDefinition = "character varying (15)")
 	private String stOwnerId;
 	
+	@Id
 	@Column(name = "str_org_id", nullable = false, columnDefinition = "character varying (20)")
 	private String stOrgId;
 
@@ -115,6 +121,24 @@ public class IYFBatchMst implements Serializable{
 
 	public void setDtEntry(Date dtEntry) {
 		this.dtEntry = dtEntry;
+	}
+
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(IBatch, stOrgId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		IYFBatchMst other = (IYFBatchMst) obj;
+		return Objects.equals(IBatch, other.IBatch) && Objects.equals(stOrgId, other.stOrgId);
 	}
 
 	@Override

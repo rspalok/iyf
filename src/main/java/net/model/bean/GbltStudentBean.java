@@ -41,13 +41,14 @@ public class GbltStudentBean implements Serializable{
 	 
 	private Integer IIsValid; 
 	
+	private Integer mIMode; 
+	
+	private String stName; 
+	
+	private Long mICourse;
+	private Long mIBatch;
 	private Long mICourseConfig;
  
-	private String stName; 
-	private Long mICourse;
-	 
-	private Long mIBatch;
-	 
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
     @Temporal(TemporalType.TIMESTAMP) 
 	private Date mDtCourseStart;
@@ -72,6 +73,14 @@ public class GbltStudentBean implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
     
+	public Integer getmIMode() {
+		return mIMode;
+	}
+
+	public void setmIMode(Integer mIMode) {
+		this.mIMode = mIMode;
+	}
+
 	public Long getmClassId() {
 		return mClassId;
 	}

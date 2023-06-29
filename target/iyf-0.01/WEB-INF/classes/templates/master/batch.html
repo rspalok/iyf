@@ -1,20 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="com/base::layout(~{::body})">
+<head th:include="com/base :: headerFragment"> <title id="pageTitle">Batch list</title>
 <meta charset="ISO-8859-1">
 <title>Student Management System</title>
  
 </head>
-<body class="no-skin">
-
- 	<div th:insert="/../com/header" >  </div> 
+<body>
 	<div class="page-content"> 
-		<div class="container">
-
 		<h1>
 			Batch List <i class="bi bi-download"></i>
-		</h1>
+		</h1><hr>
 		<a th:href="@{/batch/form}" class="btn btn-primary btn-sm mb-3">
 			Add Batch </a>
 
@@ -52,8 +47,8 @@
 
 		<div th:if="${totalPages > 1}">
 			<div class="row col-sm-10">
-				<div class="col-sm-3">Total Rows: [[${totalItems}]]</div>
-				<div class="col-sm-7"
+				<div class="col-md-3">Total Rows: [[${totalItems}]]</div>
+				<div class="col-md-7"
 					style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
 					<span th:each="i: ${#numbers.sequence(1, totalPages)}"> <a
 						th:if="${currentPage != i}"
@@ -62,13 +57,13 @@
 						&nbsp;
 					</span>
 				</div>
-				<div class="col-sm-1">
+				<div class="col-md-1">
 					<a th:if="${currentPage < totalPages}"
 						th:href="@{'/batch/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
 					<span th:unless="${currentPage < totalPages}">Next</span>
 				</div>
 
-				<div class="col-sm-1">
+				<div class="col-md-1">
 					<a th:if="${currentPage < totalPages}"
 						th:href="@{'/batch/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
 					<span th:unless="${currentPage < totalPages}">Last</span>
@@ -76,7 +71,5 @@
 			</div>
 		</div>
  	</div>
-	<div th:insert="/../com/footer" >  </div>
- </div>
 </body>
 </html>

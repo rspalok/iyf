@@ -3,6 +3,7 @@ package net.user.service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -22,13 +23,13 @@ public class MyUserDetailsService implements UserDetails {
   
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		Collection<GbltRolMst> roles = user.getRoles();
+		Set<GbltRolMst> roles = user.getRoles();
 		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-
+		
 		for (GbltRolMst role : roles) {
 			authorities.add(new SimpleGrantedAuthority(role.getStName()));
 		}
-
+		
 		return authorities;
 	}
 	
@@ -41,7 +42,7 @@ public class MyUserDetailsService implements UserDetails {
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return user.getStUserName();
+		return user.getStUserName();//user.getStFirstName()+" "+user.getStLastName();
 	}
 
 	@Override
@@ -70,6 +71,11 @@ public class MyUserDetailsService implements UserDetails {
 			isEnabled=true;
 		}
 		return isEnabled;
+	}
+	
+	public String userFirstName() {
+		// TODO Auto-generated method stub
+		return user.getStFirstName();
 	}
 
 }

@@ -13,6 +13,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
+import com.google.common.net.HttpHeaders;
+
 import net.model.GbltUserMst;
 import net.user.service.UserService;
  
@@ -29,24 +31,26 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 			throws IOException, ServletException {
 
 		String userName = authentication.getName();
-		System.out.println("\n\nIn customAuthenticationSuccessHandler\n\n userName: "+userName);
- 
 		
-		System.out.println("userName=" + userName);
+		theUser = userService.findByUserNamess(userName);
 
-		theUser = userService.findByUserName(userName);
-
-		System.out.println("\n\nIn customAuthenticationSuccessHandler\n\n theUser: "+theUser); 
 		// now place in the session
 		HttpSession session = request.getSession();
 		session.setAttribute("user", theUser);
-		System.out.println("\n\nIn customAuthenticationSuccessHandler\n\n theUser: 123 "+session.getAttribute("user")); 
+  
+		// now place in the session 
+		System.out.println(" customAuthenticationSuccessHandler theUser: 123 "+session.getAttribute("user")); 
 		// forward to home page
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-		System.out.println("====url======"+request.getContextPath()
-		+"-==\n=="+auth);
-		response.sendRedirect(request.getContextPath() + "/iyf");
+		System.out.println(authentication.getAuthorities()+"====url======"+request.getContextPath()
+		+"-====="+authentication.getPrincipal());
+		
+		String result = request.getHeader("Referer");
+		String result1 =request.getHeader(HttpHeaders.REFERER);
+		System.out.println(result+"\n======\n"+result1);
+		response.sendRedirect(request.getContextPath() + "/home");
 	}
+	
 
 }

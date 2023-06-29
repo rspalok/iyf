@@ -1,31 +1,25 @@
 package net.model.transection;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
-import org.hibernate.annotations.ForeignKey;
-import org.hibernate.annotations.JoinColumnOrFormula;
-import org.hibernate.annotations.JoinColumnsOrFormulas;
-import org.hibernate.annotations.JoinFormula;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import net.model.GbltOtpStudentRegTrn;
 import net.model.master.pojo.IYFCourseConfig;
@@ -49,20 +43,22 @@ public class IyfCoureRegTrn implements Serializable{
 	@Column(name = "str_student_id", nullable = false, columnDefinition = "character varying (15)" ,unique = true)
 	private String stStudentId;//stUserId;
  
-	@Transient
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumnsOrFormulas(value = {
-			//@JoinColumnOrFormula(formula = @JoinFormula(value = "gnum_hospital_code", referencedColumnName = "gnum_hospital_code")),
-			@JoinColumnOrFormula(column = @JoinColumn(insertable = false, updatable = false, name = "str_student_id", referencedColumnName = "str_student_id")) })
-	//List<GbltOtpStudentRegTrn> gbltOtpStudentRegTrns ;
-	private GbltOtpStudentRegTrn gbltOtpStudentRegTrns;
-	 
-	@Transient  	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumnsOrFormulas(value = {
-			//@JoinColumnOrFormula(formula = @JoinFormula(value = "gnum_hospital_code", referencedColumnName = "gnum_hospital_code")),
-			@JoinColumnOrFormula(column = @JoinColumn(insertable = false, updatable = false, name = "num_course_config_id", referencedColumnName = "num_course_config_id")) })
-	private IYFCourseConfig iyfCourseConfigs;
+	//@JsonIgnore
+	@JoinColumns({
+        @JoinColumn(name="str_org_id", referencedColumnName="str_org_id" ,insertable=false, updatable=false),
+        @JoinColumn(name="str_student_id", referencedColumnName="str_student_id",insertable=false, updatable=false)
+    })
+	private GbltOtpStudentRegTrn objGbltOtpStudentRegTrns ;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	//@JsonIgnore
+    @JoinColumns({
+        @JoinColumn(name="str_org_id", referencedColumnName="str_org_id" ,insertable=false, updatable=false),
+        @JoinColumn(name="num_course_config_id", referencedColumnName="num_course_config_id",insertable=false, updatable=false)
+    })
+	private IYFCourseConfig ObjIYFCourseConfig;
+	
 	
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.TIMESTAMP)
@@ -83,26 +79,37 @@ public class IyfCoureRegTrn implements Serializable{
     @Column(name = "dt_entry")
 	private Date mDtEntry;
     
+    @Transient
+    private String tempStatus;
+    
     public IyfCoureRegTrn() {
 		// TODO Auto-generated constructor stub
 	}
-
-	public GbltOtpStudentRegTrn getGbltOtpStudentRegTrns() {
-		return gbltOtpStudentRegTrns;
-	}
-
-	public void setGbltOtpStudentRegTrns(GbltOtpStudentRegTrn gbltOtpStudentRegTrns) {
-		this.gbltOtpStudentRegTrns = gbltOtpStudentRegTrns;
-	}
-
-	public IYFCourseConfig getIyfCourseConfigs() {
-		return iyfCourseConfigs;
-	}
-
-	public void setIyfCourseConfigs(IYFCourseConfig iyfCourseConfigs) {
-		this.iyfCourseConfigs = iyfCourseConfigs;
-	} 
  
+	public String getTempStatus() {
+		return tempStatus;
+	}
+
+	public void setTempStatus(String tempStatus) {
+		this.tempStatus = tempStatus;
+	}
+
+	public GbltOtpStudentRegTrn getObjGbltOtpStudentRegTrns() {
+		return objGbltOtpStudentRegTrns;
+	}
+
+	public void setObjGbltOtpStudentRegTrns(GbltOtpStudentRegTrn objGbltOtpStudentRegTrns) {
+		this.objGbltOtpStudentRegTrns = objGbltOtpStudentRegTrns;
+	}
+
+	public IYFCourseConfig getObjIYFCourseConfig() {
+		return ObjIYFCourseConfig;
+	}
+
+	public void setObjIYFCourseConfig(IYFCourseConfig objIYFCourseConfig) {
+		ObjIYFCourseConfig = objIYFCourseConfig;
+	}
+
 	public Long getmICourseConfig() {
 		return mICourseConfig;
 	}

@@ -3,8 +3,6 @@ package net.user.service;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,11 +27,14 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	@Transactional
-	public GbltUserMst findByUserName(String userName) {
+	//used for session and registration
+	public GbltUserMst findByUserNamess(String userName) {
 		// check the database if the user already exists
-		return userDao.findByUserName(userName);
+		GbltUserMst user = userDao.findByUserName(userName); 
+		return user;
 	}
-
+	
+	
 	@Override
 	@Transactional
 	public void save(CrmUser crmUser,GbltOtpStudentRegTrn c_user) {
@@ -67,17 +68,7 @@ public class UserServiceImpl implements UserService{
 		userDao.saveTrn(userTrn);
 	}
 
-	@Override
-	@Transactional
-	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-		GbltUserMst user = userDao.findByUserName(userName); 
-		
-		if (user == null) {
-			throw new UsernameNotFoundException("Invalid username or password.");
-		}
-		
-		return new MyUserDetailsService(user); 
-	}
+	
 
  
 
@@ -86,4 +77,5 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return userDao.findByregistrationId(registrationId,"PNB108");
 	}
+
 }

@@ -1,19 +1,24 @@
-body {
-	background: url(/img/bg.jpg) no-repeat center center fixed;
-	backdrop-filter: blur(15px);
-	height: 100%;
-}
-
 html, body {
 	margin: 0;
 }
+
 
 * {
   box-sizing: border-box;
 }
 
 #myInput {
-  background-image: url('/css/searchicon.png');
+  background-image: url('@{/css/searchicon.png}');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+#myInput1 {
+  background-image: url('@{/css/searchicon.png}');
   background-position: 10px 10px;
   background-repeat: no-repeat;
   width: 100%;
@@ -40,5 +45,25 @@ html, body {
 }
 
 #myTable tr.header, #myTable tr:hover {
+  background-color: #f1f1f1;
+} 
+
+#myTable1 {
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+#myTable1 th, #myTable1 td {
+  text-align: left;
+  padding: 12px;
+}
+
+#myTable1 tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable1 tr.header, #myTable1 tr:hover {
   background-color: #f1f1f1;
 } 

@@ -1,40 +1,39 @@
 package net.model;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue; 
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import java.util.Date; 
+import org.springframework.format.annotation.DateTimeFormat; 
 
 @Entity
-//@Table(name = "employees")
 @Table(name = "gblt_otp_reg_trn", schema = "iyf")
+@IdClass(GbltOtpStudentRegTrnPk.class)
 public class GbltOtpStudentRegTrn implements Serializable{
 	 
-	  
 	private static final long serialVersionUID = 1L;
 
 	@Id 
-	@GenericGenerator(name = "gblt_otp_reg_trn",strategy  = "net.user.config.CustumIdGenerator")
+	@GenericGenerator(name = "gblt_otp_reg_trn",strategy  = "net.id.CustumIdGenerator")
 	@GeneratedValue(generator = "gblt_otp_reg_trn") 
 	@Column(name = "str_student_id", nullable = false, columnDefinition = "character varying (15)" ,unique = true)
-	private String stStudentId;//stUserId;
+	private String stStudentId;
 
-	//@Id
-	@Column(name = "str_orgId", nullable = false, columnDefinition = "character varying (20)")
+	@Id
+	@Column(name = "str_org_id", nullable = false, columnDefinition = "character varying (20)")
 	private String stOrgId;
 	
-	@Column(name = "str_OwnerId", nullable = false, columnDefinition = "character varying (20)")
+	@Column(name = "str_owner_id", nullable = false, columnDefinition = "character varying (20)")
 	private String stOwnerId;
 
 	@Column(name = "str_first_name", columnDefinition = "character varying (100)")
@@ -44,7 +43,7 @@ public class GbltOtpStudentRegTrn implements Serializable{
 	private String lastName;//stLastName;
 	
 	@Column(name = "str_email", columnDefinition = "character varying (50)")
-	private String email;//stEmail; occupation
+	private String email;
 	
 	@Column(name = "str_address", columnDefinition = "character varying (200)")
 	private String stAddress;
@@ -69,6 +68,11 @@ public class GbltOtpStudentRegTrn implements Serializable{
 	
 	@Column(name = "num_isvalid",length=1)
 	private Integer IIsValid;
+	
+	@Column(name = "num_reg_mode",length=1)
+	private Integer mRegMode;//1 normal only registration , 2 on course registration, 
+	//3 course attendance registration ,
+	//5 yatra registration
 
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.TIMESTAMP)
@@ -84,8 +88,7 @@ public class GbltOtpStudentRegTrn implements Serializable{
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "dt_entry")
 	private Date dtEntry;
-	  
-
+    
 	public GbltOtpStudentRegTrn() {
 		// TODO Auto-generated constructor stub
 	}
@@ -225,6 +228,32 @@ public class GbltOtpStudentRegTrn implements Serializable{
 	public void setDtEntry(Date dtEntry) {
 		this.dtEntry = dtEntry;
 	}
+
+	public Integer getmRegMode() {
+		return mRegMode;
+	}
+
+	public void setmRegMode(Integer mRegMode) {
+		this.mRegMode = mRegMode;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(stOrgId, stStudentId);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		GbltOtpStudentRegTrn other = (GbltOtpStudentRegTrn) obj;
+		return Objects.equals(stOrgId, other.stOrgId) && Objects.equals(stStudentId, other.stStudentId);
+	}
+
 
 	@Override
 	public String toString() {

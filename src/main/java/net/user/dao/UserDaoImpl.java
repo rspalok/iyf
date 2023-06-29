@@ -1,5 +1,7 @@
 package net.user.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 
 import org.hibernate.Session;
@@ -22,12 +24,13 @@ public class UserDaoImpl implements UserDao {
 	public GbltUserMst findByUserName(String theUserName) {
 		// get the current hibernate session
 		Session currentSession = entityManager.unwrap(Session.class);
-
+		String qu="select a from GbltUserMst a   where a.stUserName=:uName ";
+		
 		// now retrieve/read from database using username
-		Query<GbltUserMst> theQuery = currentSession.createQuery("select a from GbltUserMst a " 
-				+ " where a.stUserName=:uName ",
-				GbltUserMst.class);
+		Query<GbltUserMst> theQuery = currentSession.createQuery(qu, GbltUserMst.class);
+										
 		theQuery.setParameter("uName", theUserName);
+		
 		GbltUserMst theUser = null;
 		try {
 			theUser = theQuery.getSingleResult();
@@ -37,6 +40,35 @@ public class UserDaoImpl implements UserDao {
 
 		return theUser;
 	}
+	@Override
+	public GbltUsersRolesTrn findByUserDtlsName(String theUserName) {
+		// get the current hibernate session
+		Session currentSession = entityManager.unwrap(Session.class);
+		String qu=" select a.IRoleId,a.IUserId, "
+				+ " a.roles as role "
+				+ " from GbltUsersRolesTrn a "
+				+ " where a.gbltUserMst.stUserName=:uName "
+				//+ " and r.IRoleId=a.IRoleId "
+				;
+
+		System.out.println("================"+qu);
+		Query<GbltUsersRolesTrn> Query = currentSession.createQuery(qu,
+				GbltUsersRolesTrn.class);
+		Query.setParameter("uName", theUserName);
+
+		System.out.println("================");
+		// now retrieve/read from database using username
+		System.out.println(Query.getResultList());
+		List<GbltUsersRolesTrn> User = null;
+		try {
+			User = Query.getResultList();//Query.getSingleResult();
+		} catch (Exception e) {
+			User = null;
+		}
+
+		return User.get(0);
+	}
+
 
 	@Override
 	public void save(GbltUserMst theUser) {

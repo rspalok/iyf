@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import net.com.service.utilityService;
+import net.com.utilityService;
 import net.model.GbltOtpStudentRegTrn;
 import net.model.GbltRolMst;
 import net.model.GbltUserMst;
@@ -82,7 +82,7 @@ public class RegistrationController {
 		// check the database if user already exists
 		GbltOtpStudentRegTrn user = userService.findByregistrationId(registrationId);
 		System.out.println("==========user===="+user);
-		GbltUserMst existing = userService.findByUserName(userName);
+		GbltUserMst existing = userService.findByUserNamess(userName);
         if(user == null) {
         	theModel.addAttribute("crmUser", new CrmUser());
         	List<GbltOrgMst> orgs=uitilService.getAllOrgDetails(); 

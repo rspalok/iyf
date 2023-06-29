@@ -1,86 +1,50 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="com/base::layout(~{::body})">
+<head th:include="com/base :: headerFragment"> <title id="pageTitle">Course Configure</title>
 <meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  
-<!-- bootstrap & fontawesome <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />-->
-<link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
-<link rel="stylesheet" href="/assets/font-awesome/4.5.0/css/font-awesome.min.css" /> 
-<!-- page specific plugin styles -->
-<link rel="stylesheet" href="/assets/css/jquery-ui.custom.min.css" />
-<link rel="stylesheet" href="/assets/css/chosen.min.css" />
-<link rel="stylesheet" href="/assets/css/bootstrap-datepicker3.min.css" />
-<link rel="stylesheet" href="/assets/css/bootstrap-timepicker.min.css" />
-<link rel="stylesheet" href="/assets/css/daterangepicker.min.css" />
-<link rel="stylesheet" href="/assets/css/bootstrap-datetimepicker.min.css" />
-<link rel="stylesheet" href="/assets/css/bootstrap-colorpicker.min.css" />
-
-<!-- text fonts -->
-<link rel="stylesheet" href="/assets/css/fonts.googleapis.com.css" />
-
-<!-- ace styles -->
-<link rel="stylesheet" href="/assets/css/ace.min.css"
-	class="ace-main-stylesheet" id="main-ace-style" />
-
-<link rel="stylesheet" href="/assets/css/ace-skins.min.css" />
-<link rel="stylesheet" href="/assets/css/ace-rtl.min.css" />
-
-<!-- ace settings handler -->
-<script src="/assets/js/ace-extra.min.js"></script>
-
-<link th:href="@{/css/main.css}" rel="stylesheet" />
-<script type="text/javascript" th:src="@{/js/main.js}"></script>
 <title>OTP Directory</title>
-<style th:inline="text">
-</style>
 
 </head>
-<body class="no-skin">
-
- 	<div th:insert="/../com/header" >  </div> 
-	<div class="container">
-		<hr>
+<body>
+	<div class="page-content">
 		<h2>Configure Course</h2>
-		<div class="page-content">
 		<hr>
 			<form action="#" th:action="@{/course-config/save}" th:object="${iyfCourseConfig}" method="POST">   
-			<div class="row">
+			<div class="row p-t-20">
 			
 			<input type="hidden" th:field="*{mICourseConfig}" />
 				<div class="col-xs-12"> 
-					<div class="col-xs-4 col-sm-4">
+					<div class="col-md-4 col-sm-4">
 						<label for="stName">Course Name</label>  
-						<input class="form-control form-field" maxlength="125" type="text" th:field="*{stName}" placeholder="Username"  />
+						<input class="form-control form-field" required="required" maxlength="125" type="text" th:field="*{stName}" placeholder="Username"  />
 						 
 					</div> 
-					<div class="col-xs-4 col-sm-4">
+					<div class="col-md-4 col-sm-4">
 						<label for="mDtCourseEnd">Batch</label> 
-						<select class="form-control" th:field="*{mIBatch}" >
+						<select class="form-control" required="required" th:field="*{mIBatch}" >
 						    <option value="0">select option</option>
 						    <option th:each="option : ${batch}" th:value="${option.IBatch}" th:text="${option.stName}"></option>
 						</select>
 					</div>
-					<div class="col-xs-4 col-sm-4">
+					<div class="col-md-4 col-sm-4">
 						<label for="mDtCourseEnd">Course</label> 
-						<select class="form-control" th:field="*{mICourse}" >
+						<select class="form-control" required="required" th:field="*{mICourse}" >
 						    <option value="0">select option</option>
 						    <option th:each="option : ${course}" th:value="${option.mICourse}" th:text="${option.mStName}"></option>
 						</select>
 					</div>
-					<div class="col-xs-4 col-sm-4">
+					<div class="col-md-4 col-sm-4">
 						<label for="mDtCourseStart">Start Date</label> 
 						<div class="input-group">
-							<input class="form-control date-picker" th:field="*{mDtCourseStart}" type="text" data-date-format="dd-mm-yyyy" /> 
+							<input class="form-control date-picker" required="required" th:field="*{mDtCourseStart}" type="text" data-date-format="dd-mm-yyyy" /> 
 							<span class="input-group-addon"> <i class="fa fa-calendar bigger-110"></i> </span>
 						</div>
 					</div> 
-					<div class="col-xs-4 col-sm-4">
+					<div class="col-md-4 col-sm-4">
 						<label for="mDtCourseEnd">End Date</label> 
 						<div class="input-group">
-							<input class="form-control date-picker" th:field="*{mDtCourseEnd}" type="text" data-date-format="dd-mm-yyyy" /> 
+							<input class="form-control date-picker" required="required" th:field="*{mDtCourseEnd}" type="text" data-date-format="dd-mm-yyyy" /> 
 							<span class="input-group-addon"> <i class="fa fa-calendar bigger-110"></i> </span>
 						</div>
 					</div>
@@ -95,66 +59,7 @@
 		</form>
 		</div>
 		<a th:href="@{/course-config/list}"> Back to Student List</a>
-		<hr>
-		
-	<div th:insert="/../com/footer" >  </div>
-</div> 
-
-	<script src="/assets/js/jquery-2.1.4.min.js"></script>
-
-	<script type="text/javascript">
-		if ('ontouchstart' in document.documentElement)
-			document
-					.write("<script src='assets/js/jquery.mobile.custom.min.js'>"
-							+ "<"+"/script>");
-	</script>
-	<script src="/assets/js/bootstrap.min.js"></script>
-
-	<script src="/assets/js/jquery-ui.custom.min.js"></script>
-	<script src="/assets/js/jquery.ui.touch-punch.min.js"></script>
-	<script src="/assets/js/chosen.jquery.min.js"></script>
-	<script src="/assets/js/spinbox.min.js"></script>
-	<script src="/assets/js/bootstrap-datepicker.min.js"></script>
-	<script src="/assets/js/bootstrap-timepicker.min.js"></script>
-	<script src="/assets/js/moment.min.js"></script>
-	<script src="/assets/js/daterangepicker.min.js"></script>
-	<script src="/assets/js/bootstrap-datetimepicker.min.js"></script>
-	<script src="/assets/js/bootstrap-colorpicker.min.js"></script>
-	<script src="/assets/js/jquery.knob.min.js"></script>
-	<script src="/assets/js/autosize.min.js"></script>
-	<script src="/assets/js/jquery.inputlimiter.min.js"></script>
-	<script src="/assets/js/jquery.maskedinput.min.js"></script>
-	<script src="/assets/js/bootstrap-tag.min.js"></script>
-
-	<!-- ace scripts -->
-	<script src="/assets/js/ace-elements.min.js"></script>
-	<script src="/assets/js/ace.min.js"></script>
-
-	<!-- inline scripts related to this page -->
-	<script type="text/javascript">
-		jQuery(function($) {
-
-			$('.date-picker').datepicker({
-				autoclose : true,
-				todayHighlight : true
-			})
-			//show datepicker when clicking on the icon
-			.next().on(ace.click_event, function() {
-				$(this).prev().focus();
-			});
-
-			//or change it into a date range picker
-			$('.input-daterange').datepicker({
-				autoclose : true
-			});
-			
-			$('text.limited').inputlimiter({
-				remText: '%n character%s remaining...',
-				limitText: 'max allowed : %n.'
-			});
-			 
-
-		});
-	</script>
+	
+	
 </body>
 </html>

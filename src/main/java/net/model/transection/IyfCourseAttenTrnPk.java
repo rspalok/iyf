@@ -13,7 +13,7 @@ public class IyfCourseAttenTrnPk implements Serializable{
 	private String stStudentId;//stUserId;
 	
 	private Long mICourseConfig;
-	private String mStOwnerId;
+	private String mStOrgId;
 	public IyfCourseAttenTrnPk() {
 		// TODO Auto-generated constructor stub
 	}
@@ -35,15 +35,16 @@ public class IyfCourseAttenTrnPk implements Serializable{
 	public void setmICourseConfig(Long mICourseConfig) {
 		this.mICourseConfig = mICourseConfig;
 	}
-	public String getmStOwnerId() {
-		return mStOwnerId;
+	
+	public String getmStOrgId() {
+		return mStOrgId;
 	}
-	public void setmStOwnerId(String mStOwnerId) {
-		this.mStOwnerId = mStOwnerId;
+	public void setmStOrgId(String mStOrgId) {
+		this.mStOrgId = mStOrgId;
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(mIClassId, mICourseConfig, mStOwnerId, stStudentId);
+		return Objects.hash(mIClassId, mICourseConfig, mStOrgId, stStudentId);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -55,7 +56,7 @@ public class IyfCourseAttenTrnPk implements Serializable{
 			return false;
 		IyfCourseAttenTrnPk other = (IyfCourseAttenTrnPk) obj;
 		return Objects.equals(mIClassId, other.mIClassId) && Objects.equals(mICourseConfig, other.mICourseConfig)
-				&& Objects.equals(mStOwnerId, other.mStOwnerId) && Objects.equals(stStudentId, other.stStudentId);
+				&& Objects.equals(mStOrgId, other.mStOrgId) && Objects.equals(stStudentId, other.stStudentId);
 	}
 
 }

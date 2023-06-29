@@ -2,7 +2,6 @@ package net.model.transection;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -12,18 +11,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.JoinColumnOrFormula;
-import org.hibernate.annotations.JoinColumnsOrFormulas;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import net.model.master.pojo.IYFCourseConfig;
 
@@ -41,22 +40,23 @@ public class IyfClassSchedTrn implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GenericGenerator(name = "iyf_schedule_class_trn",strategy  = "net.user.config.CustumIdGenerator")
+	@GenericGenerator(name = "iyf_schedule_class_trn",strategy  = "net.id.CustumIdGenerator")
 	@GeneratedValue(generator = "iyf_schedule_class_trn")	
-	@Column(name = "num_class_id",length=4)//num_course_config_id
+	@Column(name = "num_class_id",length=4)
 	private Long mIClassId;
 	
 	@Id
-	@Column(name = "num_course_id",length=4)//num_course_config_id
+	@Column(name = "num_course_config_id",length=4)//num_course_config_id
 	private Long mICourseConfig;
 	
 
-	@Transient
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumnsOrFormulas(value = {
-			//@JoinColumnOrFormula(formula = @JoinFormula(value = "gnum_hospital_code", referencedColumnName = "gnum_hospital_code")),
-			@JoinColumnOrFormula(column = @JoinColumn(insertable = false, updatable = false, name = "num_course_id", referencedColumnName = "num_course_config_id")) })
-	List<IYFCourseConfig> ObjIYFCourseConfig;
+	@ManyToOne(fetch = FetchType.LAZY)
+	//@JsonIgnore
+    @JoinColumns({
+        @JoinColumn(name="str_org_id", referencedColumnName="str_org_id" ,insertable=false, updatable=false),
+        @JoinColumn(name="num_course_config_id", referencedColumnName="num_course_config_id",insertable=false, updatable=false)
+    })
+	private IYFCourseConfig ObjIYFCourseConfig;
 
 	@Column(name = "str_name", nullable = false, columnDefinition = "character varying (115)")
 	private String mStName;
@@ -84,6 +84,14 @@ public class IyfClassSchedTrn implements Serializable {
     
     public IyfClassSchedTrn() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public IYFCourseConfig getObjIYFCourseConfig() {
+		return ObjIYFCourseConfig;
+	}
+
+	public void setObjIYFCourseConfig(IYFCourseConfig objIYFCourseConfig) {
+		ObjIYFCourseConfig = objIYFCourseConfig;
 	}
 
 	public Long getmIClassId() {
@@ -148,15 +156,6 @@ public class IyfClassSchedTrn implements Serializable {
 
 	public void setmDtEntry(Date mDtEntry) {
 		this.mDtEntry = mDtEntry;
-	}
-
-
-	public List<IYFCourseConfig> getObjIYFCourseConfig() {
-		return ObjIYFCourseConfig;
-	}
-
-	public void setObjIYFCourseConfig(List<IYFCourseConfig> objIYFCourseConfig) {
-		ObjIYFCourseConfig = objIYFCourseConfig;
 	}
 
 	@Override

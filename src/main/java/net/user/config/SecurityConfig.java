@@ -8,9 +8,10 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import net.user.service.UserService;
+import net.user.service.UserDetailsServiceImpl;
  
 
 @Configuration
@@ -18,8 +19,13 @@ import net.user.service.UserService;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	// add a reference to our user service
-    @Autowired
-    private UserService userService;
+    //@Autowired
+   // private UserService userService;
+    
+    @Bean
+	public UserDetailsService userDetailsService() { 
+		return new UserDetailsServiceImpl();
+	}
 	
     @Autowired
     private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
@@ -28,47 +34,38 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
     }
-	
+
 	@Override
-	protected void configure(HttpSecurity http) throws Exception { 
-		http.authorizeRequests()
-			.antMatchers("/").hasRole("ADMIN_p") 
-			.antMatchers("/leaders/**").hasRole("MANAGER")
-			.antMatchers("/systems/**").hasRole("ADMIN")
-			.and()
-			.formLogin()
-				.loginPage("/showMyLoginPage")
-				.loginProcessingUrl("/authenticateTheUser")
-				.successHandler(customAuthenticationSuccessHandler)
-				.permitAll()
-			.and()
-			.logout().permitAll()
-			/*.logout(logout -> logout                                                
-		            .logoutUrl("/my/logout")                                            
-		            .logoutSuccessUrl("/home")                                      
-		            .logoutSuccessHandler(logoutSuccessHandler)                         
-		            .invalidateHttpSession(true)                                        
-		            .addLogoutHandler(logoutHandler)                                    
-		            .deleteCookies(cookieNamesToClear)                                  
-		        )*/
-			//https://www.javadevjournal.com/spring-security/spring-security-logout/
-			.and()
-			.exceptionHandling().accessDeniedPage("/access-denied"); 
+	protected void configure(HttpSecurity http) throws Exception {
+		String[] resources = new String[]{
+				"/assets/**","/image","/com/**","/",
+				"/css/**","/icons/**","/images/**","/js/**","/iyf/**"
+		};
+        http.authorizeRequests(requests -> requests
+                .antMatchers(resources).permitAll()
+                .antMatchers("/**").hasAnyAuthority("USER", "CREATOR", "EDITOR", "ADMIN")
+                .antMatchers("/leaders/**").hasRole("MANAGER")
+                .antMatchers("/systems/**").hasRole("ADMIN"))
+                .formLogin(login -> login
+                        .loginPage("/showMyLoginPage")
+                        .loginProcessingUrl("/authenticateTheUser")
+                        .successHandler(customAuthenticationSuccessHandler)
+                        .permitAll())
+                .logout(logout -> logout.permitAll())
+                .exceptionHandling(handling -> handling.accessDeniedPage("/access-denied")); 
 		
 	}
-	
-	//beans
-	//bcrypt bean definition
-	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
+
+    @Bean
+    BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
-	//authenticationProvider bean definition
-	@Bean
-	public DaoAuthenticationProvider authenticationProvider() {
+    //authenticationProvider bean definition
+    @Bean
+    DaoAuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
-		auth.setUserDetailsService(userService); //set the custom user details service
+		auth.setUserDetailsService(userDetailsService()); //set the custom user details service
 		auth.setPasswordEncoder(passwordEncoder()); //set the password encoder - bcrypt
 		return auth;
 	}

@@ -27,13 +27,13 @@ public interface FollowUpDao extends JpaRepository<FollowUpResponseTrn, FollowUp
 	@Query("SELECT s FROM FollowUpResponseTrn s where  s.isValid = 1 and s.stOrgId =:org order by s.followUpBy")
 	List<FollowUpResponseTrn> getFolowUpStudentList(@Param("org") String org);
 
-	@Query("SELECT s FROM FollowUpResponseTrn s JOIN s.objGbltOtpStudentRegTrns Join s.objGbltOtpStudentRegTrns where  s.isValid = 1 and s.stOrgId =:org and s.followUpId=:followUpId and s.stStudentId =:stStudentId")
+	@Query("SELECT s FROM FollowUpResponseTrn s Join s.objFollowUpTrn JOIN s.objGbltOtpStudentRegTrns Join s.objGbltOtpStudentRegTrns where  s.isValid = 1 and s.stOrgId =:org and s.followUpId=:followUpId and s.stStudentId =:stStudentId")
 	List<FollowUpResponseTrn> getStudentForFolloup(@Param("stStudentId") String stStudentId,@Param("followUpId")  Integer followUpId,@Param("org")  String org);
 
 	@Query("SELECT s FROM FollowUpResponseTrn s where  s.isValid = 1 and s.stOrgId =:org and s.followUpBy=:user order by s.responseType ,s.objGbltOtpStudentRegTrns.firstName , s.dtEntry ")
 	List<FollowUpResponseTrn> getMyFolowUpStudentList(@Param("org")String org,@Param("user") String user);
 
-	@Query("SELECT e from FollowUpResponseTrn e JOIN e.objFollowUpMaster where  e.isValid = :name and e.stOrgId =:org order by e.followUpBy , e.responseType ,e.objGbltOtpStudentRegTrns.firstName , e.dtEntry ") 
+	@Query("SELECT e from FollowUpResponseTrn e JOIN e.objFollowUpTrn where  e.isValid = :name and e.stOrgId =:org order by e.followUpBy , e.responseType ,e.objGbltOtpStudentRegTrns.firstName , e.dtEntry ") 
 	Page<FollowUpResponseTrn> findAllByIsvalid(@Param("name") Integer name, Pageable pageable,@Param("org")  String org);
 
 }

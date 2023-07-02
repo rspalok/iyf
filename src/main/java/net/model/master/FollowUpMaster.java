@@ -6,12 +6,14 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
 
@@ -23,7 +25,9 @@ public class FollowUpMaster  implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "num_follow_up_id", nullable = false, length=8)
+	@GenericGenerator(name = "iyf_follow_up_mst", strategy = "net.id.CustumIdGenerator")
+	@GeneratedValue(generator = "iyf_follow_up_mst")
+	@Column(name = "num_mst_id", nullable = false, length=8)
 	private Integer followUpId;
 
 	@Column(name = "str_content", nullable = false, columnDefinition = "character varying (225)")
@@ -38,7 +42,12 @@ public class FollowUpMaster  implements Serializable{
 
 	@Column(name = "num_isvalid",length=1)
 	private Integer isValid;
-	
+
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "dt_event")
+	private Date dtEvent;
+    
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "dt_entry")
@@ -46,6 +55,14 @@ public class FollowUpMaster  implements Serializable{
     
     public FollowUpMaster() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public Date getDtEvent() {
+		return dtEvent;
+	}
+
+	public void setDtEvent(Date dtEvent) {
+		this.dtEvent = dtEvent;
 	}
 
 	public Integer getFollowUpId() {

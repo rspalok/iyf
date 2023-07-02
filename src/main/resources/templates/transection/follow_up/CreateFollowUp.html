@@ -24,17 +24,20 @@ CreateFollowUp
 				</div>
 				<div class="col-md-3 col-sm-3">
 					<div class="form-group">
-					<label for="stName">Follow up to</label>  
-					<select class="form-control" th:field="*{followUpTo}" >
-					    <option value="">Select option</option>
-					    <option value="1">All Registered Student</option>
-					    <option value="2">Course Specific Student</option>
-					    <option value="3">Between the Date</option>
-					</select>
-				</div> </div>
+						<label for="stName">Follow up to</label>  
+						<select class="form-control" th:field="*{followUpTo}" onselect="">
+						    <option value="">Select option</option>
+						    <option value="1">All Registered Student</option>
+						    <option value="2">Course Specific Student</option>
+						    <option value="3">Between the Date</option>
+						</select>
+					</div> 
+				</div>
 			
-				
-				<div class="col-md-3 col-sm-3">
+				<!-- 
+    <span th:if="${teacher.gender == 'F'}">Female</span>
+     -->
+				<div class="col-md-3 col-sm-3 hidden" Id="course">
 					<div class="form-group">
 						<label for="mDtCourseEnd">Course Configured list</label> 
 						<select class="form-control" th:field="*{mICourseConfig}" >
@@ -43,14 +46,14 @@ CreateFollowUp
 						</select>
 					</div>
 				</div>
-				<div class="col-md-3 col-sm-3">
+				<div class="col-md-3 col-sm-3 hidden" Id="fromDate">
 					<label for="dtBatchStart">From Date</label> 
 					<div class="input-group">
 						<input class="form-control date-picker" required="required" th:field="*{dtFrom}" type="text" data-date-format="dd-mm-yyyy" /> 
 						<span class="input-group-addon"> <i class="fa fa-calendar bigger-110"></i> </span>
 					</div>
 				</div> 
-				<div class="col-md-3 col-sm-3">
+				<div class="col-md-3 col-sm-3 hidden" Id="toDate">
 					<label for="dtBatchEnd">To Date</label> 
 					<div class="input-group">
 						<input class="form-control date-picker" required="required" th:field="*{dtTo}" type="text" data-date-format="dd-mm-yyyy" /> 
@@ -91,52 +94,86 @@ CreateFollowUp
 </form>
 </div>
 <script type="text/javascript">
-	jQuery(function($){
-	    var demo1 = $('select[name="duallistbox_demo1"]').bootstrapDualListbox({infoTextFiltered: '<span class="label label-purple label-lg">Filtered</span>'});
+	
+	jQuery(function($) {
+		var demo1 = $('select[name="duallistbox_demo1"]')
+				.bootstrapDualListbox(
+						{
+							infoTextFiltered : '<span class="label label-purple label-lg">Filtered</span>'
+						});
 		var container1 = demo1.bootstrapDualListbox('getContainer');
 		container1.find('.btn').addClass('btn-white btn-info btn-bold');
-	
+
 		/*var setRatingColors = function() {
 			$(this).find('.star-on-png,.star-half-png').addClass('orange2').removeClass('grey');
 			$(this).find('.star-off-png').removeClass('orange2').addClass('grey');
 		}*/
 		$('.rating').raty({
 			'cancel' : true,
-			'half': true,
+			'half' : true,
 			'starType' : 'i'
-			/**,
-			
-			'click': function() {
-				setRatingColors.call(this);
-			},
-			'mouseover': function() {
-				setRatingColors.call(this);
-			},
-			'mouseout': function() {
-				setRatingColors.call(this);
-			}*/
-		})//.find('i:not(.star-raty)').addClass('grey');
+		/**,
 		
+		'click': function() {
+			setRatingColors.call(this);
+		},
+		'mouseover': function() {
+			setRatingColors.call(this);
+		},
+		'mouseout': function() {
+			setRatingColors.call(this);
+		}*/
+		})//.find('i:not(.star-raty)').addClass('grey');
+
 		//in ajax mode, remove remaining elements before leaving page
-		$(document).one('ajaxloadstart.page', function(e) {
-			$('[class*=select2]').remove();
-			$('select[name="duallistbox_demo1"]').bootstrapDualListbox('destroy');
-			$('.rating').raty('destroy');
-			$('.multiselect').multiselect('destroy');
+		$(document).one(
+				'ajaxloadstart.page',
+				function(e) {
+					$('[class*=select2]').remove();
+					$('select[name="duallistbox_demo1"]').bootstrapDualListbox(
+							'destroy');
+					$('.rating').raty('destroy');
+					$('.multiselect').multiselect('destroy');
+				});
+	});
+
+	$('.date-picker').datepicker({
+		autoclose : true,
+		todayHighlight : true
+	})
+	//show datepicker when clicking on the icon
+	.next().on(ace.click_event, function() {
+		$(this).prev().focus();
+	});
+
+	
+	/********************************/
+	$("#followUpTo").change(function() { 
+	  // Add action of select option
+		$(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+
+			var course = document.getElementById("course");
+			var todate = document.getElementById("toDate");
+			var fromdate = document.getElementById("fromDate");
+            if(optionValue==1){
+            	course.classList.add("hidden");
+            	todate.classList.add("hidden");
+            	fromdate.classList.add("hidden");
+				
+			} else if(optionValue==2){
+				course.classList.remove("hidden");
+            	todate.classList.add("hidden");
+            	fromdate.classList.add("hidden");
+			}else if(optionValue==3){
+
+            	course.classList.add("hidden");
+            	todate.classList.remove("hidden");
+            	fromdate.classList.remove("hidden");
+			}
 		});
 	});
-	
-		$('.date-picker').datepicker({
-			autoclose : true,
-			todayHighlight : true
-		})
-		//show datepicker when clicking on the icon
-		.next().on(ace.click_event, function() {
-			$(this).prev().focus();
-		});
-
-		/********************************/
-	</script>
+</script>
 	
 </body>
 </html>

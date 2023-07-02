@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import net.dao.transection.FollowUpTrnDao;
 import net.model.master.pojo.IYFCourseConfig;
 import net.service.master.CourseConfigSer; 
 
@@ -26,6 +27,7 @@ public class CourseConfigCnt {
 	@Autowired
 	private CourseConfigSer service;
 	
+
 	
 	@GetMapping("/list")
 	public String CourseConfigList(IYFCourseConfig IYFCourseConfig,Model model,HttpServletRequest request) {

@@ -21,10 +21,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import net.dao.master.BatchDao;
 import net.dao.master.CourseConfigDao;
 import net.dao.master.CourseDao;
+import net.dao.transection.FollowUpTrnDao;
 import net.model.GbltUserMst;
 import net.model.master.pojo.IYFBatchMst;
 import net.model.master.pojo.IYFCourseConfig;
-import net.model.master.pojo.IyfCourseMst;  
+import net.model.master.pojo.IyfCourseMst;
+import net.model.transection.FollowUpTrn;  
 
 @Transactional
 @Service
@@ -32,6 +34,7 @@ public class CourseConfigSerImp implements CourseConfigSer {
 	
 	@Autowired
 	public CourseConfigDao dao;
+
 	
 	@Autowired
 	public BatchDao bdao;
@@ -97,17 +100,17 @@ public class CourseConfigSerImp implements CourseConfigSer {
 	@Override
 	public List<IYFBatchMst> getBatchList(HttpServletRequest request) {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession(); 
-		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
-		String org= theUser.getStOrgId();
+		//HttpSession session = request.getSession(); 
+		//GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		//String org= theUser.getStOrgId();
 		return this.bdao.findAll();
 	}
 
 	@Override
 	public List<IyfCourseMst> getCourseList(HttpServletRequest request) {
-		HttpSession session = request.getSession(); 
-		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
-		String org= theUser.getStOrgId();
+		//HttpSession session = request.getSession(); 
+		//GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		//String org= theUser.getStOrgId();
 		// TODO Auto-generated method stub
 		return this.cdao.findAll();
 	}

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import net.model.bean.FollowUpBean;
-import net.model.master.pojo.IYFCourseConfig;
+import net.model.transection.FollowUpTrn;
 import net.service.master.CourseConfigSer;
 import net.service.transection.FollowUpSer;
 
@@ -38,7 +38,7 @@ public class FollowUpCnt {
 	 * */
 	@GetMapping("/list")
 	public String CourseConfigList(FollowUpBean followUpBean, Model model, HttpServletRequest request) {
-		return findPaginated(1, "mICourseConfig", "desc", model, request);
+		return findPaginated(1, "dtEntry", "desc", model, request);
 	}
 
 	@GetMapping("/page/{pageNo}")
@@ -49,16 +49,10 @@ public class FollowUpCnt {
 
 		System.out.println("findPaginated" + pageNo + "  pageSize :" + pageSize + "  sortField: " + sortField
 				+ "  sortDir: " + sortDir);
-		/*
-		 * Page<FollowUpResponseTrn> page = servic.findPaginated(pageNo, pageSize, sortField, sortDir, request);
-
-		List<FollowUpResponseTrn> listGbltOtpStudentRegTrns = page.getContent();
-*/
 		
-		
-		Page<IYFCourseConfig> page = service.findPaginated(pageNo, pageSize, sortField, sortDir, request);
+		Page<FollowUpTrn> page = servic.findPaginated(pageNo, pageSize, sortField, sortDir, request);
 
-		List<IYFCourseConfig> listGbltOtpStudentRegTrns = page.getContent();
+		List<FollowUpTrn> listFollowUpTrn = page.getContent();
 
 		model.addAttribute("currentPage", pageNo);
 		model.addAttribute("totalPages", page.getTotalPages());
@@ -67,10 +61,11 @@ public class FollowUpCnt {
 		model.addAttribute("sortField", sortField);
 		model.addAttribute("sortDir", sortDir);
 		model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
-		System.out.println("================" + listGbltOtpStudentRegTrns);
-		model.addAttribute("listGbltOtpStudentRegTrns", listGbltOtpStudentRegTrns);
-		return "transection/follow_up/index";
+		System.out.println("================" + listFollowUpTrn);
+		model.addAttribute("listFollowUpTrn", listFollowUpTrn);
+		return "transection/follow_up/followUpTrn";
 	}
+	
 	@GetMapping("/form")
 	public String NewEntry(FollowUpBean followUpBean, Model model, HttpServletRequest request) {
 
@@ -80,11 +75,39 @@ public class FollowUpCnt {
 		model.addAttribute("CallerList", servic.getCallerListFromOTPStudent(request));
 		return "transection/follow_up/CreateFollowUp";
 	}
+	
+	@GetMapping("/create/{id}")
+	private String createFolloup(@PathVariable(value = "id")Integer FollowUpId,FollowUpBean followUpBean, Model model, HttpServletRequest request) {
+
+		followUpBean.setFollowUpId(FollowUpId);
+		
+		model.addAttribute("followUp", servic.getconfigFolowUpList(request));
+
+		model.addAttribute("courseConfigList", servic.getCourseConfigList(request));
+		model.addAttribute("CallerList", servic.getCallerListFromOTPStudent(request));
+		return "transection/follow_up/CreateFollowUp";
+	}
+	
 	@PostMapping("/save")
 	public String Save(FollowUpBean followUpBean, HttpServletRequest request) throws ParseException {
 		System.out.println("==== = ==  = = = = "+followUpBean);
 		//return null;
 		servic.saveFollowUpDetails(followUpBean,request);
+		return "redirect:/follow_up/list";
+	}
+	
+	@GetMapping("/configFollowup")
+	public String scheduleFollowup(FollowUpBean followUpBean, Model model, HttpServletRequest request) {
+
+		model.addAttribute("followUp", servic.getFolowUpList(request));
+		
+		return "transection/follow_up/scheduleFollowup";
+	}
+	@PostMapping("/saveConfig")
+	public String SaveConfig(FollowUpBean followUpBean, HttpServletRequest request) throws ParseException {
+		System.out.println("==== = ==  = = = = "+followUpBean);
+		//return null;
+		servic.saveFollowUpConfig(followUpBean,request);
 		return "redirect:/follow_up/list";
 	}
 	@GetMapping("/followup_list")

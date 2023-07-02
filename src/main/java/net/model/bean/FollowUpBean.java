@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -14,6 +15,9 @@ public class FollowUpBean implements Serializable {
 
 	private Integer followUpId;
 
+	private String stName;
+	private String stContent;
+	
 	private String stStudentId;// stUserId;
 	
 	private String[] duallistbox_demo1;
@@ -42,14 +46,42 @@ public class FollowUpBean implements Serializable {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dtEntry;
+	
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Temporal(TemporalType.TIMESTAMP)
+	private Date dtEvent;
 
 	
 	public String[] getDuallistbox_demo1() {
 		return duallistbox_demo1;
 	}
 
+	public Date getDtEvent() {
+		return dtEvent;
+	}
+
+	public void setDtEvent(Date dtEvent) {
+		this.dtEvent = dtEvent;
+	}
+
 	public String getDtFrom() {
 		return dtFrom;
+	}
+
+	public String getStName() {
+		return stName;
+	}
+
+	public void setStName(String stName) {
+		this.stName = stName;
+	}
+
+	public String getStContent() {
+		return stContent;
+	}
+
+	public void setStContent(String stContent) {
+		this.stContent = stContent;
 	}
 
 	public void setDtFrom(String dtFrom) {

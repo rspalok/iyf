@@ -17,11 +17,7 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import net.model.GbltOtpStudentRegTrn;
-import net.model.master.FollowUpMaster;
 
 @Entity
 @Table(name = "iyf_follow_up_response_trn", schema = "iyf")
@@ -40,12 +36,12 @@ public class FollowUpResponseTrn implements Serializable{
 	private String stStudentId;//stUserId;
  
 	@ManyToOne(fetch = FetchType.LAZY)
-	//@JsonIgnore
+	//@JsonIgnore  num_mst_id
 	@JoinColumns({
         @JoinColumn(name="str_org_id", referencedColumnName="str_org_id" ,insertable=false, updatable=false),
         @JoinColumn(name="num_follow_up_id", referencedColumnName="num_follow_up_id",insertable=false, updatable=false)
     })
-	private FollowUpMaster objFollowUpMaster ;
+	private FollowUpTrn objFollowUpTrn ;
 	
 	@Column(name = "follow_up_by", nullable = false, columnDefinition = "character varying (15)")
 	private String followUpBy;
@@ -100,12 +96,12 @@ public class FollowUpResponseTrn implements Serializable{
 		this.followUpId = followUpId;
 	}
 
-	public FollowUpMaster getObjFollowUpMaster() {
-		return objFollowUpMaster;
+	public FollowUpTrn getObjFollowUpTrn() {
+		return objFollowUpTrn;
 	}
 
-	public void setObjFollowUpMaster(FollowUpMaster objFollowUpMaster) {
-		this.objFollowUpMaster = objFollowUpMaster;
+	public void setObjFollowUpTrn(FollowUpTrn objFollowUpTrn) {
+		this.objFollowUpTrn = objFollowUpTrn;
 	}
 
 	public String getFollowUpBy() {

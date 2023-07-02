@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 
 import net.dao.master.CourseConfigDao;
 import net.dao.transection.FollowUpDao;
+import net.dao.transection.FollowUpTrnDao;
 import net.dao.transection.GbltOtpStudentRegTrnRepository;
 import net.model.GbltOtpStudentRegTrn;
 import net.model.GbltUserMst;
@@ -33,6 +34,7 @@ import net.model.master.FollowUpMaster;
 import net.model.master.pojo.IYFCourseConfig;
 import net.model.transection.FollowUpResponsePk;
 import net.model.transection.FollowUpResponseTrn;
+import net.model.transection.FollowUpTrn;
 import net.model.transection.IyfCoureRegTrn;
 import net.user.dao.UserRepository;
 
@@ -44,6 +46,9 @@ public class FollowUpSerImpl implements FollowUpSer {
 	@Autowired
 	public CourseConfigDao cDao;
 
+	@Autowired
+	public FollowUpTrnDao fdao;
+	
 	@Autowired
 	public UserRepository userDao;
 
@@ -82,7 +87,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 		// TODO Auto-generated method stub
 		String[] callerList = followUpBean.getDuallistbox_demo1();
 		Integer CallerCount=callerList.length;
-		Integer followUpSize=0;
+		//Integer followUpSize=0;
 		HttpSession session = request.getSession(); 
 		GbltUserMst theUser = (GbltUserMst)session.getAttribute("user");
 		String Org=theUser.getStOrgId();
@@ -171,7 +176,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 			
 
 			System.out.println("getAllCourseSpecificRegisteredStudent 3="+result);
-			followUpSize=result.size();
+			//followUpSize=result.size();
 			if(result.size()>0) {
 				for (GbltOtpStudentRegTrn gbltOtpStudentRegTrn : result) {
 					System.out.println("==================="+result);
@@ -206,7 +211,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 			
 
 			List<IyfCoureRegTrn> list =dao.getAllCourseSpecificRegisteredStudent(followUpBean.getmICourseConfig(),Org);
-			followUpSize=list.size();
+			//followUpSize=list.size();
 			System.out.println("getAllCourseSpecificRegisteredStudent 4="+list);
 			
 		}
@@ -274,7 +279,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 			
 	}
 	@Override
-	public Page<FollowUpResponseTrn> findPaginated(int pageNo, int pageSize, String sortField, String sortDir,
+	public Page<FollowUpTrn> findPaginated(int pageNo, int pageSize, String sortField, String sortDir,
 			HttpServletRequest request) {
 		Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
 			Sort.by(sortField).descending();
@@ -282,7 +287,33 @@ public class FollowUpSerImpl implements FollowUpSer {
 		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort); 
-		return this.dao.findAllByIsvalid( 1,pageable,org);
+		return this.fdao.findAllByIsvalid( 1,pageable,org);
+	}
+	@Override
+	public void saveFollowUpConfig(FollowUpBean followUpBean, HttpServletRequest request) {
+		HttpSession session = request.getSession(); 
+		GbltUserMst theUser = (GbltUserMst)session.getAttribute("user");
+		String Org=theUser.getStOrgId();
+		String user=theUser.getIUserId();
+		FollowUpTrn ft=new FollowUpTrn();
+
+		System.out.println("======"
+				+followUpBean);
+		ft.setDtEntry(new Date());
+		ft.setDtEvent(followUpBean.getDtEvent());
+		ft.setFollowUpMstId(followUpBean.getFollowUpId());
+		ft.setIsValid(1);
+		ft.setStOwnerId(user);
+		ft.setStContent(followUpBean.getStContent());
+		ft.setStName(followUpBean.getStName());
+		ft.setStOrgId(Org);
+		System.out.println(ft);
+		fdao.save(ft);
+	}
+	@Override
+	public List<FollowUpTrn> getconfigFolowUpList(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		return fdao.findAll();
 	}
 	
 }

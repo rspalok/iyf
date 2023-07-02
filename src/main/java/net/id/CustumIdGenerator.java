@@ -20,6 +20,8 @@ import org.hibernate.id.IdentifierGenerator;
 
 import net.model.GbltOtpStudentRegTrn;
 import net.model.GbltUserMst;
+import net.model.master.FollowUpMaster;
+import net.model.transection.FollowUpTrn;
 import net.model.transection.IyfClassSchedTrn; 
  
  
@@ -32,7 +34,7 @@ public class CustumIdGenerator implements IdentifierGenerator  {
 	@Override
 	public Serializable generate(SharedSessionContractImplementor session, Object object) throws HibernateException {
 		
-
+		System.out.println("========id generator called ========");
 		Connection connection = session.connection();  
 		System.out.println("object::"+object);
 		
@@ -167,6 +169,66 @@ public class CustumIdGenerator implements IdentifierGenerator  {
 			    }
  
 			
+		}else if (object instanceof FollowUpTrn){   
+			FollowUpTrn tableObj = (FollowUpTrn) object;
+
+			if (tableObj.getFollowUpId() != null)
+				return tableObj.getFollowUpId();
+
+			String orgId=tableObj.getStOrgId();
+			try {
+				
+				//uuuu
+				System.out.println("=======");
+				Statement statement = connection.createStatement();
+				String Query="select count(num_follow_up_id) as Id from iyf.iyf_follow_up_trn where str_org_id ='"+orgId
+						 +"'";
+				
+				System.out.println("=====countQuery=="+Query);
+				ResultSet rs = statement.executeQuery(Query);
+				if (rs.next()) {
+					Integer generatedId = (rs.getInt(1) + 1);
+
+					System.out.println("=str_follow_up_id==generatedId===="+generatedId);
+					return generatedId;
+				}
+				
+		
+			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (object instanceof FollowUpMaster){   
+			FollowUpMaster tableObj = (FollowUpMaster) object;
+
+			if (tableObj.getFollowUpId() != null)
+				return tableObj.getFollowUpId();
+
+			String orgId=tableObj.getStOrgId();
+			try {
+				
+				//uuuu
+				System.out.println("=======");
+				Statement statement = connection.createStatement();
+				String Query="select count(num_mst_id) as Id from iyf.iyf_follow_up_mst where str_org_id ='"+orgId
+						 ;
+				
+				System.out.println("=====countQuery=="+Query);
+				ResultSet rs = statement.executeQuery(Query);
+				if (rs.next()) {
+					Integer generatedId = (rs.getInt(1) + 1);
+
+					System.out.println("=num_mst_id==generatedId===="+generatedId);
+					return generatedId;
+				}
+				
+		
+			
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} 
 		 
 		return null;

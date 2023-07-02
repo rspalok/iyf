@@ -13,6 +13,7 @@ import net.model.bean.FollowUpBean;
 import net.model.master.FollowUpMaster;
 import net.model.master.pojo.IYFCourseConfig;
 import net.model.transection.FollowUpResponseTrn;
+import net.model.transection.FollowUpTrn;
 
 public interface FollowUpSer {
 
@@ -32,8 +33,11 @@ public interface FollowUpSer {
 
 	public List<FollowUpResponseTrn> getMyFolowUpStudentList(HttpServletRequest request);
 
-	public Page<FollowUpResponseTrn> findPaginated(int pageNo, int pageSize,
-			String sortField, String sortDir, HttpServletRequest request);
+	public Page<FollowUpTrn> findPaginated(int pageNo, int pageSize, String sortField, String sortDir, HttpServletRequest request);
+
+	public void saveFollowUpConfig(FollowUpBean followUpBean, HttpServletRequest request);
+
+	public List<FollowUpTrn> getconfigFolowUpList(HttpServletRequest request);
 	
 	
 }

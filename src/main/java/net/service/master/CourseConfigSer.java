@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import net.model.master.pojo.IYFBatchMst;
 import net.model.master.pojo.IYFCourseConfig;
 import net.model.master.pojo.IyfCourseMst;
+import net.model.transection.FollowUpTrn;
 
 
 public interface CourseConfigSer {

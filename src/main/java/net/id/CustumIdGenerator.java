@@ -18,9 +18,9 @@ import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.IdentifierGenerator;
 
-import net.model.GbltOtpStudentRegTrn;
-import net.model.GbltUserMst;
 import net.model.master.FollowUpMaster;
+import net.model.master.GbltOtpStudentRegTrn;
+import net.model.master.GbltUserMst;
 import net.model.transection.FollowUpTrn;
 import net.model.transection.IyfClassSchedTrn; 
  

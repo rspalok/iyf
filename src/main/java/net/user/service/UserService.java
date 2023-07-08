@@ -1,8 +1,8 @@
 package net.user.service;
  
-import net.model.GbltOtpStudentRegTrn;
-import net.model.GbltUserMst;
 import net.model.bean.CrmUser;
+import net.model.master.GbltOtpStudentRegTrn;
+import net.model.master.GbltUserMst;
 
 public interface UserService {
 

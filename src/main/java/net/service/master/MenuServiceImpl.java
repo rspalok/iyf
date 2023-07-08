@@ -15,7 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import net.dao.master.MenuDao;
-import net.model.GbltUserMst;
+import net.model.master.GbltUserMst;
 import net.model.master.MenuMaster;
 import net.model.master.MenuMasterPk;
 import net.user.dao.UserDao;

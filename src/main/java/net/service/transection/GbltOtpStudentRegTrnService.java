@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.data.domain.Page;
 
-import net.model.GbltOtpStudentRegTrn;
+import net.model.master.GbltOtpStudentRegTrn;
 import net.model.master.MenuMaster;
 
 public interface GbltOtpStudentRegTrnService {

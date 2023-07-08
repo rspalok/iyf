@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import net.model.bean.GbltStudentBean;
-import net.model.master.pojo.IYFCourseConfig;
+import net.model.transection.IYFCourseConfig;
 import net.model.transection.IyfClassSchedTrn;
 import net.service.master.CourseConfigSer;
 import net.service.transection.ClassScheduleSer;

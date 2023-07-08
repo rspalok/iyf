@@ -22,7 +22,7 @@ import net.dao.report.DashBoardDao;
 import net.dao.transection.ClassScheduleDao;
 import net.dao.transection.CourseAttenTrnDao;
 import net.dao.transection.CourseRegistrationDao;
-import net.model.GbltUserMst;
+import net.model.master.GbltUserMst;
 import net.model.transection.IyfClassSchedTrn;
 import net.model.transection.IyfCoureRegTrn;
 import net.model.transection.IyfCourseAttenTrn;

@@ -4,8 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.data.domain.Page;
- 
-import net.model.master.pojo.IYFBatchMst;
+
+import net.model.master.IYFBatchMst;
 
 public interface BatchSer {
 

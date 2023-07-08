@@ -20,7 +20,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import net.model.GbltOtpStudentRegTrn;
+import net.model.master.GbltOtpStudentRegTrn;
 
 @Entity
 @Table(name = "yatra_reg_trn", schema = "iyf")

@@ -7,13 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.data.domain.Page;
 
-import net.model.GbltOtpStudentRegTrn;
-import net.model.GbltUserMst;
 import net.model.bean.FollowUpBean;
 import net.model.master.FollowUpMaster;
-import net.model.master.pojo.IYFCourseConfig;
+import net.model.master.GbltOtpStudentRegTrn;
+import net.model.master.GbltUserMst;
 import net.model.transection.FollowUpResponseTrn;
 import net.model.transection.FollowUpTrn;
+import net.model.transection.IYFCourseConfig;
 
 public interface FollowUpSer {
 

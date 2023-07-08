@@ -4,9 +4,9 @@ package net.user.dao;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import net.model.GbltOtpStudentRegTrn;
-import net.model.GbltUserMst;
-import net.model.GbltUsersRolesTrn;
+import net.model.master.GbltOtpStudentRegTrn;
+import net.model.master.GbltUserMst;
+import net.model.master.GbltUsersRolesTrn;
 
 public interface UserDao {
 

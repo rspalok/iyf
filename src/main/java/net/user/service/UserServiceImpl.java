@@ -7,10 +7,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import net.model.GbltOtpStudentRegTrn;
-import net.model.GbltUserMst;
-import net.model.GbltUsersRolesTrn;
 import net.model.bean.CrmUser;
+import net.model.master.GbltOtpStudentRegTrn;
+import net.model.master.GbltUserMst;
+import net.model.master.GbltUsersRolesTrn;
 import net.user.dao.UserDao;
  
 

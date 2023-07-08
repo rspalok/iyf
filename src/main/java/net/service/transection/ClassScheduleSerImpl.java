@@ -17,7 +17,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import net.dao.transection.ClassScheduleDao;
-import net.model.GbltUserMst;
+import net.model.master.GbltUserMst;
 import net.model.transection.IyfClassSchedTrn;
 
 @Service

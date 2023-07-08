@@ -16,8 +16,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import net.dao.transection.YatraMngDao;
-import net.model.GbltUserMst;
 import net.model.bean.YatraBean;
+import net.model.master.GbltUserMst;
 import net.model.transection.YatraCruiseTrn;
 import net.model.transection.YatraRegTrn;
 

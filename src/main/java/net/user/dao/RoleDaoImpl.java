@@ -8,8 +8,8 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import net.model.GbltRolMst;
-import net.model.GbltUserMst;
+import net.model.master.GbltRolMst;
+import net.model.master.GbltUserMst;
 
 @Repository
 public class RoleDaoImpl implements RoleDao {

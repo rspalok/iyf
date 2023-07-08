@@ -11,8 +11,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import net.model.GbltOtpStudentRegTrn;
-import net.model.GbltOtpStudentRegTrnPk;
+import net.model.master.GbltOtpStudentRegTrn;
+import net.model.master.GbltOtpStudentRegTrnPk;
 import net.model.master.MenuMaster; 
 
 @Transactional

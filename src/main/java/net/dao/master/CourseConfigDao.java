@@ -11,8 +11,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import net.model.master.pojo.IYFCourseConfig;
-import net.model.master.pojo.IYFCourseConfigPk;
+import net.model.transection.IYFCourseConfig;
+import net.model.transection.IYFCourseConfigPk;
 
 @Transactional
 public interface CourseConfigDao extends JpaRepository<IYFCourseConfig,IYFCourseConfigPk> {

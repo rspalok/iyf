@@ -25,9 +25,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import net.dao.transection.GbltOtpStudentRegTrnRepository;
-import net.model.GbltOtpStudentRegTrn;
-import net.model.GbltOtpStudentRegTrnPk;
-import net.model.GbltUserMst;
+import net.model.master.GbltOtpStudentRegTrn;
+import net.model.master.GbltOtpStudentRegTrnPk;
+import net.model.master.GbltUserMst;
 import net.model.master.MenuMaster; 
 
 

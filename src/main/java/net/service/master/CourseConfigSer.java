@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.data.domain.Page;
 
-import net.model.master.pojo.IYFBatchMst;
-import net.model.master.pojo.IYFCourseConfig;
-import net.model.master.pojo.IyfCourseMst;
+import net.model.master.IYFBatchMst;
+import net.model.master.IyfCourseMst;
 import net.model.transection.FollowUpTrn;
+import net.model.transection.IYFCourseConfig;
 
 
 public interface CourseConfigSer {

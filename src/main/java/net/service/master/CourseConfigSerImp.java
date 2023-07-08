@@ -22,11 +22,11 @@ import net.dao.master.BatchDao;
 import net.dao.master.CourseConfigDao;
 import net.dao.master.CourseDao;
 import net.dao.transection.FollowUpTrnDao;
-import net.model.GbltUserMst;
-import net.model.master.pojo.IYFBatchMst;
-import net.model.master.pojo.IYFCourseConfig;
-import net.model.master.pojo.IyfCourseMst;
-import net.model.transection.FollowUpTrn;  
+import net.model.master.GbltUserMst;
+import net.model.master.IYFBatchMst;
+import net.model.master.IyfCourseMst;
+import net.model.transection.FollowUpTrn;
+import net.model.transection.IYFCourseConfig;  
 
 @Transactional
 @Service

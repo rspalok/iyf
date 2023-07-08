@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import net.model.GbltOtpStudentRegTrn;
+import net.model.master.GbltOtpStudentRegTrn;
 import net.model.transection.IyfCoureRegTrn;
 import net.model.transection.IyfCoureRegTrnPk;
 import net.model.transection.IyfCourseAttenTrn;

@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import net.dao.master.CourseConfigDao;
-import net.model.GbltRolMst;
-import net.model.GbltUserMst;
-import net.model.master.pojo.GbltOrgMst;
-import net.model.master.pojo.IYFBatchMst;
-import net.model.master.pojo.IYFCourseConfig;
-import net.model.master.pojo.IyfCourseMst;
+import net.model.master.GbltOrgMst;
+import net.model.master.GbltRolMst;
+import net.model.master.GbltUserMst;
+import net.model.master.IYFBatchMst;
+import net.model.master.IyfCourseMst;
+import net.model.transection.IYFCourseConfig;
 
 @Service
 @Transactional

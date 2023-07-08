@@ -9,8 +9,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import net.model.GbltRolMst;
-import net.model.GbltUserMst;
+import net.model.master.GbltRolMst;
+import net.model.master.GbltUserMst;
 
 public class MyUserDetailsService implements UserDetails {
 
@@ -29,7 +29,7 @@ public class MyUserDetailsService implements UserDetails {
 		for (GbltRolMst role : roles) {
 			authorities.add(new SimpleGrantedAuthority(role.getStName()));
 		}
-		
+		System.out.println("==authorities=="+authorities);
 		return authorities;
 	}
 	

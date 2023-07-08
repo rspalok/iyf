@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import net.model.GbltRolMst;
-import net.model.master.pojo.GbltOrgMst;
+import net.model.master.GbltOrgMst;
+import net.model.master.GbltRolMst;
 
 public interface UtilityDao extends JpaRepository<GbltOrgMst, String> {
 

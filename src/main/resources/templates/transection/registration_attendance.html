@@ -52,7 +52,7 @@ xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 					<!--  a th:attr="onclick=|goforRegistration('${student.mICourseConfig}')|" class="btn btn-primary">Student Register</a> 
 					<a th:attr="onclick=|goforAttendance('${student.mICourseConfig}')|" class="btn btn-danger">Student Attendance</a--> 
 					<span sec:authentication="principal.authorities">Roles</span>
-					<a sec:authorize="hasRole('USER')" th:href="@{/course/registration/{id}(id=${student.mICourseConfig})}" class="btn btn-primary">Register Student</a> 
+					<a sec:authorize="hasRole('ADMIN')" th:href="@{/course/registration/{id}(id=${student.mICourseConfig})}" class="btn btn-primary">Register Student</a> 
 					<a sec:authorize="hasAnyRole('USER')" th:href="@{/course/attendance/{id}(id=${student.mICourseConfig})}" class="btn btn-danger">Take Attendance</a>
 					
 					<sec:authorize access="hasRole('Adm')"> rt
@@ -91,6 +91,9 @@ xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 		</div>
  </div>
  
+ 
+ 
+
 <script th:src="@{/iyf/course_attendance.js}"></script>
 <script type="text/javascript">
 function goforRegistration(mICourseConfig){

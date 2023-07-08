@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import net.model.GbltOtpStudentRegTrn;
+import net.model.master.GbltOtpStudentRegTrn;
 import net.model.master.MenuMaster;
 import net.service.transection.GbltOtpStudentRegTrnService;
  
@@ -37,7 +38,7 @@ public class GbltStudentRegCnt {
 		model.addAttribute("reports", data.get("report"));
 		return "page/index";	
 	}
-	
+
 	@GetMapping("/home")
 	public String menuList(MenuMaster menuMaster,Model model,HttpServletRequest request) throws UnsupportedEncodingException { 
 		//service.getMemuList(user);

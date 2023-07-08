@@ -21,8 +21,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import net.model.GbltOtpStudentRegTrn;
-import net.model.master.pojo.IYFCourseConfig;
+import net.model.master.GbltOtpStudentRegTrn;
 
 
 

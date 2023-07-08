@@ -10,8 +10,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import net.model.master.pojo.IYFBatchMst;
-import net.model.master.pojo.IYFBatchMstPk;
+import net.model.master.IYFBatchMst;
+import net.model.master.IYFBatchMstPk;
 @Transactional 
 public interface BatchDao extends JpaRepository<IYFBatchMst,IYFBatchMstPk> {
 

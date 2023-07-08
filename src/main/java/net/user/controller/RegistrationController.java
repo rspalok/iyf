@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import net.com.utilityService;
-import net.model.GbltOtpStudentRegTrn;
-import net.model.GbltRolMst;
-import net.model.GbltUserMst;
 import net.model.bean.CrmUser;
-import net.model.master.pojo.GbltOrgMst;
+import net.model.master.GbltOrgMst;
+import net.model.master.GbltOtpStudentRegTrn;
+import net.model.master.GbltRolMst;
+import net.model.master.GbltUserMst;
 import net.user.service.UserService; 
 
 @Controller

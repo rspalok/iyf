@@ -21,9 +21,9 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import net.dao.transection.CourseAttenTrnDao;
 import net.dao.transection.CourseRegistrationDao;
 import net.dao.transection.GbltOtpStudentRegTrnRepository;
-import net.model.GbltOtpStudentRegTrn;
-import net.model.GbltUserMst;
 import net.model.bean.GbltStudentBean;
+import net.model.master.GbltOtpStudentRegTrn;
+import net.model.master.GbltUserMst;
 import net.model.transection.IyfCoureRegTrn;
 import net.model.transection.IyfCourseAttenTrn;
   

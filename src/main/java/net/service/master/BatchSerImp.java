@@ -16,8 +16,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import net.dao.master.BatchDao;
-import net.model.GbltUserMst;
-import net.model.master.pojo.IYFBatchMst;
+import net.model.master.GbltUserMst;
+import net.model.master.IYFBatchMst;
 
 @Transactional
 @Service

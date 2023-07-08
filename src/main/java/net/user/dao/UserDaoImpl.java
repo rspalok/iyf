@@ -9,9 +9,9 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import net.model.GbltOtpStudentRegTrn;
-import net.model.GbltUserMst;
-import net.model.GbltUsersRolesTrn;
+import net.model.master.GbltOtpStudentRegTrn;
+import net.model.master.GbltUserMst;
+import net.model.master.GbltUsersRolesTrn;
 
 @Repository
 public class UserDaoImpl implements UserDao {

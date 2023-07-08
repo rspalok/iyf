@@ -9,8 +9,8 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import net.model.GbltOtpStudentRegTrn;
-import net.model.GbltRolMst;
+import net.model.master.GbltOtpStudentRegTrn;
+import net.model.master.GbltRolMst;
 
 @Repository
 public class OtpRegAndAttendenceDaoImpl implements OtpRegAndAttendenceDao {

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 import com.google.common.net.HttpHeaders;
 
-import net.model.GbltUserMst;
+import net.model.master.GbltUserMst;
 import net.user.service.UserService;
  
 

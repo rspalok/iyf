@@ -17,7 +17,7 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import net.model.GbltOtpStudentRegTrn;
+import net.model.master.GbltOtpStudentRegTrn;
 
 @Entity
 @Table(name = "iyf_follow_up_response_trn", schema = "iyf")

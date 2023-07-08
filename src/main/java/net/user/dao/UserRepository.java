@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import net.model.GbltUserMst;
-import net.model.GbltUserMstPk;
+import net.model.master.GbltUserMst;
+import net.model.master.GbltUserMstPk;
 
 
 public interface UserRepository extends CrudRepository<GbltUserMst, GbltUserMstPk> {

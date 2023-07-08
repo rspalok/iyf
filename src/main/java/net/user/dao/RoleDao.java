@@ -1,6 +1,6 @@
 package net.user.dao;
 
-import net.model.GbltRolMst;
+import net.model.master.GbltRolMst;
 
 public interface RoleDao {
 

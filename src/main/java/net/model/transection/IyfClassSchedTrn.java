@@ -24,8 +24,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import net.model.master.pojo.IYFCourseConfig;
-
 
 @Entity 
 @Table(name = "iyf_schedule_class_trn", schema = "iyf")

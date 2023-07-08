@@ -27,8 +27,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.hibernate.annotations.JoinFormula;
 
-import net.model.GbltOtpStudentRegTrn;
-import net.model.master.pojo.IYFCourseConfig;
+import net.model.master.GbltOtpStudentRegTrn;
 
 @Entity
 @Table(name = "iyf_course_atten_trn", schema = "iyf")

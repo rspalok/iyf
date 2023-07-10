@@ -19,7 +19,7 @@ CreateFollowUp
 					<label for="mDtCourseEnd">Follow up For</label> 
 					<select class="form-control" th:field="*{followUpId}" >
 					    <option value="0">select option</option>
-					    <option th:each="option : ${followUp}" th:value="${option.followUpId}" th:text="${option.stContent}"></option>
+					    <option th:each="option : ${followUp}" th:value="${option.followUpId}" th:text="${option.stName} "></option>
 					</select></div>
 				</div>
 				<div class="col-md-3 col-sm-3">
@@ -160,16 +160,26 @@ CreateFollowUp
             	course.classList.add("hidden");
             	todate.classList.add("hidden");
             	fromdate.classList.add("hidden");
+
+            	$('#course').prop('required','');
+            	$('#dtTo').prop('required','');
+            	$('#dtFrom').prop('required','');
 				
 			} else if(optionValue==2){
 				course.classList.remove("hidden");
             	todate.classList.add("hidden");
             	fromdate.classList.add("hidden");
+            	$('#course').prop('required','required');
+            	$('#dtTo').prop('required',false);
+            	$('#dtFrom').prop('required',false);
 			}else if(optionValue==3){
 
             	course.classList.add("hidden");
             	todate.classList.remove("hidden");
             	fromdate.classList.remove("hidden");
+            	$('#course').prop('required','');
+            	$('#dtTo').prop('required','required');
+            	$('#dtFrom').prop('required','required');
 			}
 		});
 	});

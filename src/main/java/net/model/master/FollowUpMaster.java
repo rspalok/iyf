@@ -30,8 +30,8 @@ public class FollowUpMaster  implements Serializable{
 	@Column(name = "num_mst_id", nullable = false, length=8)
 	private Integer followUpId;
 
-	@Column(name = "str_content", nullable = false, columnDefinition = "character varying (225)")
-	private String stContent;
+	@Column(name = "str_name", nullable = false, columnDefinition = "character varying (225)")
+	private String stName;
 	
 	@Column(name = "str_owner_id", nullable = false, columnDefinition = "character varying (15)")
 	private String stOwnerId;
@@ -72,13 +72,13 @@ public class FollowUpMaster  implements Serializable{
 	public void setFollowUpId(Integer followUpId) {
 		this.followUpId = followUpId;
 	}
-
-	public String getStContent() {
-		return stContent;
+	
+	public String getStName() {
+		return stName;
 	}
 
-	public void setStContent(String stContent) {
-		this.stContent = stContent;
+	public void setStName(String stName) {
+		this.stName = stName;
 	}
 
 	public String getStOwnerId() {
@@ -133,7 +133,7 @@ public class FollowUpMaster  implements Serializable{
 
 	@Override
 	public String toString() {
-		return "FallowUpMaster [followUpId=" + followUpId + ", stContent=" + stContent + ", stOwnerId=" + stOwnerId
+		return "FallowUpMaster [followUpId=" + followUpId + ", stName=" + stName + ", stOwnerId=" + stOwnerId
 				+ ", stOrgId=" + stOrgId + ", isValid=" + isValid + ", dtEntry=" + dtEntry + "]";
 	}
     

@@ -36,7 +36,7 @@ public class FollowUpResponseTrn implements Serializable{
 	private String stStudentId;//stUserId;
  
 	@ManyToOne(fetch = FetchType.LAZY)
-	//@JsonIgnore  num_mst_id
+	//@JsonIgnore  num_mst_id 
 	@JoinColumns({
         @JoinColumn(name="str_org_id", referencedColumnName="str_org_id" ,insertable=false, updatable=false),
         @JoinColumn(name="num_follow_up_id", referencedColumnName="num_follow_up_id",insertable=false, updatable=false)

@@ -16,6 +16,7 @@ public class FollowUpBean implements Serializable {
 	private Integer followUpId;
 
 	private String stName;
+	
 	private String stContent;
 	
 	private String stStudentId;// stUserId;

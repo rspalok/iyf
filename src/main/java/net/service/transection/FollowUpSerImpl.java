@@ -56,13 +56,22 @@ public class FollowUpSerImpl implements FollowUpSer {
 	private GbltOtpStudentRegTrnRepository r_dao;
 	
 	@Override
-	public List<FollowUpMaster> getFolowUpList(HttpServletRequest request) {
+	public List<FollowUpTrn> getFolowUpTrnList(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserMst theUser = (GbltUserMst)session.getAttribute("user");
 		String Org=theUser.getStOrgId();
 		
-		return dao.getFolowUpList(Org);
+		return dao.getFolowUpTrnList(Org);
+	}
+	@Override
+	public List<FollowUpMaster> getFolowUpMstList(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		HttpSession session = request.getSession(); 
+		GbltUserMst theUser = (GbltUserMst)session.getAttribute("user");
+		String Org=theUser.getStOrgId();
+		
+		return dao.getFolowUpMstList(Org);
 	}
 	@Override
 	public List<IYFCourseConfig> getCourseConfigList(HttpServletRequest request) {
@@ -237,24 +246,24 @@ public class FollowUpSerImpl implements FollowUpSer {
 		dao.save(followUpResponseTrn);
 	}
 	@Override
-	public List<FollowUpResponseTrn> getFolowUpStudentList(HttpServletRequest request) {
+	public List<FollowUpResponseTrn> getFolowUpStudentList(FollowUpBean followUpBean,HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserMst theUser = (GbltUserMst)session.getAttribute("user");
 		String Org=theUser.getStOrgId();
 		String user=theUser.getIUserId();
 		
-		return dao.getFolowUpStudentList(Org);
+		return dao.getFolowUpStudentList(followUpBean.getFollowUpId(),Org);
 	}
 	@Override
-	public List<FollowUpResponseTrn> getMyFolowUpStudentList(HttpServletRequest request) {
+	public List<FollowUpResponseTrn> getMyFolowUpStudentList(FollowUpBean followUpBean,HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserMst theUser = (GbltUserMst)session.getAttribute("user");
 		String Org=theUser.getStOrgId();
 		String user=theUser.getIUserId();
 		
-		return dao.getMyFolowUpStudentList(Org,user);
+		return dao.getMyFolowUpStudentList(followUpBean.getFollowUpId(),Org,user);
 	}
 	@Override
 	public String getStudentForFolloup(String stStudentId, Integer followUpId, HttpServletRequest objRequest_p) {
@@ -315,5 +324,6 @@ public class FollowUpSerImpl implements FollowUpSer {
 		// TODO Auto-generated method stub
 		return fdao.findAll();
 	}
+	
 	
 }

@@ -28,9 +28,9 @@
 					<th>
 					<a th:href="@{'/course/page/' + ${currentPage} + '?sortField=stName&sortDir=' + ${reverseSortDir}}"> Name</a></th>
 					<th>
-					<a th:href="@{'/course/page/' + ${currentPage} + '?sortField=mIBatch&sortDir=' + ${reverseSortDir}}"> Content </a></th>
+					<a th:href="@{'/course/page/' + ${currentPage} + '?sortField=mIBatch&sortDir=' + ${reverseSortDir}}"> Type  </a></th>
 					<th>
-					<a th:href="@{'/course/page/' + ${currentPage} + '?sortField=mIBatch&sortDir=' + ${reverseSortDir}}"> Content </a></th>
+					<a th:href="@{'/course/page/' + ${currentPage} + '?sortField=mIBatch&sortDir=' + ${reverseSortDir}}"> Content</a></th>
 					<th>
 					<a th:href="@{'/course/page/' + ${currentPage} + '?sortField=mDtCourseStart&sortDir=' + ${reverseSortDir}}"> Entry Date</a></th>
 					<th>
@@ -44,7 +44,7 @@
 					<td th:text="${count.count}"></td>
 					<td th:text="${student.stName}"></td>
 					
-					<td th:text="${student.objFollowUpMaster.stContent}"></td>
+					<td th:text="${student.objFollowUpMaster.stName}"></td>
 					
 					<td th:text="${student.stContent}"></td>
 					<td th:text="${#dates.format(student.dtEntry, 'dd-MMM-yyyy')}"></td>

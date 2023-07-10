@@ -17,21 +17,23 @@ import net.model.transection.IYFCourseConfig;
 
 public interface FollowUpSer {
 
-	public List<FollowUpMaster> getFolowUpList(HttpServletRequest request);
+	public List<FollowUpMaster> getFolowUpMstList(HttpServletRequest request);
 
+	public List<FollowUpTrn> getFolowUpTrnList(HttpServletRequest request);
+	
 	public List<IYFCourseConfig> getCourseConfigList(HttpServletRequest request);
 
 	public List<GbltUserMst> getCallerListFromOTPStudent(HttpServletRequest request);
 
 	public void saveFollowUpDetails(FollowUpBean followUpBean, HttpServletRequest request) throws ParseException;
 
-	public List<FollowUpResponseTrn> getFolowUpStudentList(HttpServletRequest request);
+	public List<FollowUpResponseTrn> getFolowUpStudentList(FollowUpBean followUpBean, HttpServletRequest request);
 
 	public String getStudentForFolloup(String stStudentId, Integer followUpId, HttpServletRequest objRequest_p);
 
 	public void saveFollowUpResponse(FollowUpBean followUpBean, HttpServletRequest request);
 
-	public List<FollowUpResponseTrn> getMyFolowUpStudentList(HttpServletRequest request);
+	public List<FollowUpResponseTrn> getMyFolowUpStudentList(FollowUpBean followUpBean, HttpServletRequest request);
 
 	public Page<FollowUpTrn> findPaginated(int pageNo, int pageSize, String sortField, String sortDir, HttpServletRequest request);
 

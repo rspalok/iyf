@@ -24,4 +24,27 @@ public interface YatraMngDao extends JpaRepository<YatraRegTrn,YatraRegTrnPk> {
     @Query("SELECT e from YatraRegTrn e JOIN e.objYatraCruiseTrn Join e.objGbltOtpStudentRegTrns where  e.isValid = 1 and e.yatraCruiseId=:yatraCruiseId and e.stOrgId =:org") 
 	List<YatraRegTrn> yatraRagisterdList(@Param("yatraCruiseId") Long yatraCruiseId,@Param("org")  String org);
 
+    @Query("SELECT e from YatraRegTrn e JOIN e.objYatraCruiseTrn Join e.objGbltOtpStudentRegTrns where e.stStudentId=:stStudentId and e.isValid = 1 and e.yatraCruiseId=:yatraCruiseId and e.stOrgId =:org") 
+    List<Object> getStudentBy(@Param("stStudentId") String stStudentId,@Param("yatraCruiseId") Long yatraCruiseId,@Param("org")   String org);
+
+   
+    String query2="   select "
+    		+ " a.yatraCruiseId as yatraCruiseId, "
+    		+ " a.stStudentId as stStudentId, "
+    		+ " a.dtRegistration as dtRegistration, "
+    		+ " a.regStatus as regStatus, "
+    		+ " a.contributionMode as contributionMode, "
+    		+ " a.IFacilitator as IFacilitator, "
+    		+ " a.contributed as contributed, "
+    		+ " b.IMobile as IMobile "
+    		+ " from "
+    		+ " YatraRegTrn a JOIN a.objGbltOtpStudentRegTrns b "
+    		+ " where "
+    		+ " a.yatraCruiseId=:yatraCruiseId  "
+    		+ " and a.isValid=1  "
+    		+ " and a.stStudentId=:stStudentId "
+    		+ " and a.stOrgId=:org ";
+    @Query("select a from YatraRegTrn a "
+    		+ " where a.yatraCruiseId=:yatraCruiseId and a.isValid=1 and a.stStudentId=:stStudentId and a.stOrgId=:org ")
+	List<Object> studentByMobileNofromYatraTable(@Param("stStudentId") String studentId, @Param("yatraCruiseId") Long yatraCruiseId, @Param("org") String org);
 }

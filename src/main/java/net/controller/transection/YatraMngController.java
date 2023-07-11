@@ -66,9 +66,23 @@ public class YatraMngController {
 		return ser.studentByMobileNo(mobileNumber, objRequest_p);
 	}
 	
+	@GetMapping("/studentfromYatra")
+	@ResponseBody
+	public String studentByMobileNoFromYatraTable(HttpServletRequest objRequest_p,
+			@RequestParam(value = "studentId", required = true) String studentId, 
+			@RequestParam(value = "yatraCruiseId", required = true) Long yatraCruiseId,
+			
+			HttpServletRequest request) {
+		System.out.println("===studentId=="+studentId+"====yatraCruiseId==="+yatraCruiseId);
+		return service.studentByMobileNofromYatraTable(studentId, yatraCruiseId,objRequest_p);
+	}
+	
 	@GetMapping("/registration/{Id}")
 	public String forRegistration(@PathVariable(value = "Id") Long yatraCruiseId, YatraBean yatraBean,
 			Model model, HttpServletRequest request, HttpServletResponse response) {
+		
+
+		model.addAttribute("facilitatorList",service.getfacilitatorList(request));
 		model.addAttribute("YatraCruise",service.getYatraCruiseById(yatraCruiseId,request));
 		model.addAttribute("YatraCruiseDtl",service.getYatraCruiseById(yatraCruiseId,request).get(0));
 

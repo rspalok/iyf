@@ -57,6 +57,35 @@ function myFunction1() {
   }
 }	
 
+function getYatraRagistrationDetails(yatraId,studentId){
+	
+	console.log("getYatraRagistrationDetails");
+	var action = "../studentfromYatra/?studentId=" + studentId+"&yatraCruiseId="+yatraId;
+	 
+	console.log("alert is working  "+action);
+	$.ajax({url: action,type:"GET",async:false,dataType:"json" ,success:function(data) {
+			result = viewSingleYatraDtls(data,1);
+		},error: function(errorMsg,textstatus,errorthrown) {
+			alert('getStudenInfo '+errorMsg+" textstatus::"+textstatus+" errorthrown::"+errorthrown);
+		}
+	});
+}
+function viewSingleYatraDtls(res, mode){
+	console.log(res);
+	if(res.length >0){
+		
+		$('#mContributed').val(res[0].contributed);
+		$('#contributionMode').val(res[0].contributionMode);
+		$('#facilitator').val(res[0].IFacilitator);
+		
+		
+	}else{
+		
+		$('#mContributed').val(0);
+		$('#contributionMode').val('');
+		$('#facilitator').val('');
+	}
+}
 function checkFormDatabase(id){
 	if(id.length <10){
 		return;
@@ -98,6 +127,9 @@ function viewSingleDtls(res, mode) {
 		$('#mChanting').val(res[0].mChanting);
 		$('#stAddress').val(res[0].stAddress);
 		$('#stStudentId').val(res[0].stStudentId);
+		
+        var yatraId=$('#yatraCruiseId option:selected').val();
+		getYatraRagistrationDetails(yatraId,res[0].stStudentId);
 	}else{
 		$('#stOccupation').val('');
 		$('#firstName').val('');
@@ -109,6 +141,7 @@ function viewSingleDtls(res, mode) {
 	}
 	
 }
+//yatraId,studentId
 getRegiteredStudentList = function() {
 		var mICourseConfig=$('#mICourseConfig').val();
 		//var action = "../follow_up/getStudentForFolloup/?stStudentId="+stStudentId +"&followUpId="+ followUpId;
@@ -179,6 +212,7 @@ $(function () {
         console.log($('#stStudentId option:selected').val());
         // your ajax call
         var studentId=$('#stStudentId option:selected').val();
+        var yatraId=$('#yatraCruiseId option:selected').val();
         for (let i = 0; i < student_list.length; i++) {
 		   if(student_list[i].stStudentId==studentId){
 			   var res=student_list[i]
@@ -191,6 +225,7 @@ $(function () {
 				$('#mChanting').val(res.mChanting);
 				$('#stAddress').val(res.stAddress);
 				$('#stStudentId').val(res.stStudentId);
+				getYatraRagistrationDetails(yatraId,studentId);
 				break;
 		   }else{
 			   $('#stOccupation').val('');

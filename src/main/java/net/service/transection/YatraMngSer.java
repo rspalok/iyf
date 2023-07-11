@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.data.domain.Page;
 
 import net.model.bean.YatraBean;
+import net.model.master.IYFFacilitatorMst;
 import net.model.transection.YatraCruiseTrn;
 import net.model.transection.YatraRegTrn;
 
@@ -22,5 +23,9 @@ public interface YatraMngSer {
 			HttpServletResponse response);
 
 	public List<YatraRegTrn> yatraRagisterdList(Long yatraCruiseId, HttpServletRequest request);
+
+	public List<IYFFacilitatorMst> getfacilitatorList(HttpServletRequest request);
+
+	public String studentByMobileNofromYatraTable(String studentId, Long yatraCruiseId, HttpServletRequest objRequest_p);
 
 }

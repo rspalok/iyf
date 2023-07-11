@@ -15,9 +15,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+
+import net.dao.master.FacilitatoDao;
 import net.dao.transection.YatraMngDao;
 import net.model.bean.YatraBean;
 import net.model.master.GbltUserMst;
+import net.model.master.IYFFacilitatorMst;
 import net.model.transection.YatraCruiseTrn;
 import net.model.transection.YatraRegTrn;
 
@@ -28,6 +34,10 @@ public class YatraMngSerImp implements YatraMngSer {
 
 	@Autowired 
 	public YatraMngDao dao;
+	
+
+	@Autowired 
+	public FacilitatoDao fdao;
 	
 	@Override
 	public Page<YatraCruiseTrn> findPaginated(int pageNo, int pageSize, String sortField, String sortDir,
@@ -88,6 +98,39 @@ public class YatraMngSerImp implements YatraMngSer {
 		String org= theUser.getStOrgId();
 		
 		return dao.yatraRagisterdList(yatraCruiseId,org);
+	}
+
+	@Override
+	public List<IYFFacilitatorMst> getfacilitatorList(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		return fdao.findAll();
+	}
+
+	@Override
+	public String studentByMobileNofromYatraTable(String StudentId, Long yatraCruiseId,HttpServletRequest objRequest_p) {
+		// TODO Auto-generated method stub
+		HttpSession session = objRequest_p.getSession(); 
+		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		String org= theUser.getStOrgId();
+		// TODO Auto-generated method stub
+		List<Object> list = dao.studentByMobileNofromYatraTable(StudentId,yatraCruiseId,org);
+		System.out.println(list.toString());
+		ObjectMapper mapper = new ObjectMapper();
+
+		
+
+		mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+		String data = null;
+		try {
+			data = mapper.writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		return data;
+			
 	}
 
 }

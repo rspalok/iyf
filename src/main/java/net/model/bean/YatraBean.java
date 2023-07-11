@@ -46,9 +46,18 @@ public class YatraBean implements Serializable{
 	private String stSignificance;
 
 	private String stPlaceToVisit;
+	private String facilitator;
 
     public YatraBean() {
 		// TODO Auto-generated constructor stub
+	}
+
+	public String getFacilitator() {
+		return facilitator;
+	}
+
+	public void setFacilitator(String facilitator) {
+		this.facilitator = facilitator;
 	}
 
 	public String getStStudentId() {
@@ -223,11 +232,12 @@ public class YatraBean implements Serializable{
 	public String toString() {
 		return "YatraBean [stStudentId=" + stStudentId + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", email=" + email + ", stAddress=" + stAddress + ", IMobile=" + IMobile + ", mChanting=" + mChanting
-				+ ", stOccupation=" + stOccupation + ", stStage=" + stStage + ", mIMode=" + mIMode
-				+ ", yatraCruiseId=" + yatraCruiseId + ", mDtRegistration=" + mDtRegistration + ", mRegStatus="
-				+ mRegStatus + ", mPaymentMode=" + contributionMode + ", mStUserId=" + mStUserId + ", mIYatraSanctuaryId="
-				+ yatraSanctuaryId + ", stName=" + stName + ", stAbout=" + stAbout + ", stSignificance="
-				+ stSignificance + ", stPlaceToVisit=" + stPlaceToVisit + "]";
+				+ ", stOccupation=" + stOccupation + ", stStage=" + stStage + ", mIMode=" + mIMode + ", yatraCruiseId="
+				+ yatraCruiseId + ", mDtRegistration=" + mDtRegistration + ", mContributed=" + mContributed
+				+ ", mRegStatus=" + mRegStatus + ", contributionMode=" + contributionMode + ", mStUserId=" + mStUserId
+				+ ", yatraSanctuaryId=" + yatraSanctuaryId + ", stName=" + stName + ", stAbout=" + stAbout
+				+ ", stSignificance=" + stSignificance + ", stPlaceToVisit=" + stPlaceToVisit + ", facilitator="
+				+ facilitator + "]";
 	}
     
 }

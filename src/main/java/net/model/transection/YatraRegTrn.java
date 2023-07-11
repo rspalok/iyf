@@ -68,6 +68,10 @@ public class YatraRegTrn implements Serializable {
 	@Column(name = "str_user_id", nullable = false, columnDefinition = "character varying (15)")
 	private String stUserId;
 
+
+	@Column(name = "num_facilitator_id",columnDefinition = "character varying (15)")
+	private String IFacilitator;
+	
 	@Id
 	@Column(name = "str_org_id", nullable = false, columnDefinition = "character varying (20)")
 	private String stOrgId;
@@ -205,8 +209,9 @@ public class YatraRegTrn implements Serializable {
 	@Override
 	public String toString() {
 		return "YatraRegTrn [yatraCruiseId=" + yatraCruiseId + ", stStudentId=" + stStudentId + ", dtRegistration="
-				+ dtRegistration + ", regStatus=" + regStatus + ", contributionMode=" + contributionMode + ", stUserId="
-				+ stUserId + ", stOrgId=" + stOrgId + ", isValid=" + isValid + ", dtEntry=" + dtEntry + "]";
+				+ dtRegistration + ", regStatus=" + regStatus + ", contributionMode=" + contributionMode
+				+ ", contributed=" + contributed + ", stUserId=" + stUserId + ", stOrgId=" + stOrgId + ", isValid="
+				+ isValid + ", dtEntry=" + dtEntry + "]";
 	}
 
 }

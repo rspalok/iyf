@@ -129,6 +129,17 @@
 							</select>
 						</div>
 					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label class="control-label" for="">Facilitator<span class="text-danger"> *</span> </label> 
+							<select id="" class="form-control custom-select" th:field="*{facilitator}"
+								data-placeholder="Choose a Category" tabindex="1" th:value="*{facilitator}" > 
+								<option value='0'>Not Yet</option>
+								<option th:each="option : ${facilitatorList}" th:value="${option.mFacilitatorId}" th:text="${option.strName}"></option>
+								
+							</select>
+						</div>
+					</div>
 				</div>  
 		 	</div>
 		 	<hr>
@@ -173,7 +184,7 @@
 			<hr>
 		</div>
 		<a th:href="@{/course-config/list}"> Back to Student List</a>
-	<script th:src="@{/iyf/course_registration.js}"></script>
+	<script th:src="@{/iyf/yatra_registration.js}"></script>
 	<script type="text/javascript">
 	function removeThis(stStudentId,yatraCruiseId){
 

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="com/base::layout(~{::body})">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+th:replace="com/base::layout(~{::body})"
+xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head th:include="com/base :: headerFragment">
     <title id="pageTitle">Attendance/Registration</title>
     
@@ -47,11 +49,10 @@
 					<td th:text="${#dates.format(student.mDtCourseStart, 'dd-MMM-yyyy')}"></td>
 					<td th:text="${#dates.format(student.mDtCourseEnd, 'dd-MMM-yyyy')}"></td>
 					<td>
-					<!--  a th:attr="onclick=|goforRegistration('${student.mICourseConfig}')|" class="btn btn-primary">Student Register</a> 
-					<a th:attr="onclick=|goforAttendance('${student.mICourseConfig}')|" class="btn btn-danger">Student Attendance</a--> 
-					<a th:href="@{/course/registration/{id}(id=${student.mICourseConfig})}" class="btn btn-primary">Register Student</a> 
-					<a th:href="@{/course/attendance/{id}(id=${student.mICourseConfig})}" class="btn btn-danger">Take Attendance</a></td>
-				
+
+					<a sec:authorize="hasRole('ADMIN')" th:href="@{/course/registration/{id}(id=${student.mICourseConfig})}" class="btn btn-primary">Register Student</a> 
+					<a sec:authorize="hasAnyRole('USER')" th:href="@{/course/attendance/{id}(id=${student.mICourseConfig})}" class="btn btn-danger">Take Attendance</a>
+					</td>
 				</tr>
 			</tbody>
 		</table>
@@ -83,6 +84,9 @@
 		</div>
  </div>
  
+ 
+ 
+
 <script th:src="@{/iyf/course_attendance.js}"></script>
 <script type="text/javascript">
 function goforRegistration(mICourseConfig){

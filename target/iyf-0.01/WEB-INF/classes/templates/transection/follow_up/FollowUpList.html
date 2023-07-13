@@ -9,10 +9,24 @@
 <body>
 	<div class="page-content">
 		<h2>Calling List</h2> 
-		
-		<a th:href="@{/home}"> Home Menu</a> >
-		<a th:href="@{*{CourseList}}"> Course Config List</a> >
-		<a th:href="@{*{CurrentUrlForRefresh}}"> refresh the List</a>
+		<form name="getForm" th:action="@{/follow_up/get}" th:object="${followUpBean}" method="POST">   
+			<div class="row p-t-20">
+				<div class="col-xs-12">
+					<input class="hidden" th:field="*{isValid}">
+				<!-- mStName -->
+					<div class="col-md-4 col-sm-6">
+						<div class="form-group">
+							<label for="mDtCourseEnd">Follow up For</label> 
+							<select class="form-control" th:field="*{followUpId}" onchange="javascript: document.getForm.submit()" >
+							    <option value="0">select option</option>
+							    <option th:each="option : ${followUpPicklist}" th:value="${option.followUpId}" th:text="${option.objFollowUpMaster.stName} +' : '+ ${option.stName}"></option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+		 
 			
 			<hr>
 			<label for="">Registered Student List</label>

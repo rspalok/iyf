@@ -56,7 +56,7 @@ function myFunction1() {
     }       
   }
 }	
-	
+
 function checkFormDatabase(id){
 	if(id.length <10){
 		return;

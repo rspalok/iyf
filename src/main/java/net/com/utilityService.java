@@ -22,4 +22,5 @@ public interface utilityService {
 
 	public List<IYFCourseConfig> getCourseConfigList(HttpServletRequest request);
 
+
 }

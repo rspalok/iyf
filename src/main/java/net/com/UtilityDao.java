@@ -13,6 +13,5 @@ public interface UtilityDao extends JpaRepository<GbltOrgMst, String> {
 	@Query("SELECT e from GbltRolMst e ") 
 	List<GbltRolMst> getAllRoleDetails();
 
-
     //@Query("SELECT e from GbltOtpStudentRegTrn e where e.IMobile = :mobileNumber") 
 }

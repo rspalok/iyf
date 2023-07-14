@@ -16,6 +16,20 @@ function checkFormDatabase(mobileNo){
 function viewSingleDtls(res, mode) {
 	//var parsedData = JSON.parse(res);
 	//console.log("========"+parsedData);
+	student_list=res;
+	var parsedData = res;
+	console.log(parsedData);
+	var temp = "<option value=''>New </option>";
+	for (var i = 0; i < parsedData.length; i++) {
+		temp += "<option value='" + parsedData[i].stStudentId + "'>"
+			+ parsedData[i].firstName+" "+ parsedData[i].lastName+ " ( "+parsedData[i].stStudentId +" )"+" </option>";
+	}
+	$('#stStudentId').html(temp);
+	setTimeout(function() {
+		$("#wait").hide();
+	}, 500);
+	
+	
 	console.log(res);
 	if(res.length >0){
 		$('#stOccupation').val(res[0].stOccupation);

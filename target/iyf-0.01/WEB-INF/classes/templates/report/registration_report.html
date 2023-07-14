@@ -19,13 +19,29 @@
 				<input type="hidden" th:field="*{mIMode}" id="blogId">
 					<div class="col-xs-12">
 						<div class="col-md-6">
-							<label for="mICourseConfig">Course Configured</label> 
+							<label for="mICourseConfig">Registration Course Configured List</label> 
 							<div class="form-group"> 
 								<select class="form-control" required="required" th:field="*{mICourseConfig}" th:attr="onchange=|getDetail()|">
 								    <option value=''>Select</option>
 								    <option th:each="option : ${CourseConfigList}" th:value="${option.mICourseConfig}" 
-								    th:text="${option.stName} + ${option.iyfCourseMst.mStName} + ${option.iyfBatchMst.stName}"></option>
+								    th:text="${option.stName}"></option><!-- + ${option.iyfCourseMst.mStName} + ${option.iyfBatchMst.stName} -->
 								</select>
+							</div>
+						</div> 
+						<div class="col-md-3 col-sm-3">
+							<div class="form-group">
+								<label for="stName">Fetch For </label>  
+								<select class="form-control" th:field="*{mIRagisterReport}">
+								    <option value="0">All</option>
+								    <option value="1">On Date</option>
+								</select>
+							</div> 
+						</div>
+						<div class="col-md-3 col-sm-3" Id="fromDate">
+							<label for="dtBatchStart">Registered on Date</label> 
+							<div class="input-group">
+								<input class="form-control date-picker" required="required" th:field="*{dtRegistration}" type="text" data-date-format="dd-mm-yyyy" /> 
+								<span class="input-group-addon"> <i class="fa fa-calendar bigger-110"></i> </span>
 							</div>
 						</div> 
 						<div class="col-md-3 hidden">
@@ -92,6 +108,37 @@
 	<a th:href="@{/course-config/list}"> Back to Student List</a>
 	
 	<script type="text/javascript">
+	
+        var optionValue =$('#mIRagisterReport').val();
+
+		 // alert('hello'+optionValue);
+		var dtRegistration = document.getElementById("fromDate");
+        if(optionValue==1){
+        	dtRegistration.classList.remove("hidden");
+        	$('#dtRegistration').prop('required','required');
+        }else{
+        	dtRegistration.classList.add("hidden");
+        	$('#dtRegistration').prop('required','');
+        }
+        	
+		$("#mIRagisterReport").change(function() { 
+		  // Add action of select option
+			$(this).find("option:selected").each(function(){
+	            var optionValue = $(this).attr("value");
+
+	  		 // alert('hello'+optionValue);
+				var dtRegistration = document.getElementById("fromDate");
+	            if(optionValue==1){
+	            	dtRegistration.classList.remove("hidden");
+	            	$('#dtRegistration').prop('required','required');
+					
+				} else{
+					dtRegistration.classList.add("hidden");
+	            	$('#dtRegistration').prop('required','');
+				}
+			});
+		});
+	
 		function exportData(){
 		    /* Get the HTML data using Element by Id */
 		    var table = document.getElementById("myTable");

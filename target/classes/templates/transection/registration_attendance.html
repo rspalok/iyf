@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" 
+th:replace="com/base::layout(~{::body})"
+xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:include="com/base :: headerFragment">
+    <title id="pageTitle">Attendance/Registration</title>
+    
+	<meta charset="ISO-8859-1">
+	<title>Student Management System</title>
+	
+</head>
+<body>
+	<div class="page-content"> 
+		<h3>
+			Course Configure List for Registration and Attendance <i class="bi bi-download"></i>
+		</h3>
+		<hr>
+		<form  id="myForm" action="#" th:action="@{/save}" class="form-validation hidden"  th:object="${gbltStudentBean}" method="POST">
+			<input type="hidden" th:field="*{mICourseConfig}" />
+		</form>
+		
+		
+		<table class="table table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th>Sr.</th>
+					<th>
+					<a th:href="@{'/course/page/' + ${currentPage} + '?sortField=stName&sortDir=' + ${reverseSortDir}}"> Name</a></th>
+					<th>
+					<a th:href="@{'/course/page/' + ${currentPage} + '?sortField=mIBatch&sortDir=' + ${reverseSortDir}}"> Batch </a></th>
+					<th>
+					<a th:href="@{'/course/page/' + ${currentPage} + '?sortField=mICourse&sortDir=' + ${reverseSortDir}}"> Course Name</a></th>
+					<th>
+					<a th:href="@{'/course/page/' + ${currentPage} + '?sortField=mDtCourseStart&sortDir=' + ${reverseSortDir}}"> Start Date</a></th>
+					<th>
+					<a th:href="@{'/course/page/' + ${currentPage} + '?sortField=mDtCourseEnd&sortDir=' + ${reverseSortDir}}"> End Date</a></th>
+					 
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="student,count : ${listGbltOtpStudentRegTrns}"> 
+					<td th:text="${count.count}"></td>
+					<td th:text="${student.stName}"></td>
+					
+					<td th:text="${student.iyfBatchMst.stName}"></td>
+					<td th:text="${student.iyfCourseMst.mStName}"></td>
+					
+					<td th:text="${#dates.format(student.mDtCourseStart, 'dd-MMM-yyyy')}"></td>
+					<td th:text="${#dates.format(student.mDtCourseEnd, 'dd-MMM-yyyy')}"></td>
+					<td>
+
+					<a sec:authorize="hasRole('ADMIN')" th:href="@{/course/registration/{id}(id=${student.mICourseConfig})}" class="btn btn-primary">Register Student</a> 
+					<a sec:authorize="hasAnyRole('USER')" th:href="@{/course/attendance/{id}(id=${student.mICourseConfig})}" class="btn btn-danger">Take Attendance</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div th:if="${totalPages > 1}">
+			<div class="row col-sm-10">
+				<div class="col-md-3">Total Rows: [[${totalItems}]]</div>
+				<div class="col-md-7"
+					style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}"> <a
+						th:if="${currentPage != i}"
+						th:href="@{'/course/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+						<span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp;
+						&nbsp;
+					</span>
+				</div>
+				<div class="col-md-1">
+					<a th:if="${currentPage < totalPages}"
+						th:href="@{'/course/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+					<span th:unless="${currentPage < totalPages}">Next</span>
+				</div>
+
+				<div class="col-md-1">
+					<a th:if="${currentPage < totalPages}"
+						th:href="@{'/course/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+					<span th:unless="${currentPage < totalPages}">Last</span>
+				</div>
+			</div>
+		</div>
+ </div>
+ 
+ 
+ 
+
+<script th:src="@{/iyf/course_attendance.js}"></script>
+<script type="text/javascript">
+function goforRegistration(mICourseConfig){
+	
+	$('#mICourseConfig').val(mICourseConfig);
+	$("#myForm").attr("action", '../course/registration');
+	$("#myForm" ).submit();
+}
+function goforAttendance(mICourseConfig){
+	//("goforAttendance : "+mICourseConfig);
+
+	$('#mICourseConfig').val(mICourseConfig);
+	$("#myForm").attr("action", '../course/attendance');
+	$("#myForm" ).submit();
+}
+</script>
+</body>
+</html>

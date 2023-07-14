@@ -60,5 +60,6 @@ public class utilityServiceImpl implements utilityService {
 		String org= theUser.getStOrgId();
 		return ccfdao.getCourseConfigList(org);
 	}
+	
 
 }

@@ -25,10 +25,16 @@ public class DashboardCnt {
 
 	@GetMapping("/student")
 	public String studentReport(GbltStudentBean gbltStudentBean,Model model,HttpServletRequest request, HttpServletResponse response) {
-		// save employee to database//@ModelAttribute("batch") 
-		 
 
-		///model.addAttribute("courseReg", service.getCourseAllCourserRegByStudentId("IYF20230204421"));
+		//get course registered list of student
+		
+		//fetch class against that course list
+		//fetch list of the class 
+		
+		//get Yatra registered 
+		//fetch 
+
+		//model.addAttribute("courseReg", service.getCourseAllCourserRegByStudentId("IYF20230204421"));
 		return "report/student_report"; 
 	}
 	@GetMapping("/attendance")
@@ -42,10 +48,11 @@ public class DashboardCnt {
 	
 	@GetMapping("/registration")
 	public String ragistrationReport(GbltStudentBean gbltStudentBean,Model model,HttpServletRequest request, HttpServletResponse response) {
-		 
 		///model.addAttribute("courseReg", service.getCourseAllCourserRegByStudentId("IYF20230204421"));
 		gbltStudentBean.setmIMode(2);
+		
 		model.addAttribute("CourseConfigList", util_service.getCourseConfigList(request));
+		
 		return "report/registration_report"; 
 	}
 	
@@ -71,10 +78,16 @@ public class DashboardCnt {
 		if(gbltStudentBean.getmICourseConfig()!=null  && gbltStudentBean.getmIMode()==2) {
 			model.addAttribute("allRagisterdStudent",service.getAllRegisterdStudentList(gbltStudentBean.getmICourseConfig(),gbltStudentBean.getmClassId(),request));
 		}
+		if(gbltStudentBean.getmICourseConfig()!=null && gbltStudentBean.getmIRagisterReport()==1) {
+			
+			model.addAttribute("allRagisterdStudent", service.getRagisterdStudentOnDateandCourseConfig(gbltStudentBean,request));
+		}
 		String Result;
 		if(gbltStudentBean.getmIMode()==2) {
 			System.out.println("=======  === = MODE= = == =  = "+gbltStudentBean.getmIMode());
+			//gbltStudentBean.setmIRagisterReport(0);
 			Result= ragistrationReport( gbltStudentBean, model, request,  response) ;
+			
 		}else {
 			Result= attendanceReport( gbltStudentBean, model, request,  response) ;
 		} 

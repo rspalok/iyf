@@ -1,13 +1,17 @@
 package net.dao.report;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
 import org.hibernate.Session; 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
- 
+
+import net.model.transection.IyfCoureRegTrn;
 import net.model.transection.IyfCourseAttenTrn;
 
 @Repository
@@ -42,7 +46,27 @@ public class DashBoardDaoImpl implements DashBoardDao {
  
 		return result;
 	}
-	 
-	 
 
+	@Override
+	public List<IyfCoureRegTrn> getRagisterdStudentOnDateandCourseConfig(Date mDtRegistration, Long mICourseConfig,
+			String mStOrgId) {
+		Session sf = entityManeger.unwrap(Session.class);
+		String Query="SELECT e from IyfCoureRegTrn e JOIN e.objGbltOtpStudentRegTrns  JOIN e.ObjIYFCourseConfig  "
+				+ " where e.mDtRegistration =:mDtRegistration and e.mICourseConfig=:mICourseConfig  and e.mStOrgId=:mStOrgId";
+		
+		List<IyfCoureRegTrn> result =sf.createQuery(Query,IyfCoureRegTrn.class)
+
+				.setParameter("mDtRegistration", mDtRegistration)
+				.setParameter("mICourseConfig", mICourseConfig)
+				.setParameter("mStOrgId", mStOrgId)
+				.getResultList();
+ 
+		return result;
+	}
+
+	/*@Query("SELECT e from IyfCoureRegTrn e JOIN e.objGbltOtpStudentRegTrns  JOIN e.ObjIYFCourseConfig  "
+			+ " where e.mDtRegistration =:mDtRegistration and e.mICourseConfig=:mICourseConfig  and e.mStOrgId=:mStOrgId") 
+	List<IyfCoureRegTrn> getRagisterdStudentOnDateandCourseConfig(@Param("mDtRegistration")  Date dtRegistration,@Param("mICourseConfig")  Long getmICourseConfig,
+			@Param("mStOrgId") String org);
+*/
 }

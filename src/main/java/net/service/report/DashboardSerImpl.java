@@ -22,6 +22,7 @@ import net.dao.report.DashBoardDao;
 import net.dao.transection.ClassScheduleDao;
 import net.dao.transection.CourseAttenTrnDao;
 import net.dao.transection.CourseRegistrationDao;
+import net.model.bean.GbltStudentBean;
 import net.model.master.GbltUserMst;
 import net.model.transection.IyfClassSchedTrn;
 import net.model.transection.IyfCoureRegTrn;
@@ -142,6 +143,28 @@ public class DashboardSerImpl implements DashboardSer {
 
 		System.out.println("====iyfCoureRegTrn==="+list2);
 		return list;
+	}
+
+	@Override
+	public List<IyfCoureRegTrn> getRagisterdStudentOnDateandCourseConfig(GbltStudentBean gbltStudentBean,
+			HttpServletRequest request) {
+		
+		
+		HttpSession session = request.getSession(); 
+		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		String org= theUser.getStOrgId();
+		
+		String sDate1=gbltStudentBean.getDtRegistration();
+
+		Date date1 = null; 
+	    try {
+			 date1=new SimpleDateFormat("dd-MM-yyyy").parse(sDate1);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  
+		
+		return dao.getRagisterdStudentOnDateandCourseConfig(date1,gbltStudentBean.getmICourseConfig(),org);
 	}
 
 }

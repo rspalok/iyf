@@ -2,6 +2,8 @@ package net.user.service;
  
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -68,14 +70,22 @@ public class UserServiceImpl implements UserService{
 		userDao.saveTrn(userTrn);
 	}
 
-	
-
- 
 
 	@Override
 	public GbltOtpStudentRegTrn findByregistrationId(String registrationId) {
 		// TODO Auto-generated method stub
 		return userDao.findByregistrationId(registrationId,"PNB108");
+	}
+
+
+	@Override
+	public void resetPassword(CrmUser theCrmUser, HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		GbltUserMst user = findByUserNamess(theCrmUser.getUserName());
+		user.setStPassword(passwordEncoder.encode(theCrmUser.getPassword()));
+		
+		System.out.println("======= === = = === ===="+user);
+		//userDao.save(user);
 	}
 
 }

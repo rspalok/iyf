@@ -28,6 +28,7 @@ public class DashboardCnt {
 
 		//get course registered list of student
 		
+		model.addAttribute("CourseConfigList", service.getAllRagisterdCourseList(gbltStudentBean,request));
 		//fetch class against that course list
 		//fetch list of the class 
 		
@@ -37,6 +38,10 @@ public class DashboardCnt {
 		//model.addAttribute("courseReg", service.getCourseAllCourserRegByStudentId("IYF20230204421"));
 		return "report/student_report"; 
 	}
+	
+	
+	
+	
 	@GetMapping("/attendance")
 	public String attendanceReport(GbltStudentBean gbltStudentBean,Model model,HttpServletRequest request, HttpServletResponse response) {
 		
@@ -67,21 +72,31 @@ public class DashboardCnt {
 	@PostMapping("/getDetails")
 	public String getDetails (GbltStudentBean gbltStudentBean,Model model,HttpServletRequest request, HttpServletResponse response) {
 		 
-		System.out.println("=======  === = = = == =  = "+gbltStudentBean.getmIMode());
-		if(gbltStudentBean.getmICourseConfig()!=null) {
+		System.out.println("======= getmIMode   	 = "+gbltStudentBean.getmIMode());
+		System.out.println("======= getmClassId  	 = "+gbltStudentBean.getmClassId());
+		System.out.println("======= getmICourseConfig= "+gbltStudentBean.getmICourseConfig());
+		System.out.println("======= mIRagisterReport = "+gbltStudentBean.getmIRagisterReport());
+		
+		if(gbltStudentBean.getmICourseConfig()!=null && gbltStudentBean.getmIMode()==1) {
 			model.addAttribute("classList", service.getScheduleClassAgainstCourseConfig(gbltStudentBean.getmICourseConfig(),request));
-			
 		}
 		if(gbltStudentBean.getmICourseConfig()!=null && gbltStudentBean.getmClassId() != null && gbltStudentBean.getmIMode()!=2) {
 			model.addAttribute("allPresentStudent",service.getAllPresentStudentList(gbltStudentBean.getmICourseConfig(),gbltStudentBean.getmClassId(),request));
 		}
+		
+		
+		
 		if(gbltStudentBean.getmICourseConfig()!=null  && gbltStudentBean.getmIMode()==2) {
-			model.addAttribute("allRagisterdStudent",service.getAllRegisterdStudentList(gbltStudentBean.getmICourseConfig(),gbltStudentBean.getmClassId(),request));
+			if(gbltStudentBean.getmIRagisterReport()==1) {
+				model.addAttribute("allRagisterdStudent", service.getRagisterdStudentOnDateandCourseConfig(gbltStudentBean,request));
+			}else {
+				model.addAttribute("allRagisterdStudent",service.getAllRegisterdStudentList(gbltStudentBean.getmICourseConfig(),gbltStudentBean.getmClassId(),request));
+			}
 		}
-		if(gbltStudentBean.getmICourseConfig()!=null && gbltStudentBean.getmIRagisterReport()==1) {
+		//if(gbltStudentBean.getmICourseConfig()!=null && gbltStudentBean.getmIMode()==2) {
 			
-			model.addAttribute("allRagisterdStudent", service.getRagisterdStudentOnDateandCourseConfig(gbltStudentBean,request));
-		}
+		//	model.addAttribute("allRagisterdStudent", service.getRagisterdStudentOnDateandCourseConfig(gbltStudentBean,request));
+		//}
 		String Result;
 		if(gbltStudentBean.getmIMode()==2) {
 			System.out.println("=======  === = MODE= = == =  = "+gbltStudentBean.getmIMode());

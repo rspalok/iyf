@@ -19,7 +19,8 @@ CreateFollowUp
 					<label for="mDtCourseEnd">Follow up For</label> 
 					<select class="form-control" th:field="*{followUpId}" >
 					    <option value="0">select option</option>
-					    <option th:each="option : ${followUp}" th:value="${option.followUpId}" th:text="${option.stName} "></option>
+					    <option th:each="option : ${followUp}" th:value="${option.followUpId}" th:text="${option.objFollowUpMaster.stName} +' : '+ ${option.stName}"></option>
+					    
 					</select></div>
 				</div>
 				<div class="col-md-3 col-sm-3">
@@ -29,14 +30,12 @@ CreateFollowUp
 						    <option value="">Select option</option>
 						    <option value="1">All Registered Student</option>
 						    <option value="2">Course Specific Student</option>
-						    <option value="3">Between the Date</option>
+						    <option value="3">All Registered between the Date</option>
+						    <option value="4">All Course Registered between the Date</option>
 						</select>
 					</div> 
 				</div>
 			
-				<!-- 
-    <span th:if="${teacher.gender == 'F'}">Female</span>
-     -->
 				<div class="col-md-3 col-sm-3 hidden" Id="course">
 					<div class="form-group">
 						<label for="mDtCourseEnd">Course Configured list</label> 
@@ -172,7 +171,7 @@ CreateFollowUp
             	$('#course').prop('required','required');
             	$('#dtTo').prop('required',false);
             	$('#dtFrom').prop('required',false);
-			}else if(optionValue==3){
+			}else if(optionValue==3||optionValue==4){
 
             	course.classList.add("hidden");
             	todate.classList.remove("hidden");

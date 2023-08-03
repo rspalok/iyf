@@ -13,7 +13,8 @@ import org.springframework.data.repository.query.Param;
 
 import net.model.master.GbltOtpStudentRegTrn;
 import net.model.master.GbltOtpStudentRegTrnPk;
-import net.model.master.MenuMaster; 
+import net.model.master.MenuMaster;
+import net.model.transection.IyfCoureRegTrn; 
 
 @Transactional
 public interface GbltOtpStudentRegTrnRepository extends JpaRepository<GbltOtpStudentRegTrn, GbltOtpStudentRegTrnPk>{
@@ -57,6 +58,11 @@ public interface GbltOtpStudentRegTrnRepository extends JpaRepository<GbltOtpStu
     		+ " e.dtRegistration BETWEEN :dtFrom AND :dtTo "
     		+ " ") 
     List<GbltOtpStudentRegTrn> getRegisterdStudentBetweenDates(@Param("dtFrom") Date date,@Param("dtTo") Date date1,@Param("mRegMode") Integer regMode,@Param("org")  String org);
+
+    @Query("SELECT e from IyfCoureRegTrn e JOIN e.objGbltOtpStudentRegTrns  JOIN e.ObjIYFCourseConfig  "
+	+ " where e.mDtRegistration BETWEEN :dtFrom AND :dtTo  and e.mStOrgId=:mStOrgId")
+
+	List<IyfCoureRegTrn> getCourseRegisterdStudentBetweenDates(@Param("dtFrom") Date date,@Param("dtTo") Date date1,@Param("mStOrgId")  String org);
 
 
 	//@Query("SELECT e from GbltOtpStudentRegTrn e where e.stStage IS NOT NULL and e.ICounselor IS NOT NULL and e.stOrgId =:org ")//e.stStage IS NOT NULL  and 

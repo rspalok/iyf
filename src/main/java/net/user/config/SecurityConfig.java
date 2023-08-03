@@ -38,14 +38,34 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		String[] resources = new String[]{
-				"/assets/**","/image","/com/**","/",
-				"/css/**","/icons/**","/images/**","/js/**","/iyf/**"
+			"/assets/**","/image","/com/**","/",
+			"/css/**","/icons/**","/images/**","/js/**","/iyf/**"
+		};
+		String[] SuperUser=new String[] {
+			"/**"
+		};
+		String[] ADMIN=new String[] {
+			"/course/**","/schedule/**","/home/**","/showNewForm/**"
+		};
+		String[] REPORTOR=new String[] {
+			"/report/**"
+		};
+		String[] EDITOR=new String[] {
+				
+		};
+		String[] USER=new String[] {
+				
+		};
+		String[] FOLLOWUP=new String[] {
+			"/follow_up/**"
 		};
         http.authorizeRequests(requests -> requests
                 .antMatchers(resources).permitAll()
-                .antMatchers("/**").hasAnyAuthority("USER", "CREATOR", "EDITOR", "ADMIN")
-                .antMatchers("/leaders/**").hasRole("MANAGER")
-                .antMatchers("/systems/**").hasRole("ADMIN"))
+                .antMatchers(ADMIN).hasAnyAuthority("ADMIN")
+                //.antMatchers("/**").hasAnyAuthority("USER", "CREATOR", "EDITOR", "ADMIN")
+                .antMatchers(FOLLOWUP).hasAnyAuthority("USER", "CREATOR", "EDITOR", "ADMIN","CALLER")
+                .antMatchers(REPORTOR).hasAnyAuthority("USER", "CREATOR", "EDITOR", "ADMIN")
+                .antMatchers(SuperUser).hasRole("SUPERUSER"))
                 .formLogin(login -> login
                         .loginPage("/showMyLoginPage")
                         .loginProcessingUrl("/authenticateTheUser")

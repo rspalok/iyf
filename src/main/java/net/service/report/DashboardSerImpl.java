@@ -167,4 +167,13 @@ public class DashboardSerImpl implements DashboardSer {
 		return dao.getRagisterdStudentOnDateandCourseConfig(date1,gbltStudentBean.getmICourseConfig(),org);
 	}
 
+	@Override
+	public List<IyfCoureRegTrn> getAllRagisterdCourseList(GbltStudentBean gbltStudentBean, HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		HttpSession session = request.getSession(); 
+		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		String org= theUser.getStOrgId();
+		return regDao.getCourseInrolledListbyStudentId(gbltStudentBean.getStStudentId(),org);
+	}
+
 }

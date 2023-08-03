@@ -69,7 +69,7 @@ public class FollowUpCnt {
 	@GetMapping("/form")
 	public String NewEntry(FollowUpBean followUpBean, Model model, HttpServletRequest request) {
 
-		model.addAttribute("followUp", servic.getFolowUpMstList(request));
+		model.addAttribute("followUp", servic.getconfigFolowUpList(request));//servic.getFolowUpMstList(request));
 
 		model.addAttribute("courseConfigList", servic.getCourseConfigList(request));
 		model.addAttribute("CallerList", servic.getCallerListFromOTPStudent(request));
@@ -99,7 +99,7 @@ public class FollowUpCnt {
 	@GetMapping("/configFollowup")
 	public String scheduleFollowup(FollowUpBean followUpBean, Model model, HttpServletRequest request) {
 
-		model.addAttribute("followUp", servic.getFolowUpTrnList(request));
+		model.addAttribute("followUp", servic.getFolowUpMstList(request));
 		
 		return "transection/follow_up/scheduleFollowup";
 	}
@@ -114,19 +114,15 @@ public class FollowUpCnt {
 	public String followUpList(FollowUpBean followUpBean, Model model, HttpServletRequest request) {
 		
 		followUpBean.setIsValid(3);
-		
 		model.addAttribute("followUpPicklist", servic.getFolowUpTrnList(request));
-		
 		model.addAttribute("followUp", servic.getFolowUpStudentList(followUpBean,request));
 		return "transection/follow_up/FollowUpList";
 	}
 	@PostMapping("/get")
 	public String getDate(FollowUpBean followUpBean, Model model, HttpServletRequest request) {
 		if(followUpBean.getIsValid()==3) {
-
 			return followUpList( followUpBean,  model,  request);
 		}
-
 		return myFollowUpList( followUpBean,  model,  request);
 	}
 	
@@ -134,7 +130,6 @@ public class FollowUpCnt {
 	public String myFollowUpList(FollowUpBean followUpBean, Model model, HttpServletRequest request) {
 		//model.addAttribute("mode", followUpBean.setIsValid(2));
 		followUpBean.setIsValid(2);
-
 		model.addAttribute("followUpPicklist", servic.getFolowUpTrnList(request));
 		model.addAttribute("followUp", servic.getMyFolowUpStudentList(followUpBean,request));
 		return "transection/follow_up/FollowUpList";
@@ -152,7 +147,6 @@ public class FollowUpCnt {
 	
 	@PostMapping("/saveResponce")
 	public String SaveResponse(FollowUpBean followUpBean, HttpServletRequest request) {
-		
 		servic.saveFollowUpResponse(followUpBean,request);
 		if(followUpBean.getIsValid()==3) {
 			return "redirect:/follow_up/followup_list";

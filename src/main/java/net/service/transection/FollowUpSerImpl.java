@@ -216,12 +216,50 @@ public class FollowUpSerImpl implements FollowUpSer {
 			//followUpSize=list.size();
 			System.out.println("getAllCourseSpecificRegisteredStudent 3="+followUpBean.getFollowUpTo());
 			//divide equally and insert in caller response table
-		}else if(followUpBean.getFollowUpTo()==4){//get all only registered Student between time period
+		}else if(followUpBean.getFollowUpTo()==4){//get all only course registered Student between time period
 			
 
-			List<IyfCoureRegTrn> list =dao.getAllCourseSpecificRegisteredStudent(followUpBean.getmICourseConfig(),Org);
-			//followUpSize=list.size();
-			System.out.println("getAllCourseSpecificRegisteredStudent 4="+list);
+			List<GbltOtpStudentRegTrn> result = null;
+			//1 normal only registration , 2 on course registration, 
+			//3 course attendance registration ,
+			//5 yatra registration
+
+		    SimpleDateFormat formatter1=new SimpleDateFormat("dd-MM-yyyy");  
+
+		    Date date=formatter1.parse(followUpBean.getDtFrom());  
+		    Date date1=formatter1.parse(followUpBean.getDtTo());  
+		    
+			List<IyfCoureRegTrn>resultList =r_dao.getCourseRegisterdStudentBetweenDates(date,date1,Org);
+			
+
+			System.out.println("getAllCourseSpecificRegisteredStudent 3="+result);
+			//followUpSize=result.size();
+			if(resultList.size()>0) {
+				for (IyfCoureRegTrn gbltOtpStudentRegTrn : resultList) {
+					System.out.println("==================="+result);
+					FollowUpResponseTrn followUpResponseTrn=new FollowUpResponseTrn();
+					pk.setStStudentId(gbltOtpStudentRegTrn.getStStudentId());
+					if(!dao.findById(pk).isEmpty()) {
+
+						System.out.println(dao.findById(pk) +"\n========2========"+result);
+						//followUpResponseTrn =dao.getOne(pk);
+					}else {
+						
+						followUpResponseTrn.setDtEntry(new Date());
+						followUpResponseTrn.setFollowUpId(followUpBean.getFollowUpId());
+						followUpResponseTrn.setIsValid(1);
+						followUpResponseTrn.setStOrgId(Org);
+						followUpResponseTrn.setStOwnerId(user);
+						followUpResponseTrn.setStStudentId(gbltOtpStudentRegTrn.getStStudentId());
+						followUpResponseTrn.setFollowUpBy(callerList[i]);
+						dao.save(followUpResponseTrn);
+						i++;
+						if (i==CallerCount) {
+							i=0;
+						}
+					}
+				}
+			}
 			
 		}
 	}

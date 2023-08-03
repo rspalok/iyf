@@ -1,8 +1,11 @@
 package net.user.controller;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,6 +60,46 @@ public class RegistrationController {
 		theModel.addAttribute("roles", roles);
 		
 		return "registration-form";
+	}
+	@GetMapping("/resetPassword")
+	public String ResetPassword(CrmUser theCrmUser,Model theMode,HttpServletRequest request) {
+		
+		HttpSession session = request.getSession(); 
+		GbltUserMst theUser = (GbltUserMst)session.getAttribute("user");
+		String Org=theUser.getStOrgId();
+		//GbltOtpStudentRegTrn userDetails = userService.findByregistrationId(theUser.getIUserId());
+
+		theMode.addAttribute("FirstName", theUser.getStFirstName());
+		theMode.addAttribute("LastName", theUser.getStLastName());
+		theMode.addAttribute("UserId", theUser.getIUserId());
+		
+		Principal principal = request.getUserPrincipal();
+        theCrmUser.setUserName(principal.getName());
+		theCrmUser.setRegistrationId(theUser.getIUserId());
+		theCrmUser.setOrgName(Org);
+		System.out.println("===== == =get == = ="+theCrmUser);
+		
+		return "/passwordResetForm";
+	}
+
+	@PostMapping("/resetPassword")
+	public String processResetPasswordForm(CrmUser theCrmUser, Model theModel,HttpServletRequest request) {
+		
+		if(theCrmUser.getPassword()!= null && (theCrmUser.getPassword() == theCrmUser.getMatchingPassword() || 
+				theCrmUser.getPassword().equals(theCrmUser.getMatchingPassword()))) {
+			
+
+			Principal principal = request.getUserPrincipal();
+	        theCrmUser.setUserName(principal.getName());
+	        
+			userService.resetPassword(theCrmUser,request);
+
+			System.out.println("===== == Post= == = ="+theCrmUser);
+			return "registration-confirmation";	
+		}
+		
+        return 	ResetPassword( theCrmUser, theModel, request) ;
+	
 	}
 
 	@PostMapping("/processRegistrationForm")

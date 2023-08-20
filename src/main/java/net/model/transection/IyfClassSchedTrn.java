@@ -22,8 +22,6 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 
 @Entity 
 @Table(name = "iyf_schedule_class_trn", schema = "iyf")
@@ -46,7 +44,9 @@ public class IyfClassSchedTrn implements Serializable {
 	@Id
 	@Column(name = "num_course_config_id",length=4)//num_course_config_id
 	private Long mICourseConfig;
-	
+
+	@Column(name = "num_class_type",length=2)//Regular Revision Special Workshop
+	private Integer mIClassType;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	//@JsonIgnore
@@ -154,6 +154,14 @@ public class IyfClassSchedTrn implements Serializable {
 
 	public void setmDtEntry(Date mDtEntry) {
 		this.mDtEntry = mDtEntry;
+	}
+
+	public Integer getmIClassType() {
+		return mIClassType;
+	}
+
+	public void setmIClassType(Integer mIClassType) {
+		this.mIClassType = mIClassType;
 	}
 
 	@Override

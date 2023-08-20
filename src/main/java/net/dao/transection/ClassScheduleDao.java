@@ -29,4 +29,10 @@ public interface ClassScheduleDao extends JpaRepository<IyfClassSchedTrn, IyfCla
     @Query("SELECT e from IyfClassSchedTrn e where e.mICourseConfig=:name and  e.mStOrgId =:org ") 
 	List<IyfClassSchedTrn> getCourseClassScheduleById(@Param("name") Long mICourseConfig,@Param("org") String orgid);
 
+    @Query("SELECT e from IyfClassSchedTrn e JOIN e.ObjIYFCourseConfig "
+    		+ " where e.mICourseConfig=:courseId and e.mStOrgId =:org  and e.mIsValid =1 ") 
+    List<IyfClassSchedTrn> getAllClassLst(@Param("courseId") Long courseId,@Param("org") String org);
+
+   // @Query("SELECT e from IyfClassSchedTrn e JOIN e.ObjIYFCourseConfig where e.mICourseConfig IN (:courseSet) e.mIsValid =1 and e.mStOrgId =:org") 
+   // List<IyfClassSchedTrn> getClassListOfCourseList(@Param("courseSet") ArrayList<Long> ids,@Param("org") String org);
 }

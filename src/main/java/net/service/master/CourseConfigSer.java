@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.data.domain.Page;
 
+import net.model.master.ClassTypeMst;
 import net.model.master.IYFBatchMst;
 import net.model.master.IyfCourseMst;
 import net.model.transection.FollowUpTrn;
@@ -28,6 +29,8 @@ public interface CourseConfigSer {
 	String studentByMobileNo(Long mobileNumber, HttpServletRequest objRequest_p);
 
 	List<IYFCourseConfig> getCourseConfigList( HttpServletRequest objRequest_p);
+
+	List<ClassTypeMst> getClassTypeMstList(HttpServletRequest request);
  
  
 

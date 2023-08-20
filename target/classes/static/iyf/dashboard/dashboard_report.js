@@ -2,7 +2,7 @@ function checkFormDatabase(mobileNo){
 	if(mobileNo.length <10){
 		return;
 	}
-	var action = "../studentByMobileNo/?mobileNumber=" + mobileNo;
+	var action = "../report/studentByMobileNo/?mobileNumber=" + mobileNo;
 	 alert(action);
 	console.log("alert is working  "+action);
 	$.ajax({url: action,type:"GET",async:false,dataType:"json" ,success:function(data) {
@@ -48,5 +48,7 @@ function viewSingleDtls(res, mode) {
 		$('#stAddress').val('');
 		$('#stStudentId').val('');
 	}
-	
+	function getDetail(){
+		
+	}
 }

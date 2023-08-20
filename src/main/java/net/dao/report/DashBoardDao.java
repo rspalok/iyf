@@ -15,4 +15,5 @@ public interface DashBoardDao {
 	public List<IyfCoureRegTrn> getRagisterdStudentOnDateandCourseConfig(Date date1, Long getmICourseConfig,
 			String org);
 
+
 }

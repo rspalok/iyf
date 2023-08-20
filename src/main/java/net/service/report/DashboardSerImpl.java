@@ -4,9 +4,11 @@ import java.text.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -17,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import net.dao.report.DashBoardDao;
 import net.dao.transection.ClassScheduleDao;
@@ -174,6 +177,54 @@ public class DashboardSerImpl implements DashboardSer {
 		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		return regDao.getCourseInrolledListbyStudentId(gbltStudentBean.getStStudentId(),org);
+	}
+
+	@Override
+	public HashMap<Long, List<IyfClassSchedTrn>> getClassListHasMap(String studentId,Set<Long> courseSet, HttpServletRequest request) {
+		HttpSession session = request.getSession(); 
+		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		String org= theUser.getStOrgId();
+		
+		
+		HashMap<Long,List<IyfClassSchedTrn> > classSchedule=new HashMap<>();
+		if(courseSet.size()>0) {
+			for (Long courseId : courseSet) {
+				List<IyfClassSchedTrn> classList = classDao.getAllClassLst(courseId,org);
+				classSchedule.put(courseId, classList);	
+			} 
+		}
+
+		
+		//fetch class list against course
+		//classDao.getClassListOfCourseList(ids,org);
+		//fetch attendance in course
+		
+		ObjectMapper mapper = new ObjectMapper();
+
+		mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+		String data = null;
+		
+
+		return classSchedule; 
+	}
+	@Override
+	public HashMap<Long, List<IyfCourseAttenTrn>> getAttenListHasMap(String studentId,Set<Long> courseSet, HttpServletRequest request) {
+		HttpSession session = request.getSession(); 
+		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		String org= theUser.getStOrgId();
+		
+		
+		HashMap<Long,List<IyfCourseAttenTrn> > classAtten=new HashMap<>();
+		if(courseSet.size()>0) {
+			for (Long courseId : courseSet) {
+				
+				
+				List<IyfCourseAttenTrn> presentlist = attenDao.getPresentClassLst(studentId,courseId,org);
+				classAtten.put(courseId, presentlist);
+				
+			} 
+		}
+		return classAtten;
 	}
 
 }

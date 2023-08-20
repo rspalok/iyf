@@ -98,7 +98,7 @@
 				<td th:text="${student.ObjIYFCourseConfig.stName}"></td>
 				<td th:text="${student.stStudentId}"></td>
 				<td th:text="${student.mDtRegistration}"></td>
-				<td class="hidden" th:text="${student.objGbltOtpStudentRegTrns.stAddress}"></td> 
+				<td th:text="${student.objGbltOtpStudentRegTrns.stAddress}"></td> 
 				<td th:text="${student.objGbltOtpStudentRegTrns.stOccupation}"></td> 
 			</tr>
 		  
@@ -157,6 +157,8 @@
 		        column5 = row.cells[4].innerText;
 		        column6 = row.cells[5].innerText;
 		        column7 = row.cells[6].innerText;
+		        column8 = row.cells[7].innerText;
+		        column9 = row.cells[8].innerText;
 		 
 		    /* add a new records in the array */
 		        rows.push(
@@ -167,7 +169,9 @@
 		                column4,
 		                column5,
 		                column6,
-		                column7
+		                column7,
+		                column8,
+		                column9
 		            ]
 		        );
 		 

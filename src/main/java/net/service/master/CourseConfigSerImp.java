@@ -21,11 +21,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import net.dao.master.BatchDao;
 import net.dao.master.CourseConfigDao;
 import net.dao.master.CourseDao;
-import net.dao.transection.FollowUpTrnDao;
+import net.model.master.ClassTypeMst;
 import net.model.master.GbltUserMst;
 import net.model.master.IYFBatchMst;
 import net.model.master.IyfCourseMst;
-import net.model.transection.FollowUpTrn;
 import net.model.transection.IYFCourseConfig;  
 
 @Transactional
@@ -133,7 +132,6 @@ public class CourseConfigSerImp implements CourseConfigSer {
 		}
 
 		return data;
-			
 	}
 
 	@Override
@@ -143,6 +141,16 @@ public class CourseConfigSerImp implements CourseConfigSer {
 		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		return dao.getCourseConfigList(org);
+	}
+
+	@Override
+	public List<ClassTypeMst> getClassTypeMstList(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		HttpSession session = request.getSession(); 
+		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		String org= theUser.getStOrgId();
+		System.out.println( org);
+		return dao.getClassTypeMstList(org);
 	}
 
 	

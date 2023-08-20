@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import net.model.master.ClassTypeMst;
 import net.model.transection.IYFCourseConfig;
 import net.model.transection.IYFCourseConfigPk;
 
@@ -29,6 +30,9 @@ public interface CourseConfigDao extends JpaRepository<IYFCourseConfig,IYFCourse
 
     @Query("SELECT e from IYFCourseConfig e where e.mICourseConfig = :name and e.mStOrgId =:org") 
 	List<IYFCourseConfig> getCourseConfigById(@Param("name") Long id,@Param("org") String org);
+
+    @Query("SELECT e from ClassTypeMst e where e.stOrgId =:org") 
+	List<ClassTypeMst> getClassTypeMstList(@Param("org") String org);
  
 	 
 }

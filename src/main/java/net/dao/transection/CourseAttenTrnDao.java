@@ -33,4 +33,11 @@ public interface CourseAttenTrnDao extends JpaRepository<IyfCourseAttenTrn, IyfC
 			+ "")//and s.IIsValid = 1 
 	Integer getTotalPresentCount(@Param("mICourseConfig") Long mICourseConfig,@Param("mIClassId")  Long mClassId,@Param("orgid")  String orgid);
 
+	@Query("SELECT s FROM IyfCourseAttenTrn s JOIN s.objGbltOtpStudentRegTrns"
+			+ " JOIN s.ObjIYFCourseConfig JOIN s.objIyfClassSchedTrn "
+			+ " where s.mICourseConfig =:mICourseConfig and "
+    		+ " s.stStudentId=:stStudentId and s.isPresent=1 and s.mStOrgId =:orgid " 
+			+ "")
+	List<IyfCourseAttenTrn> getPresentClassLst(@Param("stStudentId")  String stStudentId,@Param("mICourseConfig")  Long mICourseConfig,@Param("orgid")  String org);
+
 }

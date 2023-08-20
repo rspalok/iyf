@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			"/**"
 		};
 		String[] ADMIN=new String[] {
-			"/course/**","/schedule/**","/home/**","/showNewForm/**"
+			"/course/**","/schedule/**","/home/**","/showNewForm/**","/page/**"
 		};
 		String[] REPORTOR=new String[] {
 			"/report/**"

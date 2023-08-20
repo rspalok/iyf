@@ -59,7 +59,8 @@ public class ClassScheduleCnt {
 	public String showNewGbltOtpStudentRegTrnForm(IyfClassSchedTrn iyfClassSchedTrn,Model model,HttpServletRequest request) {
 		// create model attribute to bind form data   
 		model.addAttribute("courseConfig", courseConfigSer.getCourseConfigList(request));
-		
+		model.addAttribute("ClassTypeMst", courseConfigSer.getClassTypeMstList(request));
+		System.out.println("ClassTypeMst"+ courseConfigSer.getClassTypeMstList(request));
 		return "transection/class_schedule/classNew";
 	}
 	@PostMapping("/save")

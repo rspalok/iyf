@@ -81,25 +81,25 @@
 		  <tr class="header"> 
 		      <th scope="col">count</th> 
 	    	  <th scope="col">Mobile</th>
-		      <th scope="col">First Name</th>
-		      <th scope="col">Last Name</th>
+		      <th scope="col">Name</th>
 		      <th scope="col">Course for</th>
 		      <th scope="col">StudentId</th>
 		      <th scope="col">Registration Date</th>
-		      <th class="hidden" scope="col">Address</th> 
+		      <th scope="col">Address</th> 
 		      <th scope="col">Occupation</th> 
+		      <th scope="col">Chanting Rounds</th> 
 		  </tr>
 		  
 		   <tr th:each="student,count  : ${allRagisterdStudent}">
 		   		<td th:text="${count.count}">  ${count.size}</td>
 				<td th:text="${student.objGbltOtpStudentRegTrns.IMobile}"></td>
-				<td th:text="${student.objGbltOtpStudentRegTrns.firstName}"></td>
-				<td th:text="${student.tempStatus}"></td>
+				<td th:text="${student.objGbltOtpStudentRegTrns.firstName}+' '+${student.tempStatus}"></td>
 				<td th:text="${student.ObjIYFCourseConfig.stName}"></td>
 				<td th:text="${student.stStudentId}"></td>
 				<td th:text="${student.mDtRegistration}"></td>
 				<td th:text="${student.objGbltOtpStudentRegTrns.stAddress}"></td> 
 				<td th:text="${student.objGbltOtpStudentRegTrns.stOccupation}"></td> 
+				<td th:text="${student.objGbltOtpStudentRegTrns.mChanting}"></td>
 			</tr>
 		  
 		</table>

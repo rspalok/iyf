@@ -51,6 +51,7 @@ public class UserServiceImpl implements UserService{
 		user.setStEmail(c_user.getEmail());
 		user.setDtEntry(new Date()); 
 		user.setIIsValid(1);
+		user.setmEnabled(true);
 		user.setStOrgId(crmUser.getOrgName());
 		// give user default role of "employee"
 		System.out.println("====IYF20230204422  "+user);

@@ -84,6 +84,25 @@ public class utilityServiceImpl implements utilityService {
 		return data;
 	}
 	@Override
+	public String studentDetailsByStudentId(String stStudentId,HttpServletRequest objRequest_p) {
+		HttpSession session = objRequest_p.getSession(); 
+		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		String org= theUser.getStOrgId();
+		// TODO Auto-generated method stub
+		List<GbltOtpStudentRegTrn> list = dao.studentByStudentId(stStudentId,org);
+		ObjectMapper mapper = new ObjectMapper();
+
+		String data = null;
+		try {
+			data = mapper.writeValueAsString(list);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return data;
+	}
+	@Override
 	public List<GbltOtpStudentRegTrn> studentByStudentId(String stStudentId, HttpServletRequest objRequest_p) {
 		HttpSession session = objRequest_p.getSession(); 
 		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");

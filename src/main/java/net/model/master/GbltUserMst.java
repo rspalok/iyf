@@ -61,6 +61,9 @@ public class GbltUserMst implements Serializable {
 
 	@Column(name = "num_isvalid", length = 1)
 	private Integer IIsValid;
+	
+	@Column(name = "enabled", length = 1)
+	private boolean mEnabled;
 
 	@Id
 	@Column(name = "str_org_id", columnDefinition = "character varying (20)")
@@ -82,6 +85,22 @@ public class GbltUserMst implements Serializable {
 
 	public String getIUserId() {
 		return IUserId;
+	}
+
+	public GbltOtpStudentRegTrn getObjGbltOtpStudentRegTrns() {
+		return objGbltOtpStudentRegTrns;
+	}
+
+	public void setObjGbltOtpStudentRegTrns(GbltOtpStudentRegTrn objGbltOtpStudentRegTrns) {
+		this.objGbltOtpStudentRegTrns = objGbltOtpStudentRegTrns;
+	}
+
+	public boolean getmEnabled() {
+		return mEnabled;
+	}
+
+	public void setmEnabled(boolean mEnabled) {
+		this.mEnabled = mEnabled;
 	}
 
 	public void setIUserId(String iUserId) {

@@ -95,10 +95,3 @@ function milisecondToDateFormat(dateDetails){
 	}
 	return day+"/"+month+"/"+year;
 }
-	 /*
-	[{"stStudentId":"IYF20230204421","stOrgId":"PNB108","stOwnerId":"ALOK108","firstName":"","lastName":"","email":"","stAddress":"",
-	"mChanting":null,"stOccupation":"","stStage":null,"dtRegistration":1677349800000,"dtEntry":1677349800000,"icounselor":null,
-	"ifacilitator":null,"iisValid":1,"imobile":8669011448},
-	{"stStudentId":"IYF20230204422","stOrgId":"PNB108","stOwnerId":"ALOK108","firstName":"","lastName":"","email":"","stAddress":"","mChanting":null,"stOccupation":"","stStage":null,"dtRegistration":1677349800000,"dtEntry":1677349800000,"icounselor":null,"ifacilitator":null,"iisValid":1,"imobile":8669011448},
-	{"stStudentId":"2023100003","stOrgId":"PNB108","stOwnerId":"ALOK108","firstName":"ALOK","lastName":"SHARMA","email":"rspalok@gmail.com","stAddress":"Anisandhan bhawn","mChanting":null,"stOccupation":null,"stStage":null,"dtRegistration":1673980200000,"dtEntry":1673980200000,"icounselor":null,"ifacilitator":null,"iisValid":1,"imobile":8669011448}]
- */

@@ -24,6 +24,8 @@ public interface utilityService {
 	public List<IYFCourseConfig> getCourseConfigList(HttpServletRequest request);
 
 	String studentByMobileNo(Long mobileNumber, HttpServletRequest objRequest_p);
+	
+	String studentDetailsByStudentId(String stStudentId, HttpServletRequest objRequest_p);
 
 	public List<GbltOtpStudentRegTrn> studentByStudentId(String stStudentId, HttpServletRequest request);
 

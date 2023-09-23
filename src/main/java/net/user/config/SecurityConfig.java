@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			"/**"
 		};
 		String[] ADMIN=new String[] {
-			"/course/**","/schedule/**","/home/**","/showNewForm/**","/page/**"
+			"/course/**","/schedule/**","/home/**","/showNewForm/**","/page/**","/**"
 		};
 		String[] REPORTOR=new String[] {
 			"/report/**"
@@ -54,18 +54,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				
 		};
 		String[] USER=new String[] {
-				
+				"/**","/studentByMobileNo/**"
 		};
 		String[] FOLLOWUP=new String[] {
 			"/follow_up/**"
 		};
         http.authorizeRequests(requests -> requests
                 .antMatchers(resources).permitAll()
-                .antMatchers(ADMIN).hasAnyAuthority("ADMIN")
-                //.antMatchers("/**").hasAnyAuthority("USER", "CREATOR", "EDITOR", "ADMIN")
-                .antMatchers(FOLLOWUP).hasAnyAuthority("USER", "CREATOR", "EDITOR", "ADMIN","CALLER")
-                .antMatchers(REPORTOR).hasAnyAuthority("USER", "CREATOR", "EDITOR", "ADMIN")
-                .antMatchers(SuperUser).hasRole("SUPERUSER"))
+               // .antMatchers(ADMIN).hasAnyAuthority("ADMIN")
+                .antMatchers("/**").hasAnyAuthority("USER", "CREATOR", "EDITOR", "ADMIN")
+                //.antMatchers(USER).hasAnyAuthority("USER", "CREATOR", "EDITOR", "ADMIN","CALLER")
+                //.antMatchers(FOLLOWUP).hasAnyAuthority("USER", "CREATOR", "EDITOR", "ADMIN","CALLER")
+                //.antMatchers(REPORTOR).hasAnyAuthority("USER", "CREATOR", "EDITOR", "ADMIN")
+                //.antMatchers(SuperUser).hasRole("SUPERUSER")
+                )
                 .formLogin(login -> login
                         .loginPage("/showMyLoginPage")
                         .loginProcessingUrl("/authenticateTheUser")

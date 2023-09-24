@@ -63,7 +63,7 @@ public class BatchCnt {
 	}
 	@PostMapping("/save")
 	public String saveIYFBatchMst(@ModelAttribute("batch") IYFBatchMst batch,HttpServletRequest request, HttpServletResponse response) {
-		// save employee to database
+		// save gbltOtpStudentRegTrn to database
 		
 		System.out.println("==============batch======"+batch);
 		service.saveIYFBatchMst(batch, request, response);
@@ -72,18 +72,18 @@ public class BatchCnt {
 	@GetMapping("/showFormForUpdate/{id}")
 	public String showFormForUpdate(@PathVariable ( value = "id") Long id, Model model,HttpServletRequest request) {
 		
-		// get employee from the service
+		// get gbltOtpStudentRegTrn from the service
 		IYFBatchMst batch = service.getBatchById(id,request);
 		
-		// set employee as a model attribute to pre-populate the form
+		// set gbltOtpStudentRegTrn as a model attribute to pre-populate the form
 		model.addAttribute("batch", batch);
 		return "master/batch_new";
 	}
 	@GetMapping("/delete/{id}")
 	public String deleteGbltOtpStudentRegTrn(@PathVariable (value = "id") Long id,HttpServletRequest request) {
 		
-		// call delete employee method 
-		//this.employeeService.deleteGbltOtpStudentRegTrnById(id);
+		// call delete gbltOtpStudentRegTrn method 
+		//this.gbltOtpStudentRegTrnService.deleteGbltOtpStudentRegTrnById(id);
 
 		IYFBatchMst batch = service.getBatchById(id,request);
 		

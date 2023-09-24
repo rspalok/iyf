@@ -189,24 +189,24 @@ public class CourseRegistrationSerImp implements CourseRegistrationSer {
 	}
 	
 	//in GbltOtpStudentRegTrn
-	public GbltOtpStudentRegTrn addNewOrUpdateStudent(GbltStudentBean iyfCoureRegTrn,HttpServletRequest request, HttpServletResponse response,Integer mode) {
+	public GbltOtpStudentRegTrn addNewOrUpdateStudent(GbltStudentBean gbltStudentBean,HttpServletRequest request, HttpServletResponse response,Integer mode) {
 
 		HttpSession session = request.getSession(); 
 		Object theUser = session.getAttribute("user");
 		GbltUserMst obj= (GbltUserMst) theUser;
 		
 		GbltOtpStudentRegTrn gbltOtpStudentRegTrn=new GbltOtpStudentRegTrn();
-		if(iyfCoureRegTrn.getStStudentId()=="" ||iyfCoureRegTrn.getStStudentId()==null) {
+		if(gbltStudentBean.getStStudentId()=="" ||gbltStudentBean.getStStudentId()==null) {
 			
 			gbltOtpStudentRegTrn.setIIsValid(1);
-			gbltOtpStudentRegTrn.setEmail(iyfCoureRegTrn.getEmail());
-			gbltOtpStudentRegTrn.setFirstName(iyfCoureRegTrn.getFirstName());
-			gbltOtpStudentRegTrn.setLastName(iyfCoureRegTrn.getLastName());
-			gbltOtpStudentRegTrn.setIMobile(iyfCoureRegTrn.getIMobile());
-			gbltOtpStudentRegTrn.setStAddress(iyfCoureRegTrn.getStAddress());
-			gbltOtpStudentRegTrn.setStOccupation(iyfCoureRegTrn.getStOccupation());
-			gbltOtpStudentRegTrn.setmChanting(iyfCoureRegTrn.getmChanting());
-			//gbltOtpStudentRegTrn.setDtBirth(iyfCoureRegTrn.dt);
+			gbltOtpStudentRegTrn.setEmail(gbltStudentBean.getEmail());
+			gbltOtpStudentRegTrn.setFirstName(gbltStudentBean.getFirstName());
+			gbltOtpStudentRegTrn.setLastName(gbltStudentBean.getLastName());
+			gbltOtpStudentRegTrn.setIMobile(gbltStudentBean.getIMobile());
+			gbltOtpStudentRegTrn.setStAddress(gbltStudentBean.getStAddress());
+			gbltOtpStudentRegTrn.setStOccupation(gbltStudentBean.getStOccupation());
+			gbltOtpStudentRegTrn.setmChanting(gbltStudentBean.getmChanting());
+			gbltOtpStudentRegTrn.setDtBirth(gbltStudentBean.getDtBirth());
 			gbltOtpStudentRegTrn.setDtEntry(new Date());
 			if(gbltOtpStudentRegTrn.getStOrgId()==null) {
 				gbltOtpStudentRegTrn.setDtRegistration(new Date());
@@ -219,7 +219,7 @@ public class CourseRegistrationSerImp implements CourseRegistrationSer {
 
 			return Id;
 		}else {
-			gbltOtpStudentRegTrn=sdao.getStudentByIds(iyfCoureRegTrn.getStStudentId(),obj.getStOrgId());
+			gbltOtpStudentRegTrn=sdao.getStudentByIds(gbltStudentBean.getStStudentId(),obj.getStOrgId());
 			boolean change = false;
 			if(gbltOtpStudentRegTrn.getLastName()==null) {
 				gbltOtpStudentRegTrn.setLastName("");
@@ -229,29 +229,31 @@ public class CourseRegistrationSerImp implements CourseRegistrationSer {
 				gbltOtpStudentRegTrn.setStAddress("");
 			}if(gbltOtpStudentRegTrn.getStOccupation()==null) {
 				gbltOtpStudentRegTrn.setStOccupation("");
-			}if(iyfCoureRegTrn.getLastName()==null) {
-				iyfCoureRegTrn.setLastName("");
-			}if(iyfCoureRegTrn.getEmail()==null) {
-				iyfCoureRegTrn.setEmail("");
-			}if(iyfCoureRegTrn.getStAddress()==null) {
-				iyfCoureRegTrn.setStAddress("");
-			}if(iyfCoureRegTrn.getStOccupation()==null) {
-				iyfCoureRegTrn.setStOccupation("");
+			}if(gbltStudentBean.getLastName()==null) {
+				gbltStudentBean.setLastName("");
+			}if(gbltStudentBean.getEmail()==null) {
+				gbltStudentBean.setEmail("");
+			}if(gbltStudentBean.getStAddress()==null) {
+				gbltStudentBean.setStAddress("");
+			}if(gbltStudentBean.getStOccupation()==null) {
+				gbltStudentBean.setStOccupation("");
 			}
-			if(!gbltOtpStudentRegTrn.getFirstName().equals(iyfCoureRegTrn.getFirstName())
-					|| !gbltOtpStudentRegTrn.getLastName().equals(iyfCoureRegTrn.getLastName())
-					|| !gbltOtpStudentRegTrn.getEmail().equals(iyfCoureRegTrn.getEmail())
-					|| !gbltOtpStudentRegTrn.getStAddress().equals(iyfCoureRegTrn.getStAddress())
-					|| !gbltOtpStudentRegTrn.getStOccupation().equals(iyfCoureRegTrn.getStOccupation())
+			if(!gbltOtpStudentRegTrn.getFirstName().equals(gbltStudentBean.getFirstName())
+					|| !gbltOtpStudentRegTrn.getLastName().equals(gbltStudentBean.getLastName())
+					|| !gbltOtpStudentRegTrn.getEmail().equals(gbltStudentBean.getEmail())
+					|| !gbltOtpStudentRegTrn.getStAddress().equals(gbltStudentBean.getStAddress())
+					|| !gbltOtpStudentRegTrn.getStOccupation().equals(gbltStudentBean.getStOccupation())
 					){
-				gbltOtpStudentRegTrn.setEmail(iyfCoureRegTrn.getEmail());
-				gbltOtpStudentRegTrn.setFirstName(iyfCoureRegTrn.getFirstName());
-				gbltOtpStudentRegTrn.setLastName(iyfCoureRegTrn.getLastName());
-				gbltOtpStudentRegTrn.setStAddress(iyfCoureRegTrn.getStAddress());
-				gbltOtpStudentRegTrn.setStOccupation(iyfCoureRegTrn.getStOccupation());
+				gbltOtpStudentRegTrn.setEmail(gbltStudentBean.getEmail());
+				gbltOtpStudentRegTrn.setFirstName(gbltStudentBean.getFirstName());
+				gbltOtpStudentRegTrn.setLastName(gbltStudentBean.getLastName());
+				gbltOtpStudentRegTrn.setStAddress(gbltStudentBean.getStAddress());
+				gbltOtpStudentRegTrn.setStOccupation(gbltStudentBean.getStOccupation());
 				change=true;
-			}else if(gbltOtpStudentRegTrn.getmChanting() != iyfCoureRegTrn.getmChanting()) {
-				gbltOtpStudentRegTrn.setmChanting(iyfCoureRegTrn.getmChanting()); 
+			}else if(gbltOtpStudentRegTrn.getmChanting() != gbltStudentBean.getmChanting()
+					|| gbltOtpStudentRegTrn.getmOrgUnit() != gbltStudentBean.getmOrgUnit() ) {
+				gbltOtpStudentRegTrn.setmChanting(gbltStudentBean.getmChanting()); 
+				gbltOtpStudentRegTrn.setmOrgUnit(gbltStudentBean.getmOrgUnit()); 
 				change=true;
 			}
 			
@@ -278,7 +280,7 @@ public class CourseRegistrationSerImp implements CourseRegistrationSer {
 		iyfCoureReg.setmDtEntry(new Date());
 		iyfCoureReg.setmDtRegistration(new Date());
 		iyfCoureReg.setmIsValid(1);
-
+		iyfCoureReg.setmRegType(gbltStudentBean.getmRegType());
 		iyfCoureReg.setmStOwnerId(String.valueOf(obj.getIUserId()));
 		iyfCoureReg.setmStOrgId(String.valueOf(obj.getStOrgId()));
 		IyfCoureRegTrn result = dao.save(iyfCoureReg);

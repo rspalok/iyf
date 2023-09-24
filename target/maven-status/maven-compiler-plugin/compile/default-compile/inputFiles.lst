@@ -44,14 +44,18 @@
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/master/GbltUserMstPk.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/service/transection/ClassScheduleSer.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/transection/IyfClassSchedTrn.java
+/Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/transection/IyfPublicRegUrlTrnPk.java
+/Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/master/ClassTypeMst.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/service/transection/FollowUpSer.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/controller/master/BatchCnt.java
+/Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/transection/IyfPublicRegUrlTrn.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/service/master/CourseConfigSerImp.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/master/GbltOtpStudentRegTrn.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/service/master/CourseConfigSer.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/transection/IYFCourseConfigPk.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/user/service/UserServiceImpl.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/controller/master/CourseConfigCnt.java
+/Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/master/GbltOrgUnitMst.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/bean/YatraBean.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/master/GbltOrgMst.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/user/config/RequestFilter.java
@@ -82,6 +86,7 @@
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/dao/transection/FollowUpDao.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/service/transection/GbltOtpStudentRegTrnServiceImpl.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/master/GbltUserMst.java
+/Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/master/GbltOrgUnitMstPk.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/master/GbltRolMst.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/user/config/CustomAuthenticationSuccessHandler.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/transection/YatraRegTrn.java

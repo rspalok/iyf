@@ -38,14 +38,21 @@ public class GbltStudentBean implements Serializable{
 	private Integer ICounselor;
 	 
 	private Integer IFacilitator;
+	private Integer mOrgUnit;
 	 
 	private Integer IIsValid; 
 
 	private Integer mIMode;
 	
+	private Integer mRegType;//0: free reg, 1 paid reg, 2 unpaid reg;
+	
 	private Integer mIRagisterReport; 
 	
 	private String stName; 
+
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Temporal(TemporalType.TIMESTAMP) 
+	private Date dtBirth;
 	
 	private Long mICourse;
 	private Long mIBatch;
@@ -75,12 +82,36 @@ public class GbltStudentBean implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
     
+	public Integer getmRegType() {
+		return mRegType;
+	}
+
+	public Date getDtBirth() {
+		return dtBirth;
+	}
+
+	public void setDtBirth(Date dtBirth) {
+		this.dtBirth = dtBirth;
+	}
+
+	public void setmRegType(Integer mRegType) {
+		this.mRegType = mRegType;
+	}
+
 	public Integer getmIRagisterReport() {
 		return mIRagisterReport;
 	}
 
 	public void setmIRagisterReport(Integer mIRagisterReport) {
 		this.mIRagisterReport = mIRagisterReport;
+	}
+
+	public Integer getmOrgUnit() {
+		return mOrgUnit;
+	}
+
+	public void setmOrgUnit(Integer mOrgUnit) {
+		this.mOrgUnit = mOrgUnit;
 	}
 
 	public Integer getmIMode() {

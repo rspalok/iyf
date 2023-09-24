@@ -65,7 +65,7 @@ public class ClassScheduleCnt {
 	}
 	@PostMapping("/save")
 	public String saveClassSchedule(@ModelAttribute("iyfClassSchedTrn") IyfClassSchedTrn iyfClassSchedTrn,Model model,HttpServletRequest request, HttpServletResponse response) {
-		// save employee to database
+		// save gbltOtpStudentRegTrn to database
 		
 		System.out.println("==============batch======"+iyfClassSchedTrn);
 		service.saveClassSchedule(iyfClassSchedTrn, request, response);

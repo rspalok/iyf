@@ -33,6 +33,14 @@
 					</div>
 					
 					<div class="col-md-4 col-sm-4">
+						<label for="mIClassType">Class Type</label> 
+						<select class="form-control" th:field="*{mIClassType}" >
+						    <option value="0">select option</option>
+						    <option th:each="option : ${ClassTypeMst}" th:value="${option.mClassType}" th:text="${option.strName}"></option>
+						</select>
+					</div>
+					
+					<div class="col-md-4 col-sm-4">
 						<label for="date-timepicker1">Class Date/Time</label>
 	
 						<div class="input-group">

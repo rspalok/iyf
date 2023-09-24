@@ -8,28 +8,31 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.data.domain.Page;
 
+import net.model.master.GbltOrgUnitMst;
 import net.model.master.GbltOtpStudentRegTrn;
 import net.model.master.MenuMaster;
 
 public interface GbltOtpStudentRegTrnService {
-	List<GbltOtpStudentRegTrn> getAllGbltOtpStudentRegTrns(HttpServletRequest request);
+	public List<GbltOtpStudentRegTrn> getAllGbltOtpStudentRegTrns(HttpServletRequest request);
 
-	GbltOtpStudentRegTrn getGbltOtpStudentRegTrnById(String id, HttpServletRequest objRequest_p);
+	public GbltOtpStudentRegTrn getGbltOtpStudentRegTrnById(String id, HttpServletRequest objRequest_p);
 
-	void deleteGbltOtpStudentRegTrnById(GbltOtpStudentRegTrn employee, HttpServletRequest request);
+	public void deleteGbltOtpStudentRegTrnById(GbltOtpStudentRegTrn gbltOtpStudentRegTrn, HttpServletRequest request);
 
-	Page<GbltOtpStudentRegTrn> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection, HttpServletRequest objRequest_p);
+	public Page<GbltOtpStudentRegTrn> findPaginated(int pageNo, int pageSize, String sortField, String sortDirection, HttpServletRequest objRequest_p);
 
-	List<GbltOtpStudentRegTrn> searchBy(String theName, HttpServletRequest request);
+	public List<GbltOtpStudentRegTrn> searchBy(String theName, HttpServletRequest request);
 
-	void saveGbltOtpStudentRegTrn(GbltOtpStudentRegTrn employee, HttpServletRequest request,
+	public void saveGbltOtpStudentRegTrn(GbltOtpStudentRegTrn gbltOtpStudentRegTrn, HttpServletRequest request,
 			HttpServletResponse response);
 
-	List<GbltOtpStudentRegTrn> getAllValidStudent(HttpServletRequest request);
+	public List<GbltOtpStudentRegTrn> getAllValidStudent(HttpServletRequest request);
 
-	Map<String, List<MenuMaster>> getMemuList(HttpServletRequest request);
+	public Map<String, List<MenuMaster>> getMemuList(HttpServletRequest request);
 
-	String studentByMobileNo(Long mobileNumber, HttpServletRequest objRequest_p);
+	public String studentByMobileNo(Long mobileNumber, HttpServletRequest objRequest_p);
 
-	List<GbltOtpStudentRegTrn> allCurrentRegStudent( HttpServletRequest objRequest_p);
+	public List<GbltOtpStudentRegTrn> allCurrentRegStudent( HttpServletRequest objRequest_p);
+
+	
 }

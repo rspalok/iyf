@@ -33,8 +33,7 @@
 					</thead>
 					<tbody>
 						<tr th:each="element : ${transections}">
-							<td><a th:href="@{${element.mStURL}}"
-								th:text="${element.mStMenuName}"> </a></td>
+							<td><a th:href="@{${element.mStURL}}" th:text="${element.mStMenuName}"> </a></td>
 						</tr>
 					</tbody>
 				</table>
@@ -47,8 +46,7 @@
 				</h2>
 				<table>
 					<tr th:each="element : ${setups}">
-						<td><a th:href="@{${element.mStURL}}"
-							th:text="${element.mStMenuName}"> </a></td>
+						<td><a th:href="@{${element.mStURL}}" th:text="${element.mStMenuName}"> </a></td>
 					</tr>
 				</table>
 			</div>
@@ -58,18 +56,19 @@
 				</h2>
 				<table>
 					<tr th:each="element : ${reports}">
-						<td><a th:href="@{${element.mStURL}}"
-							th:text="${element.mStMenuName}"> </a></td>
+						<td><a th:href="@{${element.mStURL}}" th:text="${element.mStMenuName}"> </a></td>
 					</tr>
 				</table>
 			</div>
 		</div>
-	<div sec:authorize="hasRole('ROLE_ADMIN')">
-	  This content is only shown to administrators.
+		
+		
+		<div sec:authorize="hasRole('ADMIN')">
+		  This content is only shown to administrators.
+		</div>
 	</div>
-</div>
-    
-	
+	    
+		
 	
 </body>
 </html>

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import net.com.utilityService;
 import net.model.bean.GbltStudentBean;
 import net.model.transection.IYFCourseConfig;
 import net.model.transection.IyfClassSchedTrn;
@@ -32,6 +33,9 @@ public class CourseRegAndMarkAttenCnt {
 
 	@Autowired
 	private CourseRegistrationSer ser;
+	
+	@Autowired
+	private utilityService utilSer;
 
 	@Autowired
 	private ClassScheduleSer classScheduleService;
@@ -81,7 +85,8 @@ public class CourseRegAndMarkAttenCnt {
 		model.addAttribute("CurrentUrlForRefresh", "/course/registration/" + mICourseConfig);
 		gbltStudentBean.setmICourseConfig(mICourseConfig);
 		model.addAttribute("regStudentCount", ser.regInfo(mICourseConfig,request));
-		
+
+		model.addAttribute("orgUnits", utilSer.allOrgUnits(request));
 		model.addAttribute("courseConfig", service.getCourseConfigById(gbltStudentBean.getmICourseConfig(), request));
 		model.addAttribute("allRegStudent", ser.getAllRegStudent(gbltStudentBean.getmICourseConfig(), request));
 		return "transection/CourseRegistration";
@@ -125,6 +130,7 @@ public class CourseRegAndMarkAttenCnt {
 			gbltStudentBean.setmClassId(classList.get(0).getmIClassId());
 	/////		model.addAttribute("allPresentStudent", ser.getAllPresentStudentInClass(gbltStudentBean, request));
 
+			model.addAttribute("orgUnits", utilSer.allOrgUnits(request));
 			model.addAttribute("noClassSchedule", "");
 			model.addAttribute("attenStudentCount", ser.attenInfo(mICourseConfig,classList.get(0).getmIClassId(), request));
 			

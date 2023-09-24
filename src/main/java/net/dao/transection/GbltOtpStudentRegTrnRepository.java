@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import net.model.master.GbltOrgUnitMst;
 import net.model.master.GbltOtpStudentRegTrn;
 import net.model.master.GbltOtpStudentRegTrnPk;
 import net.model.master.MenuMaster;
@@ -63,6 +64,8 @@ public interface GbltOtpStudentRegTrnRepository extends JpaRepository<GbltOtpStu
 	+ " where e.mDtRegistration BETWEEN :dtFrom AND :dtTo  and e.mStOrgId=:mStOrgId")
 
 	List<IyfCoureRegTrn> getCourseRegisterdStudentBetweenDates(@Param("dtFrom") Date date,@Param("dtTo") Date date1,@Param("mStOrgId")  String org);
+
+    
 
 
 	//@Query("SELECT e from GbltOtpStudentRegTrn e where e.stStage IS NOT NULL and e.ICounselor IS NOT NULL and e.stOrgId =:org ")//e.stStage IS NOT NULL  and 

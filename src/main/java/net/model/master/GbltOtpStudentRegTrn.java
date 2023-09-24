@@ -69,6 +69,9 @@ public class GbltOtpStudentRegTrn implements Serializable{
 	@Column(name = "num_isvalid",length=1)
 	private Integer IIsValid;
 	
+	@Column(name = "num_org_unit",length=3)
+	private Integer mOrgUnit;
+	
 	@Column(name = "num_reg_mode",length=1)
 	private Integer mRegMode;//1 normal only registration , 2 on course registration, 
 	//3 course attendance registration ,
@@ -93,6 +96,14 @@ public class GbltOtpStudentRegTrn implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	
+	public Integer getmOrgUnit() {
+		return mOrgUnit;
+	}
+
+	public void setmOrgUnit(Integer mOrgUnit) {
+		this.mOrgUnit = mOrgUnit;
+	}
+
 	public Date getDtBirth() {
 		return dtBirth;
 	}

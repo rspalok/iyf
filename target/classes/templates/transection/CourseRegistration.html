@@ -82,11 +82,32 @@
 						<label for="mDtCourseEnd">Total No of Round Chanting Daily<span class="text-danger"> *</span></label>
 					<input th:type="number" required="required" th:field="*{mChanting}" th:max="99" placeholder="Total No of Round Chanting" class="form-control mb-4 col-4">
 					</div></div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label class="control-label" for="">Base <span class="text-danger"> *</span></label> 
+							<select id="mOrgUnit" class="form-control custom-select" th:field="*{mOrgUnit}"
+								data-placeholder="Choose a Category" tabindex="1" th:value="*{mOrgUnit}" >  
+								<option value="0">Select Option</option>
+								<option th:each="option : ${orgUnits}" th:value="${option.mOrgUnit}" th:text="${option.strName}"></option>
+							</select>
+						</div>
+					</div>
 					<div class="col-md-4 col-sm-4">
 					<div class="form-group">
 						<label for="mDtCourseEnd">Address<span class="text-danger"> *</span></label> 
 						<input type="text" required="required" th:field="*{stAddress}" placeholder="Student Address" class="form-control mb-4 col-4">   
 					</div></div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label class="control-label" for="">Registration Type<span class="text-danger"> *</span></label> 
+							<select class="form-control custom-select" th:field="*{mRegType}"
+								data-placeholder="Choose a Category" tabindex="1" th:value="*{mRegType}" >  
+								<option value="0">Free Registration</option>
+								<option value="0">Paid</option>
+								<option value="0">UnPaid</option>
+							</select>
+						</div>
+					</div>
 				</div>  
 		 	</div>
 		 	<hr>

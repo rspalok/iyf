@@ -68,7 +68,7 @@ public class CourseConfigCnt {
 	}
 	@PostMapping("/save")
 	public String saveIYFCourseConfig(@ModelAttribute("batch") IYFCourseConfig courseConfig,HttpServletRequest request, HttpServletResponse response) {
-		// save employee to database
+		// save gbltOtpStudentRegTrn to database
 		
 		System.out.println("==============batch======"+courseConfig);
 		service.saveIYFCourseConfig(courseConfig, request, response);
@@ -77,20 +77,20 @@ public class CourseConfigCnt {
 	@GetMapping("/showFormForUpdate/{id}")
 	public String showFormForUpdate(@PathVariable ( value = "id") Long id, Model model,HttpServletRequest request) {
 		
-		// get employee from the service
+		// get gbltOtpStudentRegTrn from the service
 		IYFCourseConfig iyfCourseConfig = service.getCourseConfigById(id,request);
 
 		model.addAttribute("batch", service.getBatchList(request)); 
 		model.addAttribute("course", service.getCourseList(request));
-		// set employee as a model attribute to pre-populate the form
+		// set gbltOtpStudentRegTrn as a model attribute to pre-populate the form
 		model.addAttribute("iyfCourseConfig", iyfCourseConfig);
 		return "master/course_config_new";
 	}
 	@GetMapping("/delete/{id}")
 	public String deleteCourseConfig(@PathVariable (value = "id") Long id,HttpServletRequest request) {
 		
-		// call delete employee method 
-		//this.employeeService.deleteGbltOtpStudentRegTrnById(id);
+		// call delete gbltOtpStudentRegTrn method 
+		//this.gbltOtpStudentRegTrnService.deleteGbltOtpStudentRegTrnById(id);
 
 		IYFCourseConfig courseConfig = service.getCourseConfigById(id,request);
 		

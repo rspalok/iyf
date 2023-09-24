@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService{
 		user.setIIsValid(1);
 		user.setmEnabled(true);
 		user.setStOrgId(crmUser.getOrgName());
-		// give user default role of "employee"
+		// give user default role of "gbltOtpStudentRegTrn"
 		System.out.println("====IYF20230204422  "+user);
 		//user.setRoles(Arrays.asList(roleDao.findRoleByName(crmUser.getRoleName())));
 

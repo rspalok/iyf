@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import net.com.utilityService;
 import net.model.bean.YatraBean;
 import net.model.transection.YatraCruiseTrn;
 import net.service.master.CourseConfigSer;
@@ -29,7 +30,8 @@ public class YatraMngController {
 	private YatraMngSer service;
 	@Autowired
 	private CourseConfigSer ser;
-
+	@Autowired
+	private utilityService utilSer;
 
 	@GetMapping("/list")
 	public String theYatraList(YatraBean yatraBean, Model model, HttpServletRequest request) {
@@ -86,6 +88,7 @@ public class YatraMngController {
 		model.addAttribute("YatraCruise",service.getYatraCruiseById(yatraCruiseId,request));
 		model.addAttribute("YatraCruiseDtl",service.getYatraCruiseById(yatraCruiseId,request).get(0));
 
+		model.addAttribute("orgUnits", utilSer.allOrgUnits(request));
 		model.addAttribute("yatraRagisterdList",service.yatraRagisterdList(yatraCruiseId,request));
 		return "transection/yatra/YatraRegistration";
 	}

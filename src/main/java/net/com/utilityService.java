@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import net.model.master.GbltOrgMst;
+import net.model.master.GbltOrgUnitMst;
 import net.model.master.GbltOtpStudentRegTrn;
 import net.model.master.GbltRolMst;
 import net.model.master.IYFBatchMst;
@@ -31,5 +32,5 @@ public interface utilityService {
 
 	public List<GbltOtpStudentRegTrn> getStudentListByMobile(Long mobileNumber, HttpServletRequest objRequest_p);
 
-
+	public List<GbltOrgUnitMst> allOrgUnits(HttpServletRequest request);
 }

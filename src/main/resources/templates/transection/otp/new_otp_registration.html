@@ -15,7 +15,7 @@
 		<h2>New Registration</h2>
 		<hr>
 
-		<form action="#" th:action="@{/save}" class="form-validation"  th:object="${employee}" method="POST">
+		<form action="#" th:action="@{/save}" class="form-validation"  th:object="${gbltOtpStudentRegTrn}" method="POST">
 			<input type="hidden" th:field="*{stStudentId}" />			
 			<div class="row p-t-20">
 				<!--  div class="col-xs-12">-->
@@ -67,6 +67,16 @@
 					<div class="form-group"><label>Total No of Round Chanting Daily</label>
 					<input th:type="number" th:field="*{mChanting}" th:max="16" placeholder="Total No of Round Chanting" class="form-control mb-4 col-4">
 				
+					</div>
+				</div>
+				<div class="col-md-4">
+					<div class="form-group">
+						<label class="control-label" for="">Base <span class="text-danger"> *</span></label> 
+						<select id="mOrgUnit" class="form-control custom-select" th:field="*{mOrgUnit}"
+							data-placeholder="Choose a Category" tabindex="1" th:value="*{mOrgUnit}" >  
+							<option value="0">Select Option</option>
+							<option th:each="option : ${orgUnits}" th:value="${option.mOrgUnit}" th:text="${option.strName}"></option>
+						</select>
 					</div>
 				</div>
 				<div class="col-md-4">

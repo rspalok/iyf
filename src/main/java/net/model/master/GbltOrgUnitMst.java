@@ -3,7 +3,7 @@ package net.model.master;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
-
+ 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -32,7 +32,10 @@ public class GbltOrgUnitMst implements Serializable {
 	@Column(name = "str_name", columnDefinition = "character varying (100)")
 	private String strName;
 	
-	@Column(name = "str_user_id", nullable = false, columnDefinition = "character varying (20)")
+	@Column(name = "str_address", columnDefinition = "character varying (225)")
+	private String strAddress;
+	
+	@Column(name = "str_user_id", nullable = false, columnDefinition = "character varying (20)")//str_address
 	private String stOwnerId;
 
 	@Column(name = "num_isvalid", length = 1)
@@ -65,6 +68,14 @@ public class GbltOrgUnitMst implements Serializable {
 
 	public String getStrName() {
 		return strName;
+	}
+
+	public String getStrAddress() {
+		return strAddress;
+	}
+
+	public void setStrAddress(String strAddress) {
+		this.strAddress = strAddress;
 	}
 
 	public void setStrName(String strName) {

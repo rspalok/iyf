@@ -25,6 +25,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import net.dao.transection.GbltOtpStudentRegTrnRepository;
+import net.model.master.GbltOrgUnitMst;
 import net.model.master.GbltOtpStudentRegTrn;
 import net.model.master.GbltOtpStudentRegTrnPk;
 import net.model.master.GbltUserMst;
@@ -44,32 +45,32 @@ public class GbltOtpStudentRegTrnServiceImpl implements GbltOtpStudentRegTrnServ
  
 
 	@Override
-	public void saveGbltOtpStudentRegTrn(GbltOtpStudentRegTrn employee,HttpServletRequest request, HttpServletResponse response) {
+	public void saveGbltOtpStudentRegTrn(GbltOtpStudentRegTrn gbltOtpStudentRegTrn,HttpServletRequest request, HttpServletResponse response) {
 		
 		HttpSession session = request.getSession(); 
 		Object theUser = session.getAttribute("user");
-		if(employee.getStStudentId()==null || employee.getStStudentId()=="" ) { 
-			employee.setDtRegistration(new Date());
-			employee.setIIsValid(1);
-			employee.setDtEntry(new Date()); 
-			employee.setStOwnerId(String.valueOf(((GbltUserMst) theUser).getIUserId()));
-			employee.setStOrgId(String.valueOf(((GbltUserMst) theUser).getStOrgId()));
-			employee.setmRegMode(1);
-			this.dao.save(employee);
+		if(gbltOtpStudentRegTrn.getStStudentId()==null || gbltOtpStudentRegTrn.getStStudentId()=="" ) { 
+			gbltOtpStudentRegTrn.setDtRegistration(new Date());
+			gbltOtpStudentRegTrn.setIIsValid(1);
+			gbltOtpStudentRegTrn.setDtEntry(new Date()); 
+			gbltOtpStudentRegTrn.setStOwnerId(String.valueOf(((GbltUserMst) theUser).getIUserId()));
+			gbltOtpStudentRegTrn.setStOrgId(String.valueOf(((GbltUserMst) theUser).getStOrgId()));
+			gbltOtpStudentRegTrn.setmRegMode(1);
+			this.dao.save(gbltOtpStudentRegTrn);
 			 
 		}else { 
-			List<GbltOtpStudentRegTrn> student=dao.findStudentById(employee.getStStudentId(),String.valueOf(((GbltUserMst) theUser).getStOrgId()),1);
+			List<GbltOtpStudentRegTrn> student=dao.findStudentById(gbltOtpStudentRegTrn.getStStudentId(),String.valueOf(((GbltUserMst) theUser).getStOrgId()),1);
 			if (student.size()>0) {
 				GbltOtpStudentRegTrn stu=student.get(0);
 				stu.setDtEntry(new Date()); 
 				stu.setStOwnerId(String.valueOf(((GbltUserMst) theUser).getIUserId()));
-				stu.setFirstName(employee.getFirstName());
-				stu.setLastName(employee.getLastName());
-				stu.setmChanting(employee.getmChanting());
-				stu.setStAddress(employee.getStAddress());
-				stu.setEmail(employee.getEmail());
-				stu.setStOccupation(employee.getStOccupation()); 
-				stu.setDtBirth(employee.getDtBirth());
+				stu.setFirstName(gbltOtpStudentRegTrn.getFirstName());
+				stu.setLastName(gbltOtpStudentRegTrn.getLastName());
+				stu.setmChanting(gbltOtpStudentRegTrn.getmChanting());
+				stu.setStAddress(gbltOtpStudentRegTrn.getStAddress());
+				stu.setEmail(gbltOtpStudentRegTrn.getEmail());
+				stu.setStOccupation(gbltOtpStudentRegTrn.getStOccupation()); 
+				stu.setDtBirth(gbltOtpStudentRegTrn.getDtBirth());
 				this.dao.save(stu);
 			} 
 		}
@@ -80,22 +81,22 @@ public class GbltOtpStudentRegTrnServiceImpl implements GbltOtpStudentRegTrnServ
 		GbltOtpStudentRegTrnPk pid=new GbltOtpStudentRegTrnPk("PNB108",id);
 		
 		Optional<GbltOtpStudentRegTrn> optional = dao.findById(pid);
-		GbltOtpStudentRegTrn employee = null;
+		GbltOtpStudentRegTrn gbltOtpStudentRegTrn = null;
 		if (optional.isPresent()) {
-			employee = optional.get();
+			gbltOtpStudentRegTrn = optional.get();
 		} else {
 			throw new RuntimeException(" GbltOtpStudentRegTrn not found for id :: " + id);
 		}
-		return employee;
+		return gbltOtpStudentRegTrn;
 	}
 
 	@Override
-	public void deleteGbltOtpStudentRegTrnById(GbltOtpStudentRegTrn employee,HttpServletRequest request)  {
+	public void deleteGbltOtpStudentRegTrnById(GbltOtpStudentRegTrn gbltOtpStudentRegTrn,HttpServletRequest request)  {
 		//this.dao.deleteById(id);
-		//GbltOtpStudentRegTrn employee=this.deleteGbltOtpStudentRegTrnById(id);
+		//GbltOtpStudentRegTrn gbltOtpStudentRegTrn=this.deleteGbltOtpStudentRegTrnById(id);
  
-		employee.setIIsValid(0);
-		this.dao.save(employee);
+		gbltOtpStudentRegTrn.setIIsValid(0);
+		this.dao.save(gbltOtpStudentRegTrn);
 		
 	}
 
@@ -118,7 +119,7 @@ public class GbltOtpStudentRegTrnServiceImpl implements GbltOtpStudentRegTrnServ
 		HttpSession session = request.getSession(); 
 		Object theUser = session.getAttribute("user");
 		//System.out.println("$$$$$$$$$$$$$$$S"+theUser);  
-		//employee.setStOwnerId(String.valueOf(((GbltUserMst) theUser).getIUserId()));
+		//gbltOtpStudentRegTrn.setStOwnerId(String.valueOf(((GbltUserMst) theUser).getIUserId()));
 		String.valueOf(((GbltUserMst) theUser).getStOrgId());
 		System.out.println("================ = =========");
 		if (theName != null && (theName.trim().length() > 0)) {
@@ -237,4 +238,7 @@ public class GbltOtpStudentRegTrnServiceImpl implements GbltOtpStudentRegTrnServ
 		
 		return  result;//dao.allCurrentRegStudent(obj.getStOrgId(),1,currentDay,month,currentYear);
 	}
+
+
+	
 }

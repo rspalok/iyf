@@ -127,6 +127,7 @@ function viewSingleDtls(res, mode) {
 		$('#mChanting').val(res[0].mChanting);
 		$('#stAddress').val(res[0].stAddress);
 		$('#stStudentId').val(res[0].stStudentId);
+		$('#mOrgUnit').val(res.mOrgUnit);
 		
         var yatraId=$('#yatraCruiseId option:selected').val();
 		getYatraRagistrationDetails(yatraId,res[0].stStudentId);
@@ -138,6 +139,7 @@ function viewSingleDtls(res, mode) {
 		$('#mChanting').val(0);
 		$('#stAddress').val('');
 		$('#stStudentId').val('');
+		$('#mOrgUnit').val(0);
 	}
 	
 }
@@ -225,6 +227,7 @@ $(function () {
 				$('#mChanting').val(res.mChanting);
 				$('#stAddress').val(res.stAddress);
 				$('#stStudentId').val(res.stStudentId);
+				$('#mOrgUnit').val(res.mOrgUnit);
 				getYatraRagistrationDetails(yatraId,studentId);
 				break;
 		   }else{
@@ -235,6 +238,7 @@ $(function () {
 				$('#mChanting').val(0);
 				$('#stAddress').val('');
 				$('#stStudentId').val('');
+				$('#mOrgUnit').val(0);
 		   }
 		}
      });

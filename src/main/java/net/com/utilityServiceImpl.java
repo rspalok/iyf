@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import net.dao.master.CourseConfigDao;
 import net.model.master.GbltOrgMst;
+import net.model.master.GbltOrgUnitMst;
 import net.model.master.GbltOtpStudentRegTrn;
 import net.model.master.GbltRolMst;
 import net.model.master.GbltUserMst;
@@ -40,8 +41,8 @@ public class utilityServiceImpl implements utilityService {
 		//HttpSession session = request.getSession(); 
 		//Object theUser = session.getAttribute("user");
 		//System.out.println("$$$$$$$$$$$$$$$S"+theUser);  
-		//employee.setStOwnerId(String.valueOf(((GbltUserMst) theUser).getIUserId()));
-		//employee.setStOrgId(String.valueOf(((GbltUserMst) theUser).getstOrgId()));
+		//gbltOtpStudentRegTrn.setStOwnerId(String.valueOf(((GbltUserMst) theUser).getIUserId()));
+		//gbltOtpStudentRegTrn.setStOrgId(String.valueOf(((GbltUserMst) theUser).getstOrgId()));
 		 
 		// TODO Auto-generated method stub
 		return dao.getAllRoleDetails();
@@ -120,5 +121,12 @@ public class utilityServiceImpl implements utilityService {
 		List<GbltOtpStudentRegTrn> list = dao.getStudentListByMobile(mobileNumber,org);
 		System.out.println("====== "+list);
 		return list;
+	}
+	@Override
+	public List<GbltOrgUnitMst> allOrgUnits(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		Object theUser = session.getAttribute("user");
+		GbltUserMst obj = (GbltUserMst) theUser;
+		return dao.allOrgUnits(obj.getStOrgId());
 	}
 }

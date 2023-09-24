@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import net.com.utilityService;
 import net.model.master.GbltOtpStudentRegTrn;
 import net.model.master.MenuMaster;
 import net.service.transection.GbltOtpStudentRegTrnService;
@@ -29,6 +30,8 @@ public class GbltStudentRegCnt {
 
 	@Autowired
 	private GbltOtpStudentRegTrnService service;
+	@Autowired
+	private utilityService utilSer;
 	@GetMapping("/")
 	public String index(MenuMaster menuMaster,Model model,HttpServletRequest request){ 
 		//service.getMemuList(user);
@@ -48,7 +51,7 @@ public class GbltStudentRegCnt {
 		model.addAttribute("reports", data.get("report"));
 		return "transection/menu/menu_master";	
 	}
-	// display list of employees
+	// display list of gbltOtpStudentRegTrns
 	@GetMapping("/iyf")
 	public String viewHomePage(Model model,HttpServletRequest request) {
 		return findPaginated(1, "dtRegistration", "asc", model, request);		
@@ -57,29 +60,30 @@ public class GbltStudentRegCnt {
 	@GetMapping("/showNewForm")
 	public String showNewGbltOtpStudentRegTrnForm(Model model,HttpServletRequest request) {
 		// create model attribute to bind form data
-		GbltOtpStudentRegTrn employee = new GbltOtpStudentRegTrn();
-		model.addAttribute("employee", employee);
+		GbltOtpStudentRegTrn gbltOtpStudentRegTrn = new GbltOtpStudentRegTrn();
+		model.addAttribute("gbltOtpStudentRegTrn", gbltOtpStudentRegTrn);
 		model.addAttribute("allCurrentRegStudent", service.allCurrentRegStudent(request));
+		model.addAttribute("orgUnits", utilSer.allOrgUnits(request));
 
 		return "transection/new_registration";
 	}
 	
 	@PostMapping("/save")
-	public String saveGbltOtpStudentRegTrn(@ModelAttribute("employee") GbltOtpStudentRegTrn employee,HttpServletRequest request, HttpServletResponse response) {
-		// save employee to database
-		service.saveGbltOtpStudentRegTrn(employee, request, response);
+	public String saveGbltOtpStudentRegTrn(@ModelAttribute("gbltOtpStudentRegTrn") GbltOtpStudentRegTrn gbltOtpStudentRegTrn,HttpServletRequest request, HttpServletResponse response) {
+		// save gbltOtpStudentRegTrn to database
+		service.saveGbltOtpStudentRegTrn(gbltOtpStudentRegTrn, request, response);
 		return "redirect:/showNewForm";
 	}
 	
 	@GetMapping("/showFormForUpdate/{id}")
 	public String showFormForUpdate(@PathVariable ( value = "id") String id, Model model,HttpServletRequest request) {
 		
-		// get employee from the service
-		GbltOtpStudentRegTrn employee = service.getGbltOtpStudentRegTrnById(id,request);
+		// get gbltOtpStudentRegTrn from the service
+		GbltOtpStudentRegTrn gbltOtpStudentRegTrn = service.getGbltOtpStudentRegTrnById(id,request);
 		
-		// set employee as a model attribute to pre-populate the form
-		model.addAttribute("employee", employee);
-		return "transection/new_registration";// "update_employee";//
+		// set gbltOtpStudentRegTrn as a model attribute to pre-populate the form
+		model.addAttribute("gbltOtpStudentRegTrn", gbltOtpStudentRegTrn);
+		return "transection/new_registration";// "update_gbltOtpStudentRegTrn";//
 	} 
 	@GetMapping("/studentByMobileNo")
 	public @ResponseBody String getData( HttpServletRequest objRequest_p,
@@ -88,13 +92,13 @@ public class GbltStudentRegCnt {
 		return service.studentByMobileNo(mobileNumber, objRequest_p);
 	}
 	@GetMapping("/search")
-	public String delete(@RequestParam("employeeName") String theName, Model model,HttpServletRequest request) {
+	public String delete(@RequestParam("gbltOtpStudentRegTrnName") String theName, Model model,HttpServletRequest request) {
 		System.out.println("============  "+theName);
-		// delete the employee
+		// delete the gbltOtpStudentRegTrn
 		List<GbltOtpStudentRegTrn> theGbltOtpStudentRegTrns = service.searchBy(theName,request);
 		
 		// add to the spring model
-		model.addAttribute("employees", theGbltOtpStudentRegTrns);
+		model.addAttribute("gbltOtpStudentRegTrns", theGbltOtpStudentRegTrns);
 		
 		int pageSize = 50;
 		String sortField="firstName";
@@ -119,12 +123,12 @@ public class GbltStudentRegCnt {
 	@GetMapping("/deleteStudent/{id}")
 	public String deleteGbltOtpStudentRegTrn(@PathVariable (value = "id") String id,HttpServletRequest request) {
 		
-		// call delete employee method 
+		// call delete gbltOtpStudentRegTrn method 
 		//this.service.deleteGbltOtpStudentRegTrnById(id);
 
-		GbltOtpStudentRegTrn employee = service.getGbltOtpStudentRegTrnById(id,request);
+		GbltOtpStudentRegTrn gbltOtpStudentRegTrn = service.getGbltOtpStudentRegTrnById(id,request);
 		
-		service.deleteGbltOtpStudentRegTrnById(employee, request);
+		service.deleteGbltOtpStudentRegTrnById(gbltOtpStudentRegTrn, request);
 		return "redirect:/iyf";
 	}
 	

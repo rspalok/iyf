@@ -73,6 +73,9 @@ public class IyfCoureRegTrn implements Serializable{
 	@Column(name = "num_isvalid",length=1)
 	private Integer mIsValid;
 	
+	@Column(name = "num_reg_type",length=1)
+	private Integer mRegType;
+	
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "dt_entry")
@@ -85,6 +88,14 @@ public class IyfCoureRegTrn implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
  
+	public Integer getmRegType() {
+		return mRegType;
+	}
+
+	public void setmRegType(Integer mRegType) {
+		this.mRegType = mRegType;
+	}
+
 	public String getTempStatus() {
 		return tempStatus;
 	}

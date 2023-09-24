@@ -98,6 +98,7 @@ function viewSingleDtls(res, mode) {
 		$('#mChanting').val(res[0].mChanting);
 		$('#stAddress').val(res[0].stAddress);
 		$('#stStudentId').val(res[0].stStudentId);
+		$('#mOrgUnit').val(res.mOrgUnit);
 	}else{
 		$('#stOccupation').val('');
 		$('#firstName').val('');
@@ -106,6 +107,7 @@ function viewSingleDtls(res, mode) {
 		$('#mChanting').val(0);
 		$('#stAddress').val('');
 		$('#stStudentId').val('');
+		$('#mOrgUnit').val(0);
 	}
 	
 }
@@ -191,6 +193,7 @@ $(function () {
 				$('#mChanting').val(res.mChanting);
 				$('#stAddress').val(res.stAddress);
 				$('#stStudentId').val(res.stStudentId);
+				$('#mOrgUnit').val(res.mOrgUnit);
 				break;
 		   }else{
 			   $('#stOccupation').val('');
@@ -200,6 +203,7 @@ $(function () {
 				$('#mChanting').val(0);
 				$('#stAddress').val('');
 				$('#stStudentId').val('');
+				$('#mOrgUnit').val(0);
 		   }
 		}
      });

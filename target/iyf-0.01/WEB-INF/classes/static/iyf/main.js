@@ -41,6 +41,7 @@ function viewSingleDtls(res, mode) {
 		$('#mChanting').val(res[0].mChanting);
 		$('#stAddress').val(res[0].stAddress);
 		$('#stStudentId').val(res[0].stStudentId);
+		$('#mOrgUnit').val(res.mOrgUnit);
 	}else{
 		$('#stOccupation').val('');
 		$('#firstName').val('');
@@ -49,6 +50,7 @@ function viewSingleDtls(res, mode) {
 		$('#mChanting').val(0);
 		$('#stAddress').val('');
 		$('#stStudentId').val('');
+		$('#mOrgUnit').val(0);
 	}
 	
 }
@@ -70,6 +72,7 @@ $(function () {
 				$('#mChanting').val(res.mChanting);
 				$('#stAddress').val(res.stAddress);
 				$('#stStudentId').val(res.stStudentId);
+				$('#mOrgUnit').val(res.mOrgUnit);
 				break;
 		   }else{
 			   $('#stOccupation').val('');
@@ -79,6 +82,7 @@ $(function () {
 				$('#mChanting').val(0);
 				$('#stAddress').val('');
 				$('#stStudentId').val('');
+		$('#mOrgUnit').val(0);
 		   }
 		}
      });
@@ -95,10 +99,3 @@ function milisecondToDateFormat(dateDetails){
 	}
 	return day+"/"+month+"/"+year;
 }
-	 /*
-	[{"stStudentId":"IYF20230204421","stOrgId":"PNB108","stOwnerId":"ALOK108","firstName":"","lastName":"","email":"","stAddress":"",
-	"mChanting":null,"stOccupation":"","stStage":null,"dtRegistration":1677349800000,"dtEntry":1677349800000,"icounselor":null,
-	"ifacilitator":null,"iisValid":1,"imobile":8669011448},
-	{"stStudentId":"IYF20230204422","stOrgId":"PNB108","stOwnerId":"ALOK108","firstName":"","lastName":"","email":"","stAddress":"","mChanting":null,"stOccupation":"","stStage":null,"dtRegistration":1677349800000,"dtEntry":1677349800000,"icounselor":null,"ifacilitator":null,"iisValid":1,"imobile":8669011448},
-	{"stStudentId":"2023100003","stOrgId":"PNB108","stOwnerId":"ALOK108","firstName":"ALOK","lastName":"SHARMA","email":"rspalok@gmail.com","stAddress":"Anisandhan bhawn","mChanting":null,"stOccupation":null,"stStage":null,"dtRegistration":1673980200000,"dtEntry":1673980200000,"icounselor":null,"ifacilitator":null,"iisValid":1,"imobile":8669011448}]
- */

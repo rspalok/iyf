@@ -1,13 +1,11 @@
 package net.service.transection;
  
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.model.bean.GbltStudentBean;
-import net.model.transection.IyfCoureRegTrn;
 import net.model.transection.IyfCourseAttenTrn;
 
 

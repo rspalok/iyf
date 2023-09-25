@@ -3,7 +3,6 @@ package net.service.transection;
 
 import java.time.LocalDate;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,8 +21,8 @@ import net.dao.transection.CourseAttenTrnDao;
 import net.dao.transection.CourseRegistrationDao;
 import net.dao.transection.GbltOtpStudentRegTrnRepository;
 import net.model.bean.GbltStudentBean;
+import net.model.bean.GbltUserBean;
 import net.model.master.GbltOtpStudentRegTrn;
-import net.model.master.GbltUserMst;
 import net.model.transection.IyfCoureRegTrn;
 import net.model.transection.IyfCourseAttenTrn;
   
@@ -58,7 +57,7 @@ public class CourseRegistrationSerImp implements CourseRegistrationSer {
 	public String getAllRegStudent(Long mICourseConfig, HttpServletRequest objRequest_p) {
 		
 		HttpSession session = objRequest_p.getSession(); 
-		GbltUserMst theUser = (GbltUserMst)session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String Org=theUser.getStOrgId();
 		List<IyfCoureRegTrn> list =dao.getAllStudentId(mICourseConfig,Org);
 
@@ -82,7 +81,7 @@ public class CourseRegistrationSerImp implements CourseRegistrationSer {
 			HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(); 
-		GbltUserMst theUser = (GbltUserMst)session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String Org=theUser.getStOrgId();
 		
 		IyfCoureRegTrn iyfCoureReg=dao.getRegStudentForAttendance(gbltStudentBean.getStStudentId(),gbltStudentBean.getmICourseConfig(),Org);
@@ -98,7 +97,7 @@ public class CourseRegistrationSerImp implements CourseRegistrationSer {
 	public String markattn(GbltStudentBean gbltStudentBean, HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(); 
-		GbltUserMst theUser = (GbltUserMst)session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String Org=theUser.getStOrgId();
 		GbltOtpStudentRegTrn gbltOtpStudentRegTrn=new GbltOtpStudentRegTrn ();
 		//UI Message
@@ -155,7 +154,7 @@ public class CourseRegistrationSerImp implements CourseRegistrationSer {
 		int month = currentdate. getMonthValue();
 		
 		HttpSession session = objRequest_p.getSession(); 
-		GbltUserMst theUser = (GbltUserMst)session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String Org=theUser.getStOrgId();
 		
 		List<IyfCourseAttenTrn> list =c_dao.getAllPresentStudent(gbltStudentBean.getmICourseConfig(),gbltStudentBean.getmClassId(),day,month,year,Org);
@@ -170,7 +169,7 @@ public class CourseRegistrationSerImp implements CourseRegistrationSer {
 
 		
 		HttpSession session = objRequest_p.getSession(); 
-		GbltUserMst theUser = (GbltUserMst)session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String Org=theUser.getStOrgId();
 		
 		List<IyfCourseAttenTrn> list =c_dao.getAllPresentStudentInClass(gbltStudentBean.getmICourseConfig(),gbltStudentBean.getmClassId(), Org);
@@ -192,8 +191,7 @@ public class CourseRegistrationSerImp implements CourseRegistrationSer {
 	public GbltOtpStudentRegTrn addNewOrUpdateStudent(GbltStudentBean gbltStudentBean,HttpServletRequest request, HttpServletResponse response,Integer mode) {
 
 		HttpSession session = request.getSession(); 
-		Object theUser = session.getAttribute("user");
-		GbltUserMst obj= (GbltUserMst) theUser;
+		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 		
 		GbltOtpStudentRegTrn gbltOtpStudentRegTrn=new GbltOtpStudentRegTrn();
 		if(gbltStudentBean.getStStudentId()=="" ||gbltStudentBean.getStStudentId()==null) {
@@ -272,8 +270,7 @@ public class CourseRegistrationSerImp implements CourseRegistrationSer {
 
 		IyfCoureRegTrn iyfCoureReg=new IyfCoureRegTrn();
 		HttpSession session = request.getSession(); 
-		Object theUser = session.getAttribute("user");
-		GbltUserMst obj= (GbltUserMst) theUser;
+		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 		
 		iyfCoureReg.setStStudentId(gbltStudentBean.getStStudentId());
 		iyfCoureReg.setmICourseConfig(gbltStudentBean.getmICourseConfig());
@@ -289,8 +286,7 @@ public class CourseRegistrationSerImp implements CourseRegistrationSer {
 	public IyfCourseAttenTrn markAttendence(GbltStudentBean gbltStudentBean,HttpServletRequest request, HttpServletResponse response) {
 		IyfCourseAttenTrn iyfCourseAttenTrn=new IyfCourseAttenTrn();
 		HttpSession session = request.getSession(); 
-		Object theUser = session.getAttribute("user");
-		GbltUserMst obj= (GbltUserMst) theUser;
+		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 		iyfCourseAttenTrn.setStStudentId(gbltStudentBean.getStStudentId());
 		iyfCourseAttenTrn.setmICourseConfig(gbltStudentBean.getmICourseConfig());
 		iyfCourseAttenTrn.setmIClassId(gbltStudentBean.getmClassId());
@@ -308,8 +304,7 @@ public class CourseRegistrationSerImp implements CourseRegistrationSer {
 	public Integer attenInfo(Long mICourseConfig,Long classId, HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(); 
-		Object theUser = session.getAttribute("user");
-		GbltUserMst obj= (GbltUserMst) theUser;
+		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 		
 		return c_dao.getTotalPresentCount(mICourseConfig,classId,obj.getStOrgId());
 	}
@@ -318,8 +313,7 @@ public class CourseRegistrationSerImp implements CourseRegistrationSer {
 	public Integer regInfo(Long mICourseConfig, HttpServletRequest request) {
 
 		HttpSession session = request.getSession(); 
-		Object theUser = session.getAttribute("user");
-		GbltUserMst obj= (GbltUserMst) theUser;
+		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 		
 		return dao.getTotalRegCount(mICourseConfig,obj.getStOrgId());
 	}

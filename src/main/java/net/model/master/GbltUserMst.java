@@ -23,8 +23,6 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name = "gblt_user_mst", schema = "iyf")
 @IdClass(GbltUserMstPk.class)
@@ -43,6 +41,12 @@ public class GbltUserMst implements Serializable {
         @JoinColumn(name="str_user_id", referencedColumnName="str_student_id",insertable=false, updatable=false)
     })
 	private GbltOtpStudentRegTrn objGbltOtpStudentRegTrns ;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumns({
+        @JoinColumn(name="str_org_id", referencedColumnName="str_org_id" ,insertable=false, updatable=false)
+    })
+	private GbltOrgMst objGbltOrgMst;
 	
 	@Column(name = "str_username", nullable = false, columnDefinition = "character varying (20)")
 	private String stUserName;// stEmail; occupation
@@ -82,7 +86,15 @@ public class GbltUserMst implements Serializable {
 	public GbltUserMst() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public GbltOrgMst getObjGbltOrgMst() {
+		return objGbltOrgMst;
+	}
 
+	public void setObjGbltOrgMst(GbltOrgMst objGbltOrgMst) {
+		this.objGbltOrgMst = objGbltOrgMst;
+	}
+	
 	public String getIUserId() {
 		return IUserId;
 	}

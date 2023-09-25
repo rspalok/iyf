@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
-	th:replace="com/base::layout(~{::body})"
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="com/base::layout(~{::body})"
 	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head th:include="com/base :: headerFragment">
 <title id="pageTitle">Menu</title>
@@ -14,7 +13,10 @@
 	<div class="page-content">
 		<div align="center">
 			<div sec:authorize="isAuthenticated()">
-				Welcome <b><span sec:authentication="name">User Name</span></b>
+			 Welcome <span th:text="${session.user.stFirstName}">Pepper</span>&nbsp;
+			 <span th:text="${session.user.stLastName}">Pepper</span>
+			 
+				<!--   <b><span sec:authentication="name">User Name</span></b>-->
 				&nbsp; <i><span sec:authentication="principal.authorities">Roles</span></i>
 			</div>
 		</div>
@@ -67,8 +69,14 @@
 		  This content is only shown to administrators.
 		</div>
 	</div>
-	    
-		
-	
+	<!--  page   <p th:text="${#request.getParameter('user')}" th:unless="${#request.getParameter('user') == null}">Test</p>
+		    <p th:text="${param.q[0] + ' ' + param.q[1]}" th:unless="${param.q == null}">Test</p>
+		   <div th:object="${session.user}">
+			  <p>Name: <span th:text="*{stUserName}">Sebastian</span>.</p>
+			  <p>Surname: <span th:text="${session.user.stLastName}">Pepper</span>.</p>
+			  <p>Surname: <span th:text="${session.user.stOrgNameId}">Pepper</span>.</p>
+			</div>
+			 <span th:text="${session.user.stLastName}"></span>
+	<div th:if="${session.user.stOrgId} == 'ADMIN'">ADMIN</div>--> 
 </body>
 </html>

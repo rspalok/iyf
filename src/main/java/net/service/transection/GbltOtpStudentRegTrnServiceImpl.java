@@ -25,10 +25,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import net.dao.transection.GbltOtpStudentRegTrnRepository;
-import net.model.master.GbltOrgUnitMst;
+import net.model.bean.GbltUserBean;
 import net.model.master.GbltOtpStudentRegTrn;
 import net.model.master.GbltOtpStudentRegTrnPk;
-import net.model.master.GbltUserMst;
 import net.model.master.MenuMaster; 
 
 
@@ -53,17 +52,17 @@ public class GbltOtpStudentRegTrnServiceImpl implements GbltOtpStudentRegTrnServ
 			gbltOtpStudentRegTrn.setDtRegistration(new Date());
 			gbltOtpStudentRegTrn.setIIsValid(1);
 			gbltOtpStudentRegTrn.setDtEntry(new Date()); 
-			gbltOtpStudentRegTrn.setStOwnerId(String.valueOf(((GbltUserMst) theUser).getIUserId()));
-			gbltOtpStudentRegTrn.setStOrgId(String.valueOf(((GbltUserMst) theUser).getStOrgId()));
+			gbltOtpStudentRegTrn.setStOwnerId(String.valueOf(((GbltUserBean) theUser).getIUserId()));
+			gbltOtpStudentRegTrn.setStOrgId(String.valueOf(((GbltUserBean) theUser).getStOrgId()));
 			gbltOtpStudentRegTrn.setmRegMode(1);
 			this.dao.save(gbltOtpStudentRegTrn);
 			 
 		}else { 
-			List<GbltOtpStudentRegTrn> student=dao.findStudentById(gbltOtpStudentRegTrn.getStStudentId(),String.valueOf(((GbltUserMst) theUser).getStOrgId()),1);
+			List<GbltOtpStudentRegTrn> student=dao.findStudentById(gbltOtpStudentRegTrn.getStStudentId(),String.valueOf(((GbltUserBean) theUser).getStOrgId()),1);
 			if (student.size()>0) {
 				GbltOtpStudentRegTrn stu=student.get(0);
 				stu.setDtEntry(new Date()); 
-				stu.setStOwnerId(String.valueOf(((GbltUserMst) theUser).getIUserId()));
+				stu.setStOwnerId(String.valueOf(((GbltUserBean) theUser).getIUserId()));
 				stu.setFirstName(gbltOtpStudentRegTrn.getFirstName());
 				stu.setLastName(gbltOtpStudentRegTrn.getLastName());
 				stu.setmChanting(gbltOtpStudentRegTrn.getmChanting());
@@ -105,7 +104,7 @@ public class GbltOtpStudentRegTrnServiceImpl implements GbltOtpStudentRegTrnServ
 		Sort sort = sortDirection.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
 			Sort.by(sortField).descending();
 		HttpSession session = objRequest_p.getSession(); 
-		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
 		
@@ -115,12 +114,9 @@ public class GbltOtpStudentRegTrnServiceImpl implements GbltOtpStudentRegTrnServ
 	@Override
 	public List<GbltOtpStudentRegTrn> searchBy(String theName,HttpServletRequest request) {
 		List<GbltOtpStudentRegTrn> results = null;
-
-		HttpSession session = request.getSession(); 
-		Object theUser = session.getAttribute("user");
+ 
 		//System.out.println("$$$$$$$$$$$$$$$S"+theUser);  
 		//gbltOtpStudentRegTrn.setStOwnerId(String.valueOf(((GbltUserMst) theUser).getIUserId()));
-		String.valueOf(((GbltUserMst) theUser).getStOrgId());
 		System.out.println("================ = =========");
 		if (theName != null && (theName.trim().length() > 0)) {
 			//results = dao.findByFirstNameContainsOrLastNameContainsAllIgnoreCase(theName, theName,String.valueOf(((GbltUserMst) theUser).getstOrgId()));
@@ -137,7 +133,7 @@ public class GbltOtpStudentRegTrnServiceImpl implements GbltOtpStudentRegTrnServ
 	public List<GbltOtpStudentRegTrn> getAllValidStudent(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(); 
-		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		return this.dao.getAllValidStudent( 1,org);
 	}
@@ -180,7 +176,7 @@ public class GbltOtpStudentRegTrnServiceImpl implements GbltOtpStudentRegTrnServ
 	public String studentByMobileNo(Long mobileNumber, HttpServletRequest objRequest_p) {
 		// TODO Auto-generated method stub
 		HttpSession session = objRequest_p.getSession(); 
-		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		List<GbltOtpStudentRegTrn> list = dao.getStudentByMobile(mobileNumber,org);
 		for (GbltOtpStudentRegTrn gbltOtpStudentRegTrn : list) {
@@ -209,8 +205,7 @@ public class GbltOtpStudentRegTrnServiceImpl implements GbltOtpStudentRegTrnServ
 		// TODO Auto-generated method stub
 		
 		HttpSession session = request.getSession();
-		Object theUser = session.getAttribute("user");
-		GbltUserMst obj = (GbltUserMst) theUser;
+		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 
 		LocalDate currentdate = LocalDate.now();
 		System.out.println("Current date: " + currentdate);

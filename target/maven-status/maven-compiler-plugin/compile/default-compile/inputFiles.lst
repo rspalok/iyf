@@ -61,6 +61,7 @@
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/user/config/RequestFilter.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/transection/IyfClassSchedTrnPk.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/dao/transection/CourseAttenTrnDao.java
+/Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/bean/GbltUserBean.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/master/GbltLeavePlannerTrn.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/service/transection/CourseRegistrationSerImp.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/controller/master/MenuController.java

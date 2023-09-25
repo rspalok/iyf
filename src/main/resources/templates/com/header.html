@@ -22,8 +22,8 @@
 				<div class="navbar-header pull-left">
 					<a th:href="@{/home}" class="navbar-brand">
 						<small>
-							<i class="fa fa-leaf"></i>
-							ISKCON YOUTH FORUM (PATNA)
+							<i class="fa fa-leaf"></i> 
+							<span th:text="${session.user.stOrgNameId}">ISKCON YOUTH FORUM</span>
 						</small>
 					</a>
 
@@ -245,10 +245,14 @@
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 								<img class="nav-user-photo" th:src="@{/assets/images/avatars/user.jpg}" alt="Jason's Photo" />
 								<span class="user-info">
+									
+									<span th:text="${session.user.stFirstName}">Pepper</span>
+									<span th:text="${session.user.stLastName}">Pepper</span><br>
+									<!-- 
 									<small>Welcome,</small>
 									<span sec:authentication="name"></span> 
-									<span sec:authentication="principal.authorities">Roles</span>
-									<span sec:authorize="hasRole('ROLE_USER')"></span>
+									 <span sec:authentication="principal.authorities">Roles</span>
+									<span sec:authorize="hasRole('ROLE_USER')"></span>-->
 								</span>
 
 								<i class="ace-icon fa fa-caret-down"></i>

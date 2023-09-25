@@ -10,7 +10,6 @@ import org.springframework.data.domain.Page;
 import net.model.master.ClassTypeMst;
 import net.model.master.IYFBatchMst;
 import net.model.master.IyfCourseMst;
-import net.model.transection.FollowUpTrn;
 import net.model.transection.IYFCourseConfig;
 
 

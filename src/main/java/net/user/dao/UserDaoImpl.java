@@ -9,6 +9,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import net.model.master.GbltOrgMst;
 import net.model.master.GbltOtpStudentRegTrn;
 import net.model.master.GbltUserMst;
 import net.model.master.GbltUsersRolesTrn;
@@ -22,9 +23,9 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public GbltUserMst findByUserName(String theUserName) {
-		// get the current hibernate session
+		// get the current hibernate session 
 		Session currentSession = entityManager.unwrap(Session.class);
-		String qu="select a from GbltUserMst a   where a.stUserName=:uName ";
+		String qu="select a from GbltUserMst a where a.stUserName=:uName ";
 		
 		// now retrieve/read from database using username
 		Query<GbltUserMst> theQuery = currentSession.createQuery(qu, GbltUserMst.class);
@@ -40,6 +41,7 @@ public class UserDaoImpl implements UserDao {
 
 		return theUser;
 	}
+	
 	@Override
 	public GbltUsersRolesTrn findByUserDtlsName(String theUserName) {
 		// get the current hibernate session
@@ -106,5 +108,25 @@ public class UserDaoImpl implements UserDao {
 
 		// create the user ... finally LOL
 		currentSession.saveOrUpdate(userTrn);
+	}
+	@Override
+	public GbltOrgMst allOrgDetails(String theUserName) {
+		// get the current hibernate session 
+		Session currentSession = entityManager.unwrap(Session.class);
+		String qu="select a from GbltOrgMst a where a.stOrgId=:uName ";
+		
+		// now retrieve/read from database using username
+		Query<GbltOrgMst> theQuery = currentSession.createQuery(qu, GbltOrgMst.class);
+										
+		theQuery.setParameter("uName", theUserName);
+		
+		GbltOrgMst theOrgDetails = null;
+		try {
+			theOrgDetails = theQuery.getSingleResult();
+		} catch (Exception e) {
+			theOrgDetails = null;
+		}
+
+		return theOrgDetails;
 	}
 }

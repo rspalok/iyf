@@ -1,9 +1,9 @@
 package net.user.dao;
  
 
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import net.model.master.GbltOrgMst;
 import net.model.master.GbltOtpStudentRegTrn;
 import net.model.master.GbltUserMst;
 import net.model.master.GbltUsersRolesTrn;
@@ -20,5 +20,7 @@ public interface UserDao {
 	public void saveTrn(GbltUsersRolesTrn userTrn);
 
 	public GbltUsersRolesTrn findByUserDtlsName(String theUserName);
+
+	public GbltOrgMst allOrgDetails(String stOrgId);
     
 }

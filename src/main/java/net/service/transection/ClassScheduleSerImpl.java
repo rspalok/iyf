@@ -17,7 +17,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import net.dao.transection.ClassScheduleDao;
-import net.model.master.GbltUserMst;
+import net.model.bean.GbltUserBean;
 import net.model.transection.IyfClassSchedTrn;
 
 @Service
@@ -34,7 +34,7 @@ public class ClassScheduleSerImpl implements ClassScheduleSer {
 
 		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
 		HttpSession session = request.getSession(); 
-		GbltUserMst obj= (GbltUserMst)  session.getAttribute("user");
+		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 		String Orgid=obj.getStOrgId();
 		
 		return this.dao.findAllByIsvalid(1, pageable,Orgid);
@@ -45,7 +45,7 @@ public class ClassScheduleSerImpl implements ClassScheduleSer {
 	public List<IyfClassSchedTrn> getClassScheduleList(Long id,HttpServletRequest request) {
 		// TODO Auto-generated method stub  
 		HttpSession session = request.getSession(); 
-		GbltUserMst obj= (GbltUserMst)  session.getAttribute("user");
+		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 		String Orgid=obj.getStOrgId();
 		System.out.println("sys date today ");
 		LocalDate currentdate = LocalDate.now(); 
@@ -73,7 +73,7 @@ public class ClassScheduleSerImpl implements ClassScheduleSer {
 	public IyfClassSchedTrn getClassScheduleById(Long id,Long course,HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(); 
-		GbltUserMst obj= (GbltUserMst)  session.getAttribute("user");
+		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 		String Orgid=obj.getStOrgId();
 		return dao.getClassScheduleById( id, course,Orgid);
 	}

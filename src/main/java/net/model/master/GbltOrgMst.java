@@ -1,5 +1,6 @@
 package net.model.master;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -13,10 +14,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "iyf_org_mst", schema = "iyf")
-public class GbltOrgMst {
-
+public class GbltOrgMst implements Serializable {
 	@Id
-	@Column(name = "str_orgId", nullable = false, columnDefinition = "character varying (15)")
+	@Column(name = "str_org_id", nullable = false, columnDefinition = "character varying (15)")
 	private String stOrgId;
 
 	@Column(name = "str_user_id", nullable = false, columnDefinition = "character varying (20)")

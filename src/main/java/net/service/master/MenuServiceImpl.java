@@ -1,6 +1,5 @@
 package net.service.master;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -15,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import net.dao.master.MenuDao;
+import net.model.bean.GbltUserBean;
 import net.model.master.GbltUserMst;
 import net.model.master.MenuMaster;
 import net.model.master.MenuMasterPk;
@@ -33,7 +33,7 @@ public class MenuServiceImpl implements MenuService {
 	public Map<String, MenuMaster> getMemuList(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(); 
-		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		System.out.println("principalprincipal "+principal);
@@ -55,7 +55,7 @@ public class MenuServiceImpl implements MenuService {
 	public Optional<MenuMaster> getMenuMasterById(String id,HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(); 
-		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		MenuMasterPk pk=new MenuMasterPk();
 		pk.setmStOrgId(org);
@@ -68,7 +68,7 @@ public class MenuServiceImpl implements MenuService {
 	public void deleteMenuMasterById(MenuMaster menuMaster,HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(); 
-		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		menuMaster.setmStOrgId(org);
 		menuMaster.setmStOwnerId(theUser.getIUserId());
@@ -79,7 +79,7 @@ public class MenuServiceImpl implements MenuService {
 	public void saveMenu(MenuMaster menuMaster, HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(); 
-		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		menuMaster.setmStOrgId(org);
 		menuMaster.setmStOwnerId(theUser.getIUserId());

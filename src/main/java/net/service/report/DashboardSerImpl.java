@@ -1,12 +1,11 @@
 package net.service.report;
 
-import java.text.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -26,7 +25,7 @@ import net.dao.transection.ClassScheduleDao;
 import net.dao.transection.CourseAttenTrnDao;
 import net.dao.transection.CourseRegistrationDao;
 import net.model.bean.GbltStudentBean;
-import net.model.master.GbltUserMst;
+import net.model.bean.GbltUserBean;
 import net.model.transection.IyfClassSchedTrn;
 import net.model.transection.IyfCoureRegTrn;
 import net.model.transection.IyfCourseAttenTrn;
@@ -48,7 +47,7 @@ public class DashboardSerImpl implements DashboardSer {
 	public String getAllCourserRegStudentByStudentId(String mStudentId, HttpServletRequest objRequest_p) {
 		// TODO Auto-generated method stub
 		HttpSession session = objRequest_p.getSession(); 
-		GbltUserMst obj= (GbltUserMst)  session.getAttribute("user");
+		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 		String OrgId=obj.getStOrgId();
 		
 		List<IyfCourseAttenTrn> list = dao.getCourseAllCourserRegByStudentIdfromAtten(OrgId, mStudentId);
@@ -73,7 +72,7 @@ public class DashboardSerImpl implements DashboardSer {
 	@Override
 	public String getAllCourserRegStudentByMobileNo(Long mobileNumber, HttpServletRequest objRequest_p) {
 		HttpSession session = objRequest_p.getSession(); 
-		GbltUserMst obj= (GbltUserMst)  session.getAttribute("user");
+		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 		String Orgid=obj.getStOrgId();
 		
 		List<IyfCourseAttenTrn> list = dao.getCourseAllCourserRegByMobileNo(Orgid, mobileNumber);
@@ -95,7 +94,7 @@ public class DashboardSerImpl implements DashboardSer {
 	@Override
 	public List<IyfClassSchedTrn> getScheduleClassAgainstCourseConfig(Long mICourseConfig, HttpServletRequest request) {
 		HttpSession session = request.getSession(); 
-		GbltUserMst obj= (GbltUserMst)  session.getAttribute("user");
+		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 		String Orgid=obj.getStOrgId();
 		// TODO Auto-generated method stub
 		return classDao.getCourseClassScheduleById(mICourseConfig, Orgid);
@@ -106,7 +105,7 @@ public class DashboardSerImpl implements DashboardSer {
 			HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(); 
-		GbltUserMst obj= (GbltUserMst)  session.getAttribute("user");
+		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 		String Orgid=obj.getStOrgId();
 		return attenDao.getAllPresentStudentInClass(getmICourseConfig, getmClassId, Orgid);
 	}
@@ -116,7 +115,7 @@ public class DashboardSerImpl implements DashboardSer {
 			HttpServletRequest objRequest_p) {
 		// TODO Auto-generated method stub
 		HttpSession session = objRequest_p.getSession(); 
-		GbltUserMst obj= (GbltUserMst)  session.getAttribute("user");
+		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 		String Orgid=obj.getStOrgId();
 		List<IyfCoureRegTrn> list=regDao.getCourseRegValidStudentObj( mICourseConfig,  Orgid);
 		
@@ -154,7 +153,7 @@ public class DashboardSerImpl implements DashboardSer {
 		
 		
 		HttpSession session = request.getSession(); 
-		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		
 		String sDate1=gbltStudentBean.getDtRegistration();
@@ -174,7 +173,7 @@ public class DashboardSerImpl implements DashboardSer {
 	public List<IyfCoureRegTrn> getAllRagisterdCourseList(GbltStudentBean gbltStudentBean, HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(); 
-		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		return regDao.getCourseInrolledListbyStudentId(gbltStudentBean.getStStudentId(),org);
 	}
@@ -182,7 +181,7 @@ public class DashboardSerImpl implements DashboardSer {
 	@Override
 	public HashMap<Long, List<IyfClassSchedTrn>> getClassListHasMap(String studentId,Set<Long> courseSet, HttpServletRequest request) {
 		HttpSession session = request.getSession(); 
-		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		
 		
@@ -202,7 +201,7 @@ public class DashboardSerImpl implements DashboardSer {
 		ObjectMapper mapper = new ObjectMapper();
 
 		mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-		String data = null;
+		//String data = null;
 		
 
 		return classSchedule; 
@@ -210,7 +209,7 @@ public class DashboardSerImpl implements DashboardSer {
 	@Override
 	public HashMap<Long, List<IyfCourseAttenTrn>> getAttenListHasMap(String studentId,Set<Long> courseSet, HttpServletRequest request) {
 		HttpSession session = request.getSession(); 
-		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		
 		

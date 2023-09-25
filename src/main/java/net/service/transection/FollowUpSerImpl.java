@@ -3,9 +3,6 @@ package net.service.transection;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Month;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -28,6 +25,7 @@ import net.dao.transection.FollowUpDao;
 import net.dao.transection.FollowUpTrnDao;
 import net.dao.transection.GbltOtpStudentRegTrnRepository;
 import net.model.bean.FollowUpBean;
+import net.model.bean.GbltUserBean;
 import net.model.master.FollowUpMaster;
 import net.model.master.GbltOtpStudentRegTrn;
 import net.model.master.GbltUserMst;
@@ -59,7 +57,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 	public List<FollowUpTrn> getFolowUpTrnList(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(); 
-		GbltUserMst theUser = (GbltUserMst)session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String Org=theUser.getStOrgId();
 		
 		return dao.getFolowUpTrnList(Org);
@@ -68,7 +66,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 	public List<FollowUpMaster> getFolowUpMstList(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(); 
-		GbltUserMst theUser = (GbltUserMst)session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String Org=theUser.getStOrgId();
 		
 		return dao.getFolowUpMstList(Org);
@@ -77,7 +75,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 	public List<IYFCourseConfig> getCourseConfigList(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(); 
-		GbltUserMst theUser = (GbltUserMst)session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String Org=theUser.getStOrgId();
 		
 		return cDao.getCourseConfigList(Org);
@@ -86,7 +84,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 	public List<GbltUserMst> getCallerListFromOTPStudent(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(); 
-		GbltUserMst theUser = (GbltUserMst)session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String Org=theUser.getStOrgId();
 		
 		return userDao.getAllCallerStudent(Org);
@@ -98,7 +96,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 		Integer CallerCount=callerList.length;
 		//Integer followUpSize=0;
 		HttpSession session = request.getSession(); 
-		GbltUserMst theUser = (GbltUserMst)session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String Org=theUser.getStOrgId();
 		String user=theUser.getIUserId();
 
@@ -267,7 +265,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 	public void saveFollowUpResponse(FollowUpBean followUpBean, HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(); 
-		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		String user=theUser.getIUserId();
 		FollowUpResponsePk pk=new FollowUpResponsePk();
@@ -287,9 +285,8 @@ public class FollowUpSerImpl implements FollowUpSer {
 	public List<FollowUpResponseTrn> getFolowUpStudentList(FollowUpBean followUpBean,HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(); 
-		GbltUserMst theUser = (GbltUserMst)session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String Org=theUser.getStOrgId();
-		String user=theUser.getIUserId();
 		
 		return dao.getFolowUpStudentList(followUpBean.getFollowUpId(),Org);
 	}
@@ -297,7 +294,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 	public List<FollowUpResponseTrn> getMyFolowUpStudentList(FollowUpBean followUpBean,HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(); 
-		GbltUserMst theUser = (GbltUserMst)session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String Org=theUser.getStOrgId();
 		String user=theUser.getIUserId();
 		
@@ -306,7 +303,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 	@Override
 	public String getStudentForFolloup(String stStudentId, Integer followUpId, HttpServletRequest objRequest_p) {
 		HttpSession session = objRequest_p.getSession(); 
-		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		// TODO Auto-generated method stub
 		List<FollowUpResponseTrn> list = dao.getStudentForFolloup(stStudentId,followUpId,org);
@@ -331,7 +328,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 		Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
 			Sort.by(sortField).descending();
 		HttpSession session = request.getSession(); 
-		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort); 
 		return this.fdao.findAllByIsvalid( 1,pageable,org);
@@ -339,7 +336,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 	@Override
 	public void saveFollowUpConfig(FollowUpBean followUpBean, HttpServletRequest request) {
 		HttpSession session = request.getSession(); 
-		GbltUserMst theUser = (GbltUserMst)session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String Org=theUser.getStOrgId();
 		String user=theUser.getIUserId();
 		FollowUpTrn ft=new FollowUpTrn();

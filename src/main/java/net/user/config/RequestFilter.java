@@ -15,12 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 public class RequestFilter implements Filter {
 
 	@Override
-	public void doFilter(ServletRequest req, ServletResponse res, FilterChain fChain)
-			throws IOException, ServletException {
-		HttpServletRequest hReq = (HttpServletRequest) req;
-		// p is not null anymore
-		Principal p = hReq.getUserPrincipal();
-		System.out.println("777777777777  " + p);
+	public void doFilter(ServletRequest req, ServletResponse res, FilterChain fChain) throws IOException, ServletException {
+		
+		HttpServletRequest hReq = (HttpServletRequest) req; 
+		
 		fChain.doFilter(hReq, res);
 	}
 

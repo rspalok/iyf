@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import net.com.utilityService;
 import net.model.bean.CrmUser;
+import net.model.bean.GbltUserBean;
 import net.model.master.GbltOrgMst;
 import net.model.master.GbltOtpStudentRegTrn;
 import net.model.master.GbltRolMst;
@@ -76,7 +77,7 @@ public class RegistrationController {
 	public String ResetPassword(CrmUser theCrmUser,Model theMode,HttpServletRequest request) {
 		
 		HttpSession session = request.getSession(); 
-		GbltUserMst theUser = (GbltUserMst)session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String Org=theUser.getStOrgId();
 		//GbltOtpStudentRegTrn userDetails = userService.findByregistrationId(theUser.getIUserId());
 

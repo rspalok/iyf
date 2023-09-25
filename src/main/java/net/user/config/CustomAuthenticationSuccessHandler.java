@@ -9,12 +9,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
-import com.google.common.net.HttpHeaders;
-
+import net.model.bean.GbltUserBean;
+import net.model.master.GbltOrgMst;
 import net.model.master.GbltUserMst;
 import net.user.service.UserService;
  
@@ -24,33 +23,43 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
     @Autowired
     private UserService userService;
-
-	GbltUserMst theUser ;
+    
+   
+   // GbltUserBean bean;
+	GbltUserMst gbltUserMst;
+	GbltOrgMst theOrgDetails;
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
 			throws IOException, ServletException {
 
+		
 		String userName = authentication.getName();
-		
-		theUser = userService.findByUserNamess(userName);
-
+		//createSessionBeam(request,userName);
+		gbltUserMst = userService.findByUserNames(userName);
+		theOrgDetails = userService.allOrgDetails(gbltUserMst);
 		// now place in the session
-		HttpSession session = request.getSession();
-		session.setAttribute("user", theUser);
-  
-		// now place in the session 
-		System.out.println(" customAuthenticationSuccessHandler theUser: 123 "+session.getAttribute("user")); 
-		// forward to home page
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-
-		System.out.println(authentication.getAuthorities()+"====url======"+request.getContextPath()
-		+"-====="+authentication.getPrincipal());
+		GbltUserBean bean=new GbltUserBean();
+		bean.setIUserId(gbltUserMst.getIUserId());
+		bean.setStUserName(gbltUserMst.getStUserName());
+		bean.setStFirstName(gbltUserMst.getStFirstName());
+		bean.setStLastName(gbltUserMst.getStLastName());
+		bean.setStOrgId(gbltUserMst.getStOrgId());
+		bean.setStOrgNameId(theOrgDetails.getStrName());
 		
-		String result = request.getHeader("Referer");
-		String result1 =request.getHeader(HttpHeaders.REFERER);
-		System.out.println(result+"\n======\n"+result1);
+		HttpSession session = request.getSession();
+		session.setAttribute("user", bean);
+
+		System.out.println(" customAuthenticationSuccessHandler theUser: 123 "+session.getAttribute("user"));
 		response.sendRedirect(request.getContextPath() + "/home");
 	}
+	//private void createSessionBeam(HttpServletRequest request, String userName) {
+		
+		
+		
+
+		// now place in the session 
+		//System.out.println(" customAuthenticationSuccessHandler theUser: 123 "+session.getAttribute("user")); 
+	//}
 	
 
 }

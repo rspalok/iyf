@@ -13,6 +13,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import net.dao.master.CourseConfigDao;
+import net.model.bean.GbltUserBean;
 import net.model.master.GbltOrgMst;
 import net.model.master.GbltOrgUnitMst;
 import net.model.master.GbltOtpStudentRegTrn;
@@ -61,14 +62,14 @@ public class utilityServiceImpl implements utilityService {
 	public List<IYFCourseConfig> getCourseConfigList(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession(); 
-		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		return ccfdao.getCourseConfigList(org);
 	}
 	@Override
 	public String studentByMobileNo(Long mobileNumber, HttpServletRequest objRequest_p) {
 		HttpSession session = objRequest_p.getSession(); 
-		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		// TODO Auto-generated method stub
 		List<Object> list = dao.getStudentByMobile(mobileNumber,org);
@@ -87,7 +88,7 @@ public class utilityServiceImpl implements utilityService {
 	@Override
 	public String studentDetailsByStudentId(String stStudentId,HttpServletRequest objRequest_p) {
 		HttpSession session = objRequest_p.getSession(); 
-		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		// TODO Auto-generated method stub
 		List<GbltOtpStudentRegTrn> list = dao.studentByStudentId(stStudentId,org);
@@ -106,7 +107,7 @@ public class utilityServiceImpl implements utilityService {
 	@Override
 	public List<GbltOtpStudentRegTrn> studentByStudentId(String stStudentId, HttpServletRequest objRequest_p) {
 		HttpSession session = objRequest_p.getSession(); 
-		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		
 		return dao.studentByStudentId(stStudentId,org);
@@ -115,7 +116,7 @@ public class utilityServiceImpl implements utilityService {
 	@Override
 	public List<GbltOtpStudentRegTrn> getStudentListByMobile(Long mobileNumber, HttpServletRequest objRequest_p) {
 		HttpSession session = objRequest_p.getSession(); 
-		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		// TODO Auto-generated method stub
 		List<GbltOtpStudentRegTrn> list = dao.getStudentListByMobile(mobileNumber,org);
@@ -126,7 +127,7 @@ public class utilityServiceImpl implements utilityService {
 	public List<GbltOrgUnitMst> allOrgUnits(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Object theUser = session.getAttribute("user");
-		GbltUserMst obj = (GbltUserMst) theUser;
+		GbltUserBean obj = (GbltUserBean) theUser;
 		return dao.allOrgUnits(obj.getStOrgId());
 	}
 }

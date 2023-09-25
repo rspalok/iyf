@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import net.model.bean.CrmUser;
+import net.model.master.GbltOrgMst;
 import net.model.master.GbltOtpStudentRegTrn;
 import net.model.master.GbltUserMst;
 import net.model.master.GbltUsersRolesTrn;
@@ -36,7 +37,14 @@ public class UserServiceImpl implements UserService{
 		return user;
 	}
 	
-	
+	@Override
+	@Transactional
+	//used for session and registration
+	public GbltUserMst findByUserNames(String userName) {
+		// check the database if the user already exists
+		GbltUserMst user = userDao.findByUserName(userName); 
+		return user;
+	}
 	@Override
 	@Transactional
 	public void save(CrmUser crmUser,GbltOtpStudentRegTrn c_user) {
@@ -87,6 +95,13 @@ public class UserServiceImpl implements UserService{
 		
 		System.out.println("======= === = = === ===="+user);
 		//userDao.save(user);
+	}
+
+	@Override
+	@Transactional
+	public GbltOrgMst allOrgDetails(GbltUserMst gbltUserMst) {
+		// TODO Auto-generated method stub
+		return userDao.allOrgDetails(gbltUserMst.getStOrgId());
 	}
 
 }

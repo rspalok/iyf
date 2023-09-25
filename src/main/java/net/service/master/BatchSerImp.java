@@ -16,7 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import net.dao.master.BatchDao;
-import net.model.master.GbltUserMst;
+import net.model.bean.GbltUserBean;
 import net.model.master.IYFBatchMst;
 
 @Transactional
@@ -32,7 +32,7 @@ public class BatchSerImp implements BatchSer {
 		Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
 			Sort.by(sortField).descending();
 		HttpSession session = objRequest_p.getSession(); 
-		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, sort);
 
@@ -46,7 +46,7 @@ public class BatchSerImp implements BatchSer {
 		//IYFBatchMst [IBatch=null, stName=ALOK, dtBatchStart=Wed Feb 01 00:00:00 IST 2023, dtBatchEnd=Wed Mar 01 00:00:00 IST 2023,
 		//stOwnerId=null, stOrgId=null, IsValid=null, dtEntry=null]
 		HttpSession session = request.getSession(); 
-		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		
 		
@@ -64,7 +64,7 @@ public class BatchSerImp implements BatchSer {
 	@Override
 	public IYFBatchMst getBatchById(Long id,HttpServletRequest objRequest_p) {
 		HttpSession session = objRequest_p.getSession(); 
-		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		
 		Optional<IYFBatchMst> optional = dao.findById(id,org);
@@ -80,7 +80,7 @@ public class BatchSerImp implements BatchSer {
 	@Override
 	public void deleteBatchById(IYFBatchMst batch,HttpServletRequest objRequest_p) {
 		HttpSession session = objRequest_p.getSession(); 
-		GbltUserMst theUser =(GbltUserMst)  session.getAttribute("user");
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		
 		batch.setIsValid(0);

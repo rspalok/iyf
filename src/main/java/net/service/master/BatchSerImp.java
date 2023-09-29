@@ -43,8 +43,6 @@ public class BatchSerImp implements BatchSer {
 	@Override
 	public void saveIYFBatchMst(IYFBatchMst batch, HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		//IYFBatchMst [IBatch=null, stName=ALOK, dtBatchStart=Wed Feb 01 00:00:00 IST 2023, dtBatchEnd=Wed Mar 01 00:00:00 IST 2023,
-		//stOwnerId=null, stOrgId=null, IsValid=null, dtEntry=null]
 		HttpSession session = request.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();

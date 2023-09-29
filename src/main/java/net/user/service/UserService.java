@@ -14,7 +14,7 @@ public interface UserService {
 
     void save(CrmUser crmUser, GbltOtpStudentRegTrn user);
 
-	GbltOtpStudentRegTrn findByregistrationId(String registrationId);
+	GbltOtpStudentRegTrn findByregistrationId(String registrationId,HttpServletRequest objRequest_p);
 
 	public void resetPassword(CrmUser theCrmUser, HttpServletRequest request);
 	public GbltOrgMst allOrgDetails(GbltUserMst gbltUserMst); 

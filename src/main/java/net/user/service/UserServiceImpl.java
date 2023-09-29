@@ -3,6 +3,7 @@ package net.user.service;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import net.model.bean.CrmUser;
+import net.model.bean.GbltUserBean;
 import net.model.master.GbltOrgMst;
 import net.model.master.GbltOtpStudentRegTrn;
 import net.model.master.GbltUserMst;
@@ -81,9 +83,12 @@ public class UserServiceImpl implements UserService{
 
 
 	@Override
-	public GbltOtpStudentRegTrn findByregistrationId(String registrationId) {
-		// TODO Auto-generated method stub
-		return userDao.findByregistrationId(registrationId,"PNB108");
+	public GbltOtpStudentRegTrn findByregistrationId(String registrationId,HttpServletRequest objRequest_p) {
+		// TODO Auto-generated method stub		
+		HttpSession session = objRequest_p.getSession(); 
+		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
+
+		return userDao.findByregistrationId(registrationId,obj.getStOrgId());
 	}
 
 

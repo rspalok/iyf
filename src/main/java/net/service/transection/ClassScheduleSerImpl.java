@@ -59,12 +59,14 @@ public class ClassScheduleSerImpl implements ClassScheduleSer {
 	public void saveClassSchedule(IyfClassSchedTrn iyfClassSchedTrn, HttpServletRequest request,
 			HttpServletResponse response) {
 		
-		
+		HttpSession session = request.getSession(); 
+		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
+		String Orgid=obj.getStOrgId();
 		// TODO Auto-generated method stub
 		iyfClassSchedTrn.setmDtEntry(new Date());
 		iyfClassSchedTrn.setmIsValid(1);
-		iyfClassSchedTrn.setmStOwnerId("Alok108");
-		iyfClassSchedTrn.setmStOrgId("PNB108"); 
+		iyfClassSchedTrn.setmStOwnerId(obj.getIUserId());
+		iyfClassSchedTrn.setmStOrgId(Orgid); 
 		System.out.println("=========  "+iyfClassSchedTrn);
 		dao.save(iyfClassSchedTrn);
 	}

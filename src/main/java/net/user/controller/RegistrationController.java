@@ -118,7 +118,7 @@ public class RegistrationController {
 	public String processRegistrationForm(
 				@Valid @ModelAttribute("crmUser") CrmUser theCrmUser, 
 				BindingResult theBindingResult, 
-				Model theModel) {
+				Model theModel,HttpServletRequest objRequest_p) {
 		
 		String userName = theCrmUser.getUserName();
 		logger.info("Processing registration form for: " + theCrmUser);
@@ -135,7 +135,7 @@ public class RegistrationController {
 		}
 		String registrationId = theCrmUser.getRegistrationId();
 		// check the database if user already exists
-		GbltOtpStudentRegTrn user = userService.findByregistrationId(registrationId);
+		GbltOtpStudentRegTrn user = userService.findByregistrationId(registrationId,objRequest_p);
 		System.out.println("==========user===="+user);
 		GbltUserMst existing = userService.findByUserNamess(userName);
         if(user == null) {

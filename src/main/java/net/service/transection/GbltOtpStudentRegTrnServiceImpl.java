@@ -77,7 +77,9 @@ public class GbltOtpStudentRegTrnServiceImpl implements GbltOtpStudentRegTrnServ
 
 	@Override
 	public GbltOtpStudentRegTrn getGbltOtpStudentRegTrnById(String id, HttpServletRequest objRequest_p) {
-		GbltOtpStudentRegTrnPk pid=new GbltOtpStudentRegTrnPk("PNB108",id);
+		HttpSession session = objRequest_p.getSession(); 
+		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
+		GbltOtpStudentRegTrnPk pid=new GbltOtpStudentRegTrnPk(obj.getStOrgId(),id);
 		
 		Optional<GbltOtpStudentRegTrn> optional = dao.findById(pid);
 		GbltOtpStudentRegTrn gbltOtpStudentRegTrn = null;

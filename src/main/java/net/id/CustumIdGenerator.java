@@ -45,7 +45,7 @@ public class CustumIdGenerator implements IdentifierGenerator  {
 					&& tableObj.getmIClassId() != 0)
 				return tableObj.getmIClassId();
 
-			Map<String, Object> params = new HashMap<String, Object>();
+			//Map<String, Object> params = new HashMap<String, Object>();
 
 			System.out.println("tableObj.getId().getmStOrgId()::"+tableObj.getmStOrgId());
 			System.out.println("tableObj.getId().getmICourseConfig()::"+tableObj.getmICourseConfig());
@@ -90,13 +90,13 @@ public class CustumIdGenerator implements IdentifierGenerator  {
 					&& tableObj.getStStudentId() != "")
 				return tableObj.getStStudentId();
 
-			Map<String, Object> params = new HashMap<String, Object>();
+			//Map<String, Object> params = new HashMap<String, Object>();
 			
 			Date date=new Date();
 			LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 			int year  = localDate.getYear();
 			int month = localDate.getMonthValue();
-			int day   = localDate.getDayOfMonth();
+			//int day   = localDate.getDayOfMonth();
 			System.out.println("tableObj.getId().getmStOrgId()::"+tableObj.getStOrgId());
 			System.out.println("======================="+object.getClass().getSimpleName());
 			String orgId=tableObj.getStOrgId();

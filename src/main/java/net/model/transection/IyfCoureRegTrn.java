@@ -19,8 +19,6 @@ import javax.persistence.Transient;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import net.model.master.GbltOtpStudentRegTrn;
 
 

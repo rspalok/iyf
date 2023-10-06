@@ -5,10 +5,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import org.hibernate.Session; 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import net.model.transection.IyfCoureRegTrn;

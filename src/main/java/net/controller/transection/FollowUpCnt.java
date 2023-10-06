@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import net.model.bean.FollowUpBean;
 import net.model.transection.FollowUpTrn;
-import net.service.master.CourseConfigSer;
 import net.service.transection.FollowUpSer;
 
 @Controller
@@ -27,15 +26,8 @@ public class FollowUpCnt {
 	
 	@Autowired
 	private FollowUpSer servic;
-	@Autowired
-	private CourseConfigSer service;
 	//Calling Services
 	
-	/*callerList -- otp reg list how's flag was ???
-	 * *list to call
-	 * * * Calling Content
-	 * * * Update the response
-	 * */
 	@GetMapping("/list")
 	public String CourseConfigList(FollowUpBean followUpBean, Model model, HttpServletRequest request) {
 		return findPaginated(1, "dtEntry", "desc", model, request);

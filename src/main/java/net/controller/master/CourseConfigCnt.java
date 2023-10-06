@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import net.dao.transection.FollowUpTrnDao;
 import net.model.transection.IYFCourseConfig;
 import net.service.master.CourseConfigSer; 
 

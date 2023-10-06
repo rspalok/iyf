@@ -79,6 +79,7 @@ public class UserDaoImpl implements UserDao {
 
 		// create the user ... finally LOL
 		currentSession.saveOrUpdate(theUser);
+		System.out.println("saveOrUpdate===== "+theUser);
 	}
 
 	@Override

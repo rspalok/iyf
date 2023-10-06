@@ -115,7 +115,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 
 					FollowUpResponseTrn followUpResponseTrn=new FollowUpResponseTrn();
 					pk.setStStudentId(iyfCoureRegTrn.getStStudentId());
-					if(!dao.findById(pk).isEmpty()) {
+					if(dao.existsById(pk)) {
 						//followUpResponseTrn =dao.getOne(pk);
 					}else {
 						followUpResponseTrn.setDtEntry(new Date());
@@ -143,7 +143,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 				for (IyfCoureRegTrn iyfCoureRegTrn : list) {
 					FollowUpResponseTrn followUpResponseTrn=new FollowUpResponseTrn();
 					pk.setStStudentId(iyfCoureRegTrn.getStStudentId());
-					if(!dao.findById(pk).isEmpty()) {
+					if(dao.existsById(pk)) {
 						//followUpResponseTrn =dao.getOne(pk);
 					}else {
 						
@@ -189,7 +189,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 					System.out.println("==================="+result);
 					FollowUpResponseTrn followUpResponseTrn=new FollowUpResponseTrn();
 					pk.setStStudentId(gbltOtpStudentRegTrn.getStStudentId());
-					if(!dao.findById(pk).isEmpty()) {
+					if(dao.existsById(pk)) {
 
 						System.out.println(dao.findById(pk) +"\n========22==========="+result);
 						//followUpResponseTrn =dao.getOne(pk);
@@ -210,18 +210,9 @@ public class FollowUpSerImpl implements FollowUpSer {
 					}
 				}
 			}
-			//List<IyfCoureRegTrn> list =dao.getAllCourseSpecificRegisteredStudent(followUpBean.getmICourseConfig(),Org);
-			//followUpSize=list.size();
-			System.out.println("getAllCourseSpecificRegisteredStudent 3="+followUpBean.getFollowUpTo());
 			//divide equally and insert in caller response table
 		}else if(followUpBean.getFollowUpTo()==4){//get all only course registered Student between time period
 			
-
-			List<GbltOtpStudentRegTrn> result = null;
-			//1 normal only registration , 2 on course registration, 
-			//3 course attendance registration ,
-			//5 yatra registration
-
 		    SimpleDateFormat formatter1=new SimpleDateFormat("dd-MM-yyyy");  
 
 		    Date date=formatter1.parse(followUpBean.getDtFrom());  
@@ -229,17 +220,13 @@ public class FollowUpSerImpl implements FollowUpSer {
 		    
 			List<IyfCoureRegTrn>resultList =r_dao.getCourseRegisterdStudentBetweenDates(date,date1,Org);
 			
-
-			System.out.println("getAllCourseSpecificRegisteredStudent 3="+result);
 			//followUpSize=result.size();
 			if(resultList.size()>0) {
 				for (IyfCoureRegTrn gbltOtpStudentRegTrn : resultList) {
-					System.out.println("==================="+result);
 					FollowUpResponseTrn followUpResponseTrn=new FollowUpResponseTrn();
 					pk.setStStudentId(gbltOtpStudentRegTrn.getStStudentId());
-					if(!dao.findById(pk).isEmpty()) {
+					if(dao.existsById(pk)) {
 
-						System.out.println(dao.findById(pk) +"\n========2========"+result);
 						//followUpResponseTrn =dao.getOne(pk);
 					}else {
 						

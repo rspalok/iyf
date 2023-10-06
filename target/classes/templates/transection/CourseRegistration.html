@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="com/base::layout(~{::body})">
+<head th:include="com/base :: headerFragment"> <title id="pageTitle">Registration</title>
+<meta charset="utf-8">
+
+<title>OTP Directory</title>
+
+</head>
+<body>
+	<div class="page-content">
+		
+		
+		<div class="row content">
+			<div class="col-sm-4"> 
+				<h2>Register for the Course</h2> 
+			
+				<a th:href="@{/home}"> Home Menu</a> >
+				<a th:href="@{*{CourseList}}"> Course Config List</a> >
+				<a th:href="@{*{CurrentUrlForRefresh}}"> refresh the List</a>
+			</div>
+		    <div class="col-sm-4 center">
+			    <div class="easy-pie-chart percentage" th:data-percent="${regStudentCount}" data-color="#87B87F">
+					<span class="percent" th:text="${regStudentCount}">90</span>%
+				</div>
+		    </div>
+		    <div class="col-sm-4 center"> 
+		    	<div><br></div>
+		    	<div class="btn btn-primary" th:attr="onclick=|getRegiteredStudentList()|"><i class="ace-icon fa fa-eye align-top bigger-125"></i> Register Student : <span th:text="${regStudentCount}"></span></div>
+		    	
+					
+		    </div>
+		    
+	    </div>		
+		<hr>
+			<form  id="myForm" th:action="@{/course/registerd}" th:object="${gbltStudentBean}" method="POST">   
+			<div class="row p-t-20">
+			 
+				<div class="col-xs-12"> 
+					<div class="col-md-4 col-sm-4">
+					<div class="form-group">
+						<label for="mICourseConfig">Course Configured</label> 
+						<select class="form-control" required="required" th:field="*{mICourseConfig}" >
+						    <option th:each="option : ${courseConfig}" th:value="${option.mICourseConfig}" th:text="${option.stName}"></option>
+						</select>
+					</div></div>
+					<div class="col-md-4 col-sm-4">
+					<div class="form-group">
+						<label for="mDtCourseEnd">Mobile No<span class="text-danger"> *</span></label> 
+						<input th:type="number" required="required" th:field="*{IMobile}" autocomplete="off" th:maxlength="10" onBlur="checkFormDatabase(this.value)" placeholder="Student Mobile" class="form-control mb-4 col-4">
+					</div></div>
+					<div class="col-md-4 col-sm-4">
+						<div class="form-group">
+							<label class="control-label" for="">Student<span class="text-danger"> *</span> </label> 
+							<select id="stStudentId" class="form-control custom-select" th:field="*{stStudentId}"
+								data-placeholder="Choose a Category" tabindex="1" th:value="*{stStudentId}" > 
+								<option value=''>New</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4">
+					<div class="form-group">
+						<label for="mDtCourseEnd">First Name<span class="text-danger"> *</span></label>
+					<input type="text" required="required" th:field="*{firstName}" placeholder="Student First Name" class="form-control mb-4 col-4">
+					</div></div>
+					<div class="col-md-4 col-sm-4">
+					<div class="form-group">
+						<label for="mDtCourseEnd">Last Name</label>
+					<input type="text" th:field="*{lastName}" placeholder="Student Last Name" class="form-control mb-4 col-4"> 
+					</div></div>
+					<div class="col-md-4 col-sm-4">
+					<div class="form-group">
+						<label for="mDtCourseEnd">Email</label>
+					<input type="text" th:field="*{email}" placeholder="Student Email" class="form-control mb-4 col-4">
+					</div></div>
+					<div class="col-md-4 col-sm-4">
+					<div class="form-group">
+						<label for="mDtCourseEnd">Occupation<span class="text-danger"> *</span></label>
+					<input th:type="text" required="required" th:field="*{stOccupation}" placeholder="Student Occupation" class="form-control mb-4 col-4">
+					</div></div>
+					<div class="col-md-4 col-sm-4">
+					<div class="form-group">
+						<label for="mDtCourseEnd">Total No of Round Chanting Daily<span class="text-danger"> *</span></label>
+					<input th:type="number" required="required" th:field="*{mChanting}" th:max="99" placeholder="Total No of Round Chanting" class="form-control mb-4 col-4">
+					</div></div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label class="control-label" for="">Base <span class="text-danger"> *</span></label> 
+							<select id="mOrgUnit" class="form-control custom-select" th:field="*{mOrgUnit}"
+								data-placeholder="Choose a Category" tabindex="1" th:value="*{mOrgUnit}" >  
+								<option value="0">Select Option</option>
+								<option th:each="option : ${orgUnits}" th:value="${option.mOrgUnit}" th:text="${option.strName}"></option>
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4">
+					<div class="form-group">
+						<label for="mDtCourseEnd">Address<span class="text-danger"> *</span></label> 
+						<input type="text" required="required" th:field="*{stAddress}" placeholder="Student Address" class="form-control mb-4 col-4">   
+					</div></div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label class="control-label" for="">Registration Type<span class="text-danger"> *</span></label> 
+							<select class="form-control custom-select" th:field="*{mRegType}"
+								data-placeholder="Choose a Category" tabindex="1" th:value="*{mRegType}" >  
+								<option value="0">Free Registration</option>
+								<option value="0">Paid</option>
+								<option value="0">UnPaid</option>
+							</select>
+						</div>
+					</div>
+				</div>  
+		 	</div>
+		 	<hr>
+		 	<div class="center">
+		 		<button type="submit" class="btn btn-info">Save</button>
+		 	</div>
+		 	</form>
+			<hr>
+			<!-- Modal -->
+				<div id="myModal" class="modal fade" role="dialog">
+				  <div class="modal-dialog modal-lg">
+				
+				    <!-- Modal content-->
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal">&times;</button>
+				        <h4 class="modal-title">List</h4>
+				      </div>
+				      <div class="modal-body">
+				      	<div id="reportMainHeaderDivId"></div>
+						<div id="reportMainBodyDivId"></div>
+						<div id="reportMainFooterDivId"></div>
+						<div style="text-align: center;" class="noPrint"> <br>
+							<button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Close&nbsp;</button><br>
+						</div>
+				      </div>
+				     <!-- <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				      </div>-->
+				    </div>
+				
+				  </div>
+				</div>
+		</div>
+		<a th:href="@{/course-config/list}"> Back to Student List</a>
+	<script th:src="@{/iyf/course_registration.js}"></script>
+	<script type="text/javascript">
+	function removeThis(stStudentId,mICourseConfig){
+
+		$('#stStudentId').val(stStudentId);
+		$('#mICourseConfig').val(mICourseConfig);
+		$("#myForm").attr("action", '../removeRegistration');
+		$( "#myForm" ).submit();
+	}
+	$('.easy-pie-chart.percentage').each(function(){
+		$(this).easyPieChart({
+			barColor: $(this).data('color'),
+			trackColor: '#EEEEEE',
+			scaleColor: false,
+			lineCap: 'butt',
+			lineWidth: 8,
+			animate: ace.vars['old_ie'] ? false : 1000,
+			size:75
+		}).css('color', $(this).data('color'));
+	});
+	
+	
+	
+	</script>
+</body>
+</html>

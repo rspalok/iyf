@@ -17,6 +17,7 @@ import net.model.master.GbltOtpStudentRegTrn;
 import net.model.master.GbltUserMst;
 import net.model.master.GbltUsersRolesTrn;
 import net.user.dao.UserDao;
+import net.user.dao.UserRepository;
  
 
 @Service
@@ -26,6 +27,8 @@ public class UserServiceImpl implements UserService{
 	@Autowired
 	private UserDao userDao;
  
+	@Autowired
+	private UserRepository userRepo;
 	
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
@@ -33,7 +36,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	@Transactional
 	//used for session and registration
-	public GbltUserMst findByUserNamess(String userName) {
+	public GbltUserMst findByUserUserId(String userName) {
 		// check the database if the user already exists
 		GbltUserMst user = userDao.findByUserName(userName); 
 		return user;
@@ -51,8 +54,7 @@ public class UserServiceImpl implements UserService{
 	@Transactional
 	public void save(CrmUser crmUser,GbltOtpStudentRegTrn c_user) {
 		 
-		GbltUserMst user = new GbltUserMst();
-		 // assign user details to the user object
+		GbltUserMst user = new GbltUserMst(); 
 		user.setStUserName(crmUser.getUserName());
 		user.setStPassword(passwordEncoder.encode(crmUser.getPassword()));
 		user.setIUserId(crmUser.getRegistrationId());
@@ -62,14 +64,8 @@ public class UserServiceImpl implements UserService{
 		user.setDtEntry(new Date()); 
 		user.setIIsValid(1);
 		user.setmEnabled(true);
-		user.setStOrgId(crmUser.getOrgName());
-		// give user default role of "gbltOtpStudentRegTrn"
-		System.out.println("====IYF20230204422  "+user);
-		//user.setRoles(Arrays.asList(roleDao.findRoleByName(crmUser.getRoleName())));
-
-		// save user in the database
-		userDao.save(user);
-		
+		user.setStOrgId(crmUser.getOrgName()); 
+		userRepo.save(user);
 		GbltUsersRolesTrn userTrn=new GbltUsersRolesTrn();
 		userTrn.setIUserId(crmUser.getRegistrationId());
 		userTrn.setDtEntry(new Date()); 
@@ -77,7 +73,6 @@ public class UserServiceImpl implements UserService{
 		userTrn.setStOrgId(crmUser.getOrgName());
 		userTrn.setIRoleId(crmUser.getRoleName());
 		//save data
-
 		userDao.saveTrn(userTrn);
 	}
 
@@ -95,11 +90,11 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void resetPassword(CrmUser theCrmUser, HttpServletRequest request) {
 		// TODO Auto-generated method stub
-		GbltUserMst user = findByUserNamess(theCrmUser.getUserName());
+		GbltUserMst user = findByUserUserId(theCrmUser.getUserName()); 
+		user.setDtEntry(new Date());
 		user.setStPassword(passwordEncoder.encode(theCrmUser.getPassword()));
-		
-		System.out.println("======= === = = === ===="+user);
-		//userDao.save(user);
+		 
+		userRepo.save(user);
 	}
 
 	@Override

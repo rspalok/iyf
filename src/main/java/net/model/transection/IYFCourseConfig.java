@@ -18,8 +18,6 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import net.model.master.IYFBatchMst;
 import net.model.master.IyfCourseMst;
 

@@ -3,17 +3,13 @@ package net.model.bean;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import net.model.master.GbltOrgMst;
-import net.model.master.GbltOtpStudentRegTrn;
 import net.model.master.GbltRolMst;
  
 public class GbltUserBean implements Serializable {

@@ -3,13 +3,11 @@ package net.user.dao;
 import javax.persistence.EntityManager;
 
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import net.model.master.GbltRolMst;
-import net.model.master.GbltUserMst;
 
 @Repository
 public class RoleDaoImpl implements RoleDao {

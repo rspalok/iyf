@@ -39,9 +39,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		String[] resources = new String[]{
 			"/assets/**","/image","/com/**","/",
-			"/css/**","/icons/**","/images/**","/js/**","/iyf/**"
+			"/css/**","/icons/**","/images/**","/js/**","/iyf/**",
 		};
-		String[] SuperUser=new String[] {
+	/*	String[] SuperUser=new String[] {
 			"/**"
 		};
 		String[] ADMIN=new String[] {
@@ -58,7 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		};
 		String[] FOLLOWUP=new String[] {
 			"/follow_up/**"
-		};
+		};*/
         http.authorizeRequests(requests -> requests
                 .antMatchers(resources).permitAll()
                // .antMatchers(ADMIN).hasAnyAuthority("ADMIN")

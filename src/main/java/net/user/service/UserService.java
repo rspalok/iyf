@@ -9,7 +9,7 @@ import net.model.master.GbltUserMst;
 
 public interface UserService {
 
-	public GbltUserMst findByUserNamess(String userName);
+	public GbltUserMst findByUserUserId(String userName);
 	public GbltUserMst findByUserNames(String userName);
 
     void save(CrmUser crmUser, GbltOtpStudentRegTrn user);

@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import net.model.master.GbltOtpStudentRegTrn;
-import net.model.master.GbltRolMst;
 
 @Repository
 public class OtpRegAndAttendenceDaoImpl implements OtpRegAndAttendenceDao {

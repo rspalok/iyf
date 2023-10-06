@@ -32,9 +32,8 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	public Map<String, MenuMaster> getMemuList(HttpServletRequest request) {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession(); 
-		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
-		String org= theUser.getStOrgId();
+		//HttpSession session = request.getSession(); 
+		//GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		System.out.println("principalprincipal "+principal);
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

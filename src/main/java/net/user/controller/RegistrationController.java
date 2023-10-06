@@ -123,6 +123,7 @@ public class RegistrationController {
 		String userName = theCrmUser.getUserName();
 		logger.info("Processing registration form for: " + theCrmUser);
 		
+		
 		// form validation
 		if (theBindingResult.hasErrors()) {
 			System.out.println("====theBindingResult.hasErrors()===="+theBindingResult.hasErrors());
@@ -137,7 +138,7 @@ public class RegistrationController {
 		// check the database if user already exists
 		GbltOtpStudentRegTrn user = userService.findByregistrationId(registrationId,objRequest_p);
 		System.out.println("==========user===="+user);
-		GbltUserMst existing = userService.findByUserNamess(userName);
+		GbltUserMst existing = userService.findByUserUserId(userName);
         if(user == null) {
         	theModel.addAttribute("crmUser", new CrmUser());
         	List<GbltOrgMst> orgs=uitilService.getAllOrgDetails(); 

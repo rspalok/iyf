@@ -212,7 +212,7 @@ public class GbltUserMst implements Serializable {
 	public String toString() {
 		return "GbltUserMst [IUserId=" + IUserId + ", stUserName=" + stUserName + ", stFirstName=" + stFirstName
 				+ ", stLastName=" + stLastName + ", stEmail=" + stEmail + ", stPassword=" + stPassword + ", IIsValid="
-				+ IIsValid + ", stOrgId=" + stOrgId + ", roles=" + roles + ", dtEntry=" + dtEntry + "]";
+				+ IIsValid + ", stOrgId=" + stOrgId + ", dtEntry=" + dtEntry + "]";
 	}
 
 }

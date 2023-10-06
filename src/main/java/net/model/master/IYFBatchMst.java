@@ -14,8 +14,6 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import net.model.transection.IyfClassSchedTrnPk;
-
 @Entity 
 @Table(name = "iyf_batch_mst", schema = "iyf") 
 @IdClass(IYFBatchMstPk.class)

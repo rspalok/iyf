@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:include="com/base :: headerFragment"> <title id="pageTitle">error </title>
+</head>
+<style th:inline="text">
+body{
+    background: url([[@{/img/404.png}]])
+                no-repeat center center fixed;
+}
+</style>
+<body style="background: url(../img/404.png) no-repeat center center fixed; background-size: cover;">
+<div class="container" >
+<h1 >Something went wrong! </h1>
+<h2></h2>
+</div>
+</body>
+</html>

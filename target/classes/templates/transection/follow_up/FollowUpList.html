@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="com/base::layout(~{::body})">
+<head th:include="com/base :: headerFragment"> <title id="pageTitle">Follow Up List</title>
+<meta charset="utf-8">
+
+<title>OTP Directory</title>
+
+</head>
+<body>
+	<div class="page-content">
+		<h2>Calling List</h2> 
+		<form name="getForm" th:action="@{/follow_up/get}" th:object="${followUpBean}" method="POST">   
+			<div class="row p-t-20">
+				<div class="col-xs-12">
+					<input class="hidden" th:field="*{isValid}">
+				<!-- mStName -->
+					<div class="col-md-4 col-sm-6">
+						<div class="form-group">
+							<label for="mDtCourseEnd">Follow up For</label> 
+							<select class="form-control" th:field="*{followUpId}" onchange="javascript: document.getForm.submit()" >
+							    <option value="0">select option</option>
+							    <option th:each="option : ${followUpPicklist}" th:value="${option.followUpId}" th:text="${option.objFollowUpMaster.stName} +' : '+ ${option.stName}"></option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+		 
+			
+			<hr>
+			<label for="">Registered Student List</label>
+				<table class="table">
+				  <thead>
+				    <tr>
+				      <th scope="col">Sr.</th>
+				      <th scope="col">StudentId</th>
+				      <th scope="col">Name</th>
+				      <th scope="col">Caller Name</th>
+				      <th scope="col">Response</th>
+				      <th scope="col">Mobile</th>
+				      <th scope="col">Response Type</th>
+				      <th scope="col">Occupation</th>
+				      <th scope="col">Action</th>
+				    </tr>
+				  </thead>
+				  
+				  <tbody>
+				  <tr th:each="student,count : ${followUp}">
+		   			<td th:text="${count.count}">  </td>
+					<td th:text="${student.stStudentId}"></td>
+					<td th:text="${student.objGbltOtpStudentRegTrns.firstName} +' '+ ${student.objGbltOtpStudentRegTrns.lastName}"></td>
+					<td th:text="${student.objFolloupBy.firstName} +' '+ ${student.objFolloupBy.lastName}"></td>
+					<td th:text="${student.stResponse}"></td>
+					<td th:text="${student.objGbltOtpStudentRegTrns.IMobile}"></td>
+					<td>
+					<span th:if="${student.responseType == 1}" class="green">Favorable</span>
+					<span th:if="${student.responseType == 2}" class="text-info">Not Sure</span>
+					<span th:if="${student.responseType == 3}" class="red">Not Favorable</span>
+					</td>
+					<td th:text="${student.objGbltOtpStudentRegTrns.stOccupation}"></td>
+					<td>
+					 <!--<a th:href="@{/course/remove/{id}/{configId}(id=${student.stStudentId},configId=${student.followUpId})}" class="btn btn-danger">call </a>-->
+					 <a th:attr="onclick=|callThis('${student.stStudentId}','${student.followUpId}')|" class="btn btn-info">Call</a>
+					
+					</td>
+					</tr>
+				  </tbody>
+				</table>
+			<hr>
+		</div>
+		<a th:href="@{/course-config/list}"> Back to Student List</a>
+		
+		
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Calling Details</h4>
+      </div>
+      <div class="modal-body">
+      	<div class="profile-user-info profile-user-info-striped">
+			<div class="profile-info-row">
+				<div class="profile-info-name">Student Name</div>
+
+				<div class="profile-info-value">
+					<span class="editable" id="stStudentName"></span>
+				</div>
+			</div>
+
+			<div class="profile-info-row">
+				<div class="profile-info-name">Address</div>
+
+				<div class="profile-info-value">
+					<i class="fa fa-map-marker light-orange bigger-110"></i>
+					<span class="editable" id="country"></span>
+					<span class="editable" id="city"></span>
+				</div>
+			</div>
+			<div class="profile-info-row">
+				<div class="profile-info-name"> Phone Number </div>
+
+				<div class="profile-info-value">
+					<span class="editable" id="phoneNumber"></span>
+				</div>
+			</div>
+			<div class="profile-info-row">
+				<div class="profile-info-name"> Call Regarding </div>
+
+				<div class="profile-info-value">
+					<span class="editable" id="about"></span>
+				</div>
+			</div>
+		</div>
+		<hr>
+        <form action="#" id="myForm" th:action="@{/follow_up/saveResponce}" th:object="${followUpBean}" method="POST">   
+			<div class="row p-t-20">
+				<div class="col-xs-12"> 
+					<input class="hidden" th:field="*{followUpId}">
+					<input class="hidden" th:field="*{stStudentId}">
+					<input class="hidden" th:field="*{isValid}">
+					<div class="col-md-8 col-sm-8">
+						<label for="stResponse">Response<span class="text-danger"> *</span></label> 
+						<input type="text"  required="required" th:field="*{stResponse}" autocomplete="off" 
+						placeholder="Student Call Responce" class="form-control">
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label class="control-label" for="">Response Type<span class="text-danger"> *</span> </label> 
+							<select class="form-control custom-select" th:field="*{responseType}"
+								data-placeholder="Choose a Category" tabindex="1" th:value="*{responseType}" > 
+								<option value=''>Select</option>
+								<option value='1'>Favorable</option>
+								<option value='2'>Not Sure</option>
+								<option value='3'>Not Favorable</option>
+							</select>
+						</div>
+					</div>
+				</div>  
+		 	</div>
+		 	<hr>
+		 	<div class="center">
+		 		<button type="submit" class="btn btn-info">Save</button>
+		 	</div>
+		 </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+	
+
+	<!-- https://frontbackend.com/thymeleaf/spring-boot-bootstrap-thymeleaf-modal -->
+	
+	<script th:src="@{/iyf/course_registration.js}"></script>
+	<script type="text/javascript">
+	function callThis(stStudentId,followUpId){
+		getStudentDetails(stStudentId,followUpId)
+		$('#myModal').modal('show'); 
+	}
+	getStudentDetails = function(stStudentId,followUpId) {
+		var action = "../follow_up/getStudentForFolloup/?stStudentId="+stStudentId +"&followUpId="+ followUpId;
+		 
+		console.log("alert is working  "+action);
+		$.ajax({url: action,type:"GET",async:false,dataType:"json" ,success:function(data) {
+				result = viewSingleDtls(data,1);
+			},error: function(errorMsg,textstatus,errorthrown) {
+				alert('getStudenInfo '+errorMsg+" textstatus::"+textstatus+" errorthrown::"+errorthrown);
+			}
+		});
+	}
+	viewSingleDtls = function (res, mode) {
+		
+		var parsedData = res;
+		console.log(parsedData);
+		
+		//var parsedData = JSON.parse(res);
+		console.log("========"+parsedData);
+		console.log(res);
+		if(res.length >0){
+			$('#responseType').val(res[0].responseType);
+			$('#stResponse').val(res[0].stResponse);
+			$('#about').html(res[0].objFollowUpTrn.stContent);
+			
+			$('#followUpId').val(res[0].followUpId);
+			$('#stStudentId').val(res[0].stStudentId);
+			$('#country').html(res[0].objGbltOtpStudentRegTrns.stAddress);
+			$('#stStudentName').html(res[0].objGbltOtpStudentRegTrns.firstName +" "+res[0].objGbltOtpStudentRegTrns.lastName);
+			$('#phoneNumber').html("<a href='tel:"+res[0].objGbltOtpStudentRegTrns.imobile +"'>Call us "+res[0].objGbltOtpStudentRegTrns.imobile+"</a>");
+			
+		}else{
+			$('#stOccupation').val('');
+			$('#firstName').val('');
+			$('#lastName').val('');
+			$('#email').val('');
+			$('#mChanting').val(0);
+			$('#stAddress').val('');
+			$('#stStudentId').val('');
+		}
+		
+	}
+	</script>
+</body>
+</html>

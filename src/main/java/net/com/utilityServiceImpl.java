@@ -18,7 +18,6 @@ import net.model.master.GbltOrgMst;
 import net.model.master.GbltOrgUnitMst;
 import net.model.master.GbltOtpStudentRegTrn;
 import net.model.master.GbltRolMst;
-import net.model.master.GbltUserMst;
 import net.model.master.IYFBatchMst;
 import net.model.master.IyfCourseMst;
 import net.model.transection.IYFCourseConfig;

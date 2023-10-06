@@ -9,7 +9,6 @@ import org.springframework.data.domain.Page;
 
 import net.model.bean.FollowUpBean;
 import net.model.master.FollowUpMaster;
-import net.model.master.GbltOtpStudentRegTrn;
 import net.model.master.GbltUserMst;
 import net.model.transection.FollowUpResponseTrn;
 import net.model.transection.FollowUpTrn;

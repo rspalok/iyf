@@ -15,6 +15,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "iyf_org_mst", schema = "iyf")
 public class GbltOrgMst implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column(name = "str_org_id", nullable = false, columnDefinition = "character varying (15)")
 	private String stOrgId;

@@ -1,4 +1,4 @@
-package net.user.controller;
+package net.controller.transection;
 
 import java.security.Principal;
 import java.util.List;
@@ -29,7 +29,7 @@ import net.model.master.GbltOrgMst;
 import net.model.master.GbltOtpStudentRegTrn;
 import net.model.master.GbltRolMst;
 import net.model.master.GbltUserMst;
-import net.user.service.UserService; 
+import net.service.transection.UserService; 
 
 @Controller
 @RequestMapping("/register")

@@ -24,6 +24,7 @@ import net.dao.master.CourseConfigDao;
 import net.dao.transection.FollowUpDao;
 import net.dao.transection.FollowUpTrnDao;
 import net.dao.transection.GbltOtpStudentRegTrnRepository;
+import net.dao.transection.UserRepository;
 import net.model.bean.FollowUpBean;
 import net.model.bean.GbltUserBean;
 import net.model.master.FollowUpMaster;
@@ -34,7 +35,6 @@ import net.model.transection.FollowUpResponseTrn;
 import net.model.transection.FollowUpTrn;
 import net.model.transection.IYFCourseConfig;
 import net.model.transection.IyfCoureRegTrn;
-import net.user.dao.UserRepository;
 
 @Service
 public class FollowUpSerImpl implements FollowUpSer {

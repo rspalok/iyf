@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 import net.model.bean.GbltUserBean;
 import net.model.master.GbltOrgMst;
 import net.model.master.GbltUserMst;
-import net.user.service.UserService;
+import net.service.transection.UserService;
  
 
 @Component

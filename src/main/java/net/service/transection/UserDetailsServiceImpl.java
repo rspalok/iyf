@@ -1,12 +1,12 @@
-package net.user.service;
+package net.service.transection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import net.dao.transection.UserRepository;
 import net.model.master.GbltUserMst;
-import net.user.dao.UserRepository;
 
 public class UserDetailsServiceImpl implements UserDetailsService {
 

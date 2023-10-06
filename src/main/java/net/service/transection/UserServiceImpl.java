@@ -1,4 +1,4 @@
-package net.user.service;
+package net.service.transection;
  
 import java.util.Date;
 
@@ -10,14 +10,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import net.dao.transection.UserDao;
+import net.dao.transection.UserRepository;
 import net.model.bean.CrmUser;
 import net.model.bean.GbltUserBean;
 import net.model.master.GbltOrgMst;
 import net.model.master.GbltOtpStudentRegTrn;
 import net.model.master.GbltUserMst;
 import net.model.master.GbltUsersRolesTrn;
-import net.user.dao.UserDao;
-import net.user.dao.UserRepository;
  
 
 @Service

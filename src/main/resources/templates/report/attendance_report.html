@@ -73,8 +73,20 @@
 		      <th scope="col">StudentId</th>
 		      <th scope="col">Address</th>
 		      <th scope="col">Occupation</th> 
+		      <th scope="col">Present</th> 
 		  </tr>
-		  
+			
+	        <tr th:each="student,count  : ${allPresentCount}">
+		   		<td th:text="${count.count}">  ${count.size}</td>
+				<td th:text="${student.IMobile}"></td>
+				<td th:text="${student.firstName}"></td>
+				<td th:text="${student.lastName}"></td>
+				<td th:text="${student.mDtRegistration}"></td>
+				<td th:text="${student.stStudentId}"></td>
+				<td th:text="${student.stAddress}"></td>
+				<td th:text="${student.stOccupation}"></td> 
+				<td th:text="${student.present}"></td> 
+			</tr>
 		   <tr th:each="student,count  : ${allPresentStudent}">
 		   		<td th:text="${count.count}">  ${count.size}</td>
 				<td th:text="${student.objGbltOtpStudentRegTrns.IMobile}"></td>
@@ -84,8 +96,8 @@
 				<td th:text="${student.stStudentId}"></td>
 				<td th:text="${student.objGbltOtpStudentRegTrns.stAddress}"></td>
 				<td th:text="${student.objGbltOtpStudentRegTrns.stOccupation}"></td> 
+				<td>1</td> 
 			</tr>
-		  
 		</table>
 			
 		</div>

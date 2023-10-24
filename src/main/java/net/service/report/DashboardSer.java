@@ -2,6 +2,7 @@ package net.service.report;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +30,8 @@ public interface DashboardSer {
 
 	public HashMap<Long, List<IyfClassSchedTrn>> getClassListHasMap(String StudentId, Set<Long> setCourse, HttpServletRequest request);
 
-	HashMap<Long, List<IyfCourseAttenTrn>> getAttenListHasMap(String studentId, Set<Long> courseSet, HttpServletRequest request);
+	List<Map> getAttenListHasMap(String studentId, Set<Long> courseSet, HttpServletRequest request);
+
+	List<Map> getAttendanceCount(Long getmICourseConfig, HttpServletRequest request);
 
 }

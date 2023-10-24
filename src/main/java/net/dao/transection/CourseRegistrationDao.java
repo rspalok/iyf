@@ -43,7 +43,7 @@ public interface CourseRegistrationDao extends JpaRepository<IyfCoureRegTrn,IyfC
 			+ "")//and s.IIsValid = 1 
 	Integer getTotalRegCount(@Param("mICourseConfig") Long mICourseConfig,@Param("orgid")  String orgid);
 
-	@Query("SELECT s FROM IyfCoureRegTrn s JOIN s.objGbltOtpStudentRegTrns where s.stStudentId =:stStudentId "
+	@Query("SELECT s FROM IyfCoureRegTrn s JOIN s.objGbltOtpStudentRegTrns JOIN s.ObjIYFCourseConfig  where s.stStudentId =:stStudentId "
 			+ " and s.mIsValid = 1 and s.mStOrgId =:org")  
 	List<IyfCoureRegTrn> getCourseInrolledListbyStudentId(@Param("stStudentId") String stStudentId, @Param("org") String org);
 

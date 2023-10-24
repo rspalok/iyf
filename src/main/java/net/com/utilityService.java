@@ -11,6 +11,7 @@ import net.model.master.GbltRolMst;
 import net.model.master.IYFBatchMst;
 import net.model.master.IyfCourseMst;
 import net.model.transection.IYFCourseConfig;
+import net.model.transection.IyfPublicRegUrlTrn;
 
 public interface utilityService {
 
@@ -33,4 +34,6 @@ public interface utilityService {
 	public List<GbltOtpStudentRegTrn> getStudentListByMobile(Long mobileNumber, HttpServletRequest objRequest_p);
 
 	public List<GbltOrgUnitMst> allOrgUnits(HttpServletRequest request);
+
+	public List<IyfPublicRegUrlTrn> getUrlList(HttpServletRequest request);
 }

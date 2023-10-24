@@ -6,7 +6,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -107,6 +109,7 @@ public class DashboardSerImpl implements DashboardSer {
 		HttpSession session = request.getSession(); 
 		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 		String Orgid=obj.getStOrgId();
+		
 		return attenDao.getAllPresentStudentInClass(getmICourseConfig, getmClassId, Orgid);
 	}
 
@@ -175,6 +178,7 @@ public class DashboardSerImpl implements DashboardSer {
 		HttpSession session = request.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
+		System.out.println("=================================");
 		return regDao.getCourseInrolledListbyStudentId(gbltStudentBean.getStStudentId(),org);
 	}
 
@@ -207,23 +211,33 @@ public class DashboardSerImpl implements DashboardSer {
 		return classSchedule; 
 	}
 	@Override
-	public HashMap<Long, List<IyfCourseAttenTrn>> getAttenListHasMap(String studentId,Set<Long> courseSet, HttpServletRequest request) {
+	public  List<Map> getAttenListHasMap(String studentId,Set<Long> courseSet, HttpServletRequest request) {
 		HttpSession session = request.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
 		
-		
-		HashMap<Long,List<IyfCourseAttenTrn> > classAtten=new HashMap<>();
-		if(courseSet.size()>0) {
-			for (Long courseId : courseSet) {
-				
-				
-				List<IyfCourseAttenTrn> presentlist = attenDao.getPresentClassLst(studentId,courseId,org);
-				classAtten.put(courseId, presentlist);
-				
-			} 
-		}
-		return classAtten;
-	}
 
+		List<Map> ClassAttendance = null;
+		if(courseSet.size()>0) {
+				 ClassAttendance=dao.ClassAttendance(studentId,courseSet,org);
+				
+		}
+		return ClassAttendance;
+	}
+	@Override//Attendance
+	public  List<Map> getAttendanceCount(Long mICourseConfig, HttpServletRequest request) {
+		HttpSession session = request.getSession(); 
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
+		String org= theUser.getStOrgId();
+		
+
+		List<Map> ClassAttendance = null;
+		if(mICourseConfig != null) {
+				 ClassAttendance=dao.getAttendanceCount(mICourseConfig,org);
+				
+		}
+		return ClassAttendance;
+	}
+	
+	
 }

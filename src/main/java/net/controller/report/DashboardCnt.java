@@ -1,6 +1,7 @@
 package net.controller.report;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -71,11 +72,16 @@ public class DashboardCnt {
 
 		if((gbltStudentBean.getStStudentId()!=null || gbltStudentBean.getStStudentId() !="") && setCourse.size()>0) {
 			HashMap<Long, List<IyfClassSchedTrn>> ClassList = service.getClassListHasMap(gbltStudentBean.getStStudentId(), setCourse,request);
-			HashMap<Long, List<IyfCourseAttenTrn>> AttenList = service.getAttenListHasMap(gbltStudentBean.getStStudentId(), setCourse, request);
+			 List<Map> AttenList = service.getAttenListHasMap(gbltStudentBean.getStStudentId(), setCourse, request);
+			System.out.println("== === lists ==== === ");
 			model.addAttribute("classList",ClassList);
+			System.out.println("== === ClassList==== === "+ClassList);
 			model.addAttribute("attenList",AttenList);
+			System.out.println("== === AttenList==== === "+AttenList);
 			model.addAttribute("classCount",ClassList.size());
+			System.out.println("== === ClassList.size()==== === "+ClassList.size());
 			model.addAttribute("attenCount",AttenList.size());
+			System.out.println("== ===AttenList.size() ==== === "+AttenList.size());
 		}
 		//fetch class against that course list
 		
@@ -90,6 +96,7 @@ public class DashboardCnt {
 	}
 	@PostMapping("/getStudentDetails")
 	public String getStudentDetails (GbltStudentBean gbltStudentBean,Model model,HttpServletRequest request, HttpServletResponse response) {
+		
 		
 		
 		return studentReport(gbltStudentBean, model, request, response);
@@ -128,6 +135,9 @@ public class DashboardCnt {
 		
 		if(gbltStudentBean.getmICourseConfig()!=null && gbltStudentBean.getmIMode()==1) {
 			model.addAttribute("classList", service.getScheduleClassAgainstCourseConfig(gbltStudentBean.getmICourseConfig(),request));
+			if(gbltStudentBean.getmClassId() == null) {
+				model.addAttribute("allPresentCount",service.getAttendanceCount(gbltStudentBean.getmICourseConfig(),request));
+			}
 		}
 		if(gbltStudentBean.getmICourseConfig()!=null && gbltStudentBean.getmClassId() != null && gbltStudentBean.getmIMode()!=2) {
 			model.addAttribute("allPresentStudent",service.getAllPresentStudentList(gbltStudentBean.getmICourseConfig(),gbltStudentBean.getmClassId(),request));

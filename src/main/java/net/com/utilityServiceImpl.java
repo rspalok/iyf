@@ -21,6 +21,7 @@ import net.model.master.GbltRolMst;
 import net.model.master.IYFBatchMst;
 import net.model.master.IyfCourseMst;
 import net.model.transection.IYFCourseConfig;
+import net.model.transection.IyfPublicRegUrlTrn;
 
 @Service
 @Transactional
@@ -120,7 +121,7 @@ public class utilityServiceImpl implements utilityService {
 		// TODO Auto-generated method stub
 		List<GbltOtpStudentRegTrn> list = dao.getStudentListByMobile(mobileNumber,org);
 		System.out.println("====== "+list);
-		return list;
+		return list; 
 	}
 	@Override
 	public List<GbltOrgUnitMst> allOrgUnits(HttpServletRequest request) {
@@ -128,5 +129,13 @@ public class utilityServiceImpl implements utilityService {
 		Object theUser = session.getAttribute("user");
 		GbltUserBean obj = (GbltUserBean) theUser;
 		return dao.allOrgUnits(obj.getStOrgId());
+	}
+	@Override
+	public List<IyfPublicRegUrlTrn> getUrlList(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		Object theUser = session.getAttribute("user");
+		GbltUserBean obj = (GbltUserBean) theUser;
+		return dao.getUrlList(obj.getStOrgId());
 	}
 }

@@ -1,9 +1,9 @@
 function checkFormDatabase(mobileNo){
 	if(mobileNo.length <10){
 		return;
-	}
+	}///report/student
 	var action = "../report/studentByMobileNo/?mobileNumber=" + mobileNo;
-	 alert(action);
+	alert(action);
 	console.log("alert is working  "+action);
 	$.ajax({url: action,type:"GET",async:false,dataType:"json" ,success:function(data) {
 			result = viewSingleDtls(data,1);

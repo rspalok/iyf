@@ -68,7 +68,7 @@ public class RegistrationController {
 	@GetMapping("/studentByMobileNo")
 	@ResponseBody
 	public String studentByMobileNo(HttpServletRequest objRequest_p,
-			@RequestParam(value = "mobileNumber", required = true) Long mobileNumber, HttpServletRequest request) {
+			@RequestParam(value = "mobileNumber", required = true) Long mobileNumber) {
 
 		return uitilService.studentByMobileNo(mobileNumber, objRequest_p);
 	}

@@ -50,8 +50,8 @@ public class IyfPublicRegUrlTrn implements Serializable{
 	@Column(name = "str_url", nullable = false, columnDefinition = "character varying (225)")
 	private String stURL;
 	
-	@Column(name = "str_discription", nullable = false, columnDefinition = "character varying (15)")
-	private String stDiscription;
+	@Column(name = "str_description", nullable = false, columnDefinition = "character varying (225)")
+	private String stDescription;
 	
 	
     @DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -127,12 +127,12 @@ public class IyfPublicRegUrlTrn implements Serializable{
 		this.stURL = stURL;
 	}
 
-	public String getStDiscription() {
-		return stDiscription;
+	public String getStDescription() {
+		return stDescription;
 	}
 
-	public void setStDiscription(String stDiscription) {
-		this.stDiscription = stDiscription;
+	public void setStDescription(String stDescription) {
+		this.stDescription = stDescription;
 	}
 
 	public Date getDtPublished() {

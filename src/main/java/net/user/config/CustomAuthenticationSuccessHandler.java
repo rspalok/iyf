@@ -13,9 +13,9 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.stereotype.Component;
 
 import net.model.bean.GbltUserBean;
-import net.model.master.GbltOrgMst;
-import net.model.master.GbltUserMst;
-import net.service.transection.UserService;
+import net.model.master.pojo.org.GbltOrgMst;
+import net.model.master.pojo.role.GbltUserMst;
+import net.transection.login.service.UserService;
  
 
 @Component

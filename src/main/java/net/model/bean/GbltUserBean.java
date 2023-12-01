@@ -10,7 +10,7 @@ import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import net.model.master.GbltRolMst;
+import net.model.master.pojo.role.GbltRolMst;
  
 public class GbltUserBean implements Serializable {
 

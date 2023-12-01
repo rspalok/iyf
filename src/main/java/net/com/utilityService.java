@@ -4,14 +4,14 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.model.master.GbltOrgMst;
-import net.model.master.GbltOrgUnitMst;
-import net.model.master.GbltOtpStudentRegTrn;
-import net.model.master.GbltRolMst;
-import net.model.master.IYFBatchMst;
-import net.model.master.IyfCourseMst;
-import net.model.transection.IYFCourseConfig;
-import net.model.transection.IyfPublicRegUrlTrn;
+import net.model.master.pojo.batch.IYFBatchMst;
+import net.model.master.pojo.course.IyfCourseMst;
+import net.model.master.pojo.org.GbltOrgMst;
+import net.model.master.pojo.org.GbltOrgUnitMst;
+import net.model.master.pojo.role.GbltRolMst;
+import net.model.transection.notice.IyfPublicRegUrlTrn;
+import net.model.transection.pojo.courseconfig.IYFCourseConfig;
+import net.model.transection.pojo.registration.GbltOtpStudentRegTrn;
 
 public interface utilityService {
 

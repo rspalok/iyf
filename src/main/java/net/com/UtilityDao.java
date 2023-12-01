@@ -6,11 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import net.model.master.GbltOrgMst;
-import net.model.master.GbltOrgUnitMst;
-import net.model.master.GbltOtpStudentRegTrn;
-import net.model.master.GbltRolMst;
-import net.model.transection.IyfPublicRegUrlTrn;
+import net.model.master.pojo.org.GbltOrgMst;
+import net.model.master.pojo.org.GbltOrgUnitMst;
+import net.model.master.pojo.role.GbltRolMst;
+import net.model.transection.notice.IyfPublicRegUrlTrn;
+import net.model.transection.pojo.registration.GbltOtpStudentRegTrn;
 
 public interface UtilityDao extends JpaRepository<GbltOrgMst, String> {
 

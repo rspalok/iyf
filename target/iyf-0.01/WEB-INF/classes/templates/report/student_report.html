@@ -47,6 +47,7 @@
 			      <th scope="col">First Name</th>
 			      <th scope="col">Last</th>
 		    	  <th scope="col">Mobile</th>
+		    	  <th scope="col">Course</th>
 			      <th scope="col">Date Of Registered</th>
 			  </tr>
 			  
@@ -55,30 +56,41 @@
 					<td th:text="${student.objGbltOtpStudentRegTrns.firstName}"></td>
 					<td th:text="${student.objGbltOtpStudentRegTrns.lastName}"></td>
 					<td th:text="${student.objGbltOtpStudentRegTrns.IMobile}"></td>
+					<td th:text="${student.ObjIYFCourseConfig.stName}"></td>
 					<td th:text="${student.mDtRegistration}"></td>
 				</tr>
 			  
 			</table>
 			
 			
-			<table id="myTable">
+			<table id="myTable1" class="display" style="width:100%">
 			    <thead>
-			        <tr class="header">
+			        <tr >
 			      		<th scope="col">count</th> 
-			            <th scope="col">Roll No.</th>
-					    <th scope="col">Score</th>
+			      		<th scope="col"></th> 
+			            <th scope="col">Class Id</th>
+					    <th scope="col">Class Date</th>
+			            <th scope="col">Class Name</th>
+					    <th scope="col">Is Present</th>
 				    </tr>
 				</thead>
 				<tbody>
-					<tr th:each="student: ${ClassList}">
+					<tr th:each="student,count: ${attenList}">
 			   			<td th:text="${count.count}">  ${count.size}</td>
-					    <td th:text="${student.key}" />
-					    <td th:text="${student.value}">
+					    
+					    <td th:text="${student.stName}"/>
+					    <td th:text="${student.mIClassId}" />
 					    	
-					    </td>
+					    <td th:text="${student.mDtschedule}" />
+					    <td th:text="${student.mStName}" />
+					    	
+					    <td th:text="${student.present}" />
+					    
 					</tr>
 				</tbody>
 			</table>
+			
+			
 			<table id="myTable">
 			    <thead>
 			        <tr class="header">
@@ -324,9 +336,29 @@
 			
 		</div>
 		<a th:href="@{/course-config/list}"> Back to Student List</a>
-		
-		<!-- /iyf/src/main/resources/static/iyf/dashboard/dashboard_report.js -->
 		<script th:src="@{/iyf/dashboard/dashboard_report.js}"></script>
+		<!--  <script th:src="@{/assets/js/jquery-3.7.0.js}"></script> -->
+		<script th:src="@{/assets/js/jquery.dataTables1.min.js}"></script>
+		<script th:src="@{/assets/js/dataTables.rowGroup.min.js}"></script>
+		
+		<script type="text/javascript">
+		new DataTable('#myTable1', {
+		    order: [
+		        [1, 'asc'],
+		        [2, 'asc']
+		    ],
+		    rowGroup: {
+		        dataSrc: [1]//, 1]
+		    },
+		    columnDefs: [
+		        {
+		            targets: [1, 2],
+		            visible: false
+		        }
+		    ]
+		});
+		</script>
+		<!-- /iyf/src/main/resources/static/iyf/dashboard/dashboard_report.js -->
 		<script type="text/javascript">
 			jQuery(function($) {
 				$('.easy-pie-chart.percentage').each(function(){
@@ -543,7 +575,12 @@
 					else $(this).removeClass('dropup');
 				});
 			
-			})
+			});
+			
+			
 		</script>
+		
+		
 </body>
+
 </html>

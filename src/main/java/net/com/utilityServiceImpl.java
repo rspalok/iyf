@@ -12,16 +12,16 @@ import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import net.dao.master.CourseConfigDao;
+import net.master.course.dao.CourseConfigDao;
 import net.model.bean.GbltUserBean;
-import net.model.master.GbltOrgMst;
-import net.model.master.GbltOrgUnitMst;
-import net.model.master.GbltOtpStudentRegTrn;
-import net.model.master.GbltRolMst;
-import net.model.master.IYFBatchMst;
-import net.model.master.IyfCourseMst;
-import net.model.transection.IYFCourseConfig;
-import net.model.transection.IyfPublicRegUrlTrn;
+import net.model.master.pojo.batch.IYFBatchMst;
+import net.model.master.pojo.course.IyfCourseMst;
+import net.model.master.pojo.org.GbltOrgMst;
+import net.model.master.pojo.org.GbltOrgUnitMst;
+import net.model.master.pojo.role.GbltRolMst;
+import net.model.transection.notice.IyfPublicRegUrlTrn;
+import net.model.transection.pojo.courseconfig.IYFCourseConfig;
+import net.model.transection.pojo.registration.GbltOtpStudentRegTrn;
 
 @Service
 @Transactional

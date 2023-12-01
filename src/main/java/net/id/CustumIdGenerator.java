@@ -18,11 +18,11 @@ import org.hibernate.HibernateException;
 import org.hibernate.engine.spi.SharedSessionContractImplementor;
 import org.hibernate.id.IdentifierGenerator;
 
-import net.model.master.FollowUpMaster;
-import net.model.master.GbltOtpStudentRegTrn;
-import net.model.master.GbltUserMst;
-import net.model.transection.FollowUpTrn;
-import net.model.transection.IyfClassSchedTrn; 
+import net.model.master.pojo.followup.FollowUpMaster;
+import net.model.master.pojo.role.GbltUserMst;
+import net.model.transection.pojo.followup.FollowUpTrn;
+import net.model.transection.pojo.registration.GbltOtpStudentRegTrn;
+import net.model.transection.pojo.schedule.IyfClassSchedTrn; 
  
  
 public class CustumIdGenerator implements IdentifierGenerator  {

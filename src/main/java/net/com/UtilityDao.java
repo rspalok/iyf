@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import net.model.master.pojo.org.GbltOrgMst;
 import net.model.master.pojo.org.GbltOrgUnitMst;
 import net.model.master.pojo.role.GbltRolMst;
-import net.model.transection.notice.IyfPublicRegUrlTrn;
+import net.model.transection.pojo.notice.IyfPublicRegUrlTrn;
 import net.model.transection.pojo.registration.GbltOtpStudentRegTrn;
 
 public interface UtilityDao extends JpaRepository<GbltOrgMst, String> {

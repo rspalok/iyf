@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import net.com.utilityService;
-import net.model.transection.notice.IyfPublicRegUrlTrn;
+import net.model.transection.pojo.notice.IyfPublicRegUrlTrn;
 
 @Controller
 @RequestMapping("/publish")

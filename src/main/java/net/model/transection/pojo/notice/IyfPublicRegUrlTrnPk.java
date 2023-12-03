@@ -1,4 +1,4 @@
-package net.model.transection.notice;
+package net.model.transection.pojo.notice;
 
 import java.io.Serializable;
 import java.util.Objects;

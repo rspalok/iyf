@@ -9,8 +9,8 @@ import net.model.master.pojo.course.IyfCourseMst;
 import net.model.master.pojo.org.GbltOrgMst;
 import net.model.master.pojo.org.GbltOrgUnitMst;
 import net.model.master.pojo.role.GbltRolMst;
-import net.model.transection.notice.IyfPublicRegUrlTrn;
 import net.model.transection.pojo.courseconfig.IYFCourseConfig;
+import net.model.transection.pojo.notice.IyfPublicRegUrlTrn;
 import net.model.transection.pojo.registration.GbltOtpStudentRegTrn;
 
 public interface utilityService {

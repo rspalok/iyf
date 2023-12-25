@@ -25,7 +25,6 @@
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/report/dasboard/service/DashboardSer.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/transection/login/service/UserDetailsServiceImpl.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/comunication/WhatsappSender.java
-/Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/transection/notice/IyfPublicRegUrlTrnPk.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/master/pojo/org/GbltOrgUnitMst.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/transection/followup/controller/FollowUpCnt.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/transection/pojo/registration/GbltOtpStudentRegTrnPk.java
@@ -62,7 +61,6 @@
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/master/pojo/yatra/YatraSanctuaryMst.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/transection/attendance/dao/CourseRegistrationDao.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/transection/pojo/followup/FollowUpTrnPk.java
-/Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/transection/notice/IyfPublicRegUrlTrn.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/transection/pojo/followup/FollowUpTrn.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/master/course/dao/CourseDao.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/bean/GbltStudentBean.java
@@ -102,6 +100,7 @@
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/transection/followup/service/FollowUpSer.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/validator/FieldMatch.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/transection/pojo/followup/FollowUpResponsePk.java
+/Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/transection/pojo/notice/IyfPublicRegUrlTrn.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/master/pojo/role/GbltUserMst.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/IYFWebAppApplication.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/master/batch/controller/BatchCnt.java
@@ -111,5 +110,6 @@
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/master/pojo/facilitator/IYFFacilitatorMst.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/master/pojo/menu/MenuMaster.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/validator/EmailValidator.java
+/Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/transection/pojo/notice/IyfPublicRegUrlTrnPk.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/transection/pojo/yatra/YatraCruiseTrn.java
 /Users/harikirtan/Documents/GitHub/iyf/src/main/java/net/model/transection/pojo/attendance/IyfCoureRegTrn.java

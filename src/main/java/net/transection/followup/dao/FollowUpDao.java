@@ -22,7 +22,7 @@ public interface FollowUpDao extends JpaRepository<FollowUpResponseTrn, FollowUp
 	@Query("SELECT s FROM FollowUpTrn s Join s.objFollowUpMaster where  s.isValid = 1 and s.stOrgId =:org") 
 	List<FollowUpTrn> getFolowUpTrnList(@Param("org") String org);
 	
-	@Query("SELECT s FROM IyfCoureRegTrn s where  s.mIsValid = 1 and s.mStOrgId =:org") 
+	@Query("SELECT s FROM IyfCoureRegTrn s where  s.mIsValid = 1 and s.mStOrgId =:org order by s.objGbltOtpStudentRegTrns.mChanting desc") 
 	List<IyfCoureRegTrn> getAllCourseRegisteredStudent(@Param("org") String org);
 
 	@Query("SELECT s FROM IyfCoureRegTrn s where s.mICourseConfig=:mICourseConfig and s.mIsValid = 1 and s.mStOrgId =:org") 

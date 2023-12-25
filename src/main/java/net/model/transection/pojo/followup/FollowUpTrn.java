@@ -53,7 +53,7 @@ public class FollowUpTrn implements Serializable {
 	@Column(name = "str_content", nullable = false, columnDefinition = "character varying (225)")
 	private String stContent;
 
-	@Column(name = "str_owner_id", nullable = false, columnDefinition = "character varying (15)")
+	@Column(name = "str_user_id", nullable = false, columnDefinition = "character varying (15)")
 	private String stOwnerId;
 
 	@Id

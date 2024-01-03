@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -14,13 +15,15 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity 
 @Table(name = "iyf_course_mst", schema = "iyf") 
+
+@IdClass(IyfCourseMstPk.class)
 public class IyfCourseMst implements Serializable{
 	 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(name = "num_course_id",length=4)
-	private Long mICourse;
+	private Integer mICourse;
 	
 	@Column(name = "str_name", nullable = false, columnDefinition = "character varying (15)")
 	private String mStName;
@@ -28,6 +31,7 @@ public class IyfCourseMst implements Serializable{
 	@Column(name = "str_user_id", nullable = false, columnDefinition = "character varying (15)")
 	private String mStOwnerId;
 	
+	@Id
 	@Column(name = "str_org_id", nullable = false, columnDefinition = "character varying (20)")
 	private String mStOrgId;
 
@@ -43,11 +47,11 @@ public class IyfCourseMst implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Long getmICourse() {
+	public Integer getmICourse() {
 		return mICourse;
 	}
 
-	public void setmICourse(Long mICourse) {
+	public void setmICourse(Integer mICourse) {
 		this.mICourse = mICourse;
 	}
 

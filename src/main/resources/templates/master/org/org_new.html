@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="com/base::layout(~{::body})">
+<head th:include="com/base :: headerFragment"> <title id="pageTitle">Batch Master</title>
+<meta charset="utf-8">
+
+<title>OTP Directory</title>
+<style th:inline="text">
+</style>
+
+</head>
+<body>
+
+	<div class="page-content"> 
+	<h2>Base Master</h2>
+	<hr>
+	<form action="#" th:action="@{/org/save}" th:object="${gbltOrgUnitMst}" method="POST">   
+		<div class="row p-t-20">
+		
+			<input type="hidden" th:field="*{mOrgUnit}" />
+			<div class="col-xs-12"> 
+				<div class="col-md-4 col-sm-4">
+					<label for="mDtCourseEnd">Student</label> 
+					<select class="form-control" th:field="*{stOrgId}" >
+					    <option value="0">select option</option>
+					    <option th:each="option : ${org}" th:value="${option.stOrgId}" th:text="${option.strName}"></option>
+					</select>
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<label for="strName">Course Name</label>  
+					<input class="form-control form-field" required="required" maxlength="125" type="text" th:field="*{strName}" placeholder="Name"  />
+					 
+				
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<label for="sstrAddress">Address</label>  
+					<input class="form-control form-field" required="required" maxlength="125" type="text" th:field="*{strAddress}" placeholder="Address"  />
+					 
+				
+				</div>
+		 	</div>
+		</div>
+	 	<hr>
+	 	<div class="center">
+	 		<button type="submit" class="btn btn-info">Save</button>
+	 	</div>
+			
+	</form> 
+	<a th:href="@{/org/list}"> Back to Student List</a>
+	 
+	</div>
+</body>
+</html>

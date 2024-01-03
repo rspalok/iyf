@@ -20,7 +20,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import net.master.batch.dao.BatchDao;
 import net.master.course.dao.CourseConfigDao;
-import net.master.course.dao.CourseDao;
+import net.master.journey.dao.CourseDao;
 import net.model.bean.GbltUserBean;
 import net.model.master.pojo.batch.IYFBatchMst;
 import net.model.master.pojo.classtype.ClassTypeMst;

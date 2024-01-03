@@ -39,7 +39,7 @@ public class MenuController {
 	@GetMapping("/new_menu")
 	public String showNewMenu(MenuMaster menuMaster,Model model,HttpServletRequest request) {
 
-		return "new_menu";
+		return "transection/menu/new_menu";
 	}
 	
 	@PostMapping("/save")

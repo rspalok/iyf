@@ -78,7 +78,7 @@ public class DashBoardDaoImpl implements DashBoardDao {
 				+ " (select count(mIClassId) from IyfCourseAttenTrn at where "
 				+ " at.mIClassId=a.mIClassId and at.mICourseConfig=a.mICourseConfig and at.stStudentId =:stStudentId) as present   " 
 		+ " ) from IyfClassSchedTrn  a , IYFCourseConfig  b  where a.mICourseConfig in :mICourseConfig and a.mICourseConfig =b.mICourseConfig "
-		+ " and a.mStOrgId=:mStOrgId";
+		+ " and a.mStOrgId=:mStOrgId order by present desc ";
 
 		 //where a.num_course_config_id=1 and a.num_course_config_id =b.num_course_config_id*/
 
@@ -90,9 +90,6 @@ public class DashBoardDaoImpl implements DashBoardDao {
 				.setParameter("mStOrgId", mStOrgId)
 				.getResultList();
 		System.out.println("resultresult "+result1);
-		
-		
- 
 		return result1;
 	}
 
@@ -109,12 +106,11 @@ public class DashBoardDaoImpl implements DashBoardDao {
 				+ " s.stAddress as stAddress, "
 				+ " s.IMobile as IMobile, "
 				+ " (select count(mIClassId) from IyfCourseAttenTrn at where "
-				+ "  at.stStudentId=a.stStudentId ) as present   " 
+				+ "  at.stStudentId=a.stStudentId and at.mICourseConfig = a.mICourseConfig ) as present   " 
 		+ " ) from IyfCoureRegTrn  a ,GbltOtpStudentRegTrn s  where a.mICourseConfig = :mICourseConfig "
 		+ " and a.stStudentId =s.stStudentId "
-		+ " and a.mStOrgId=:mStOrgId";
+		+ " and a.mStOrgId=:mStOrgId order by present desc";
 
-		 //where a.num_course_config_id=1 and a.num_course_config_id =b.num_course_config_id*/
 
 		System.out.println("resultresult "+Query1);
 		List<Map>  result1 =sf.createQuery(Query1,Map.class)
@@ -127,9 +123,4 @@ public class DashBoardDaoImpl implements DashBoardDao {
 		return result1;
 	}
 
-	/*@Query("SELECT e from IyfCoureRegTrn e JOIN e.objGbltOtpStudentRegTrns  JOIN e.ObjIYFCourseConfig  "
-			+ " where e.mDtRegistration =:mDtRegistration and e.mICourseConfig=:mICourseConfig  and e.mStOrgId=:mStOrgId") 
-	List<IyfCoureRegTrn> getRagisterdStudentOnDateandCourseConfig(@Param("mDtRegistration")  Date dtRegistration,@Param("mICourseConfig")  Long getmICourseConfig,
-			@Param("mStOrgId") String org);
-*/
 }

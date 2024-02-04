@@ -142,7 +142,6 @@ $(function () {
 		   }
 		}
      });
-     
 });
 
 	getPresentStudentList = function (){

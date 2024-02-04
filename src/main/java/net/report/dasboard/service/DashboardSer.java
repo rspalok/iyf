@@ -34,4 +34,6 @@ public interface DashboardSer {
 
 	List<Map> getAttendanceCount(Long getmICourseConfig, HttpServletRequest request);
 
+	public List<Map> studentOtpReport(GbltStudentBean gbltStudentBean, HttpServletRequest request);
+
 }

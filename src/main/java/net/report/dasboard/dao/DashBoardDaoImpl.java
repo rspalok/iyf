@@ -11,6 +11,7 @@ import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import net.model.bean.GbltStudentBean;
 import net.model.transection.pojo.attendance.IyfCoureRegTrn;
 import net.model.transection.pojo.attendance.IyfCourseAttenTrn;
 
@@ -117,6 +118,37 @@ public class DashBoardDaoImpl implements DashBoardDao {
 
 				.setParameter("mICourseConfig", mICourseConfig)
 				.setParameter("mStOrgId", mStOrgId)
+				.getResultList();
+		System.out.println("resultresult "+result1);
+		
+		return result1;
+	}
+
+	@Override
+	public List<Map> getAttendanceCount(String org,GbltStudentBean gbltStudentBean) {
+		Session sf = entityManeger.unwrap(Session.class);
+		gbltStudentBean.setmICourseConfig((long) 5);
+		String Query1=" select new Map( a.stStudentId as stStudentId , "
+				+ " a.mDtRegistration as mDtRegistration , "
+				+ " s.firstName as firstName , "
+				+ " s.lastName as lastName, "
+				+ " s.mChanting as mChanting ,"
+				+ " s.stOccupation as stOccupation, "
+				+ " s.stAddress as stAddress, "
+				+ " s.IMobile as IMobile, "
+				+ " (select count(mIClassId) from IyfCourseAttenTrn at where "
+				+ "  at.stStudentId=a.stStudentId and at.mICourseConfig = a.mICourseConfig ) as present " 
+		+ " ) from IyfCoureRegTrn  a ,GbltOtpStudentRegTrn s  where a.mICourseConfig = :mICourseConfig "
+		+ " and a.stStudentId =s.stStudentId and  a.stStudentId not in (select w.stStudentId from "
+		+ " IyfCoureRegTrn as w where w.mICourseConfig !=a.mICourseConfig )"
+		+ " and a.mStOrgId=:mStOrgId order by present desc";
+
+
+		System.out.println("resultresult "+Query1);
+		List<Map>  result1 =sf.createQuery(Query1,Map.class)
+
+				.setParameter("mICourseConfig", gbltStudentBean.getmICourseConfig())
+				.setParameter("mStOrgId", org)
 				.getResultList();
 		System.out.println("resultresult "+result1);
 		

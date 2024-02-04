@@ -237,6 +237,23 @@ public class DashboardSerImpl implements DashboardSer {
 		}
 		return ClassAttendance;
 	}
+
+	@Override
+	public List<Map> studentOtpReport(GbltStudentBean gbltStudentBean, HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		HttpSession session = request.getSession(); 
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
+		String org= theUser.getStOrgId();
+		
+
+		List<Map> studentOtpAttendance = null; 
+		
+		//ClassAttendance=dao.getAttendanceCount(mICourseConfig,org);
+
+		studentOtpAttendance=dao.getAttendanceCount(org,gbltStudentBean);
+		
+		return studentOtpAttendance;
+	}
 	
 	
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import net.model.bean.GbltStudentBean;
 import net.model.transection.pojo.attendance.IyfCoureRegTrn;
 import net.model.transection.pojo.attendance.IyfCourseAttenTrn;
 
@@ -20,6 +21,8 @@ public interface DashBoardDao {
 	public  List<Map> ClassAttendance(String studentId, Set<Long> courseSet, String org);
 
 	public List<Map> getAttendanceCount(Long mICourseConfig, String org);
+
+	public List<Map> getAttendanceCount(String org,GbltStudentBean gbltStudentBean);
 
 
 }

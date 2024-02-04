@@ -78,11 +78,12 @@
 					<input th:type="text" required="required" th:field="*{stOccupation}" placeholder="Student Occupation" class="form-control mb-4 col-4">
 					</div></div>
 					<div class="col-md-4 col-sm-4">
-					<div class="form-group">
-						<label for="mDtCourseEnd">Total No of Round Chanting Daily<span class="text-danger"> *</span></label>
-					<input th:type="number" required="required" th:field="*{mChanting}" th:max="99" placeholder="Total No of Round Chanting" class="form-control mb-4 col-4">
-					</div></div>
-					<div class="col-md-4">
+						<div class="form-group">
+							<label for="mDtCourseEnd">Total No of Round Chanting Daily<span class="text-danger"> *</span></label>
+							<input th:type="number" required="required" th:field="*{mChanting}" th:max="99" placeholder="Total No of Round Chanting" class="form-control mb-4 col-4">
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-4">
 						<div class="form-group">
 							<label class="control-label" for="">Base <span class="text-danger"> *</span></label> 
 							<select id="mOrgUnit" class="form-control custom-select" th:field="*{mOrgUnit}"
@@ -97,7 +98,7 @@
 						<label for="mDtCourseEnd">Address<span class="text-danger"> *</span></label> 
 						<input type="text" required="required" th:field="*{stAddress}" placeholder="Student Address" class="form-control mb-4 col-4">   
 					</div></div>
-					<div class="col-md-4">
+					<div class="col-md-4 col-sm-4">
 						<div class="form-group">
 							<label class="control-label" for="">Registration Type<span class="text-danger"> *</span></label> 
 							<select class="form-control custom-select" th:field="*{mRegType}"
@@ -163,8 +164,6 @@
 			size:75
 		}).css('color', $(this).data('color'));
 	});
-	
-	
 	
 	</script>
 </body>

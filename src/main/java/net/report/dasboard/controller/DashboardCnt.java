@@ -40,6 +40,29 @@ public class DashboardCnt {
 		return util_service.studentByMobileNo(mobileNumber, objRequest_p);
 	}
 	
+	@GetMapping("/otp")
+	public String studentOtpReport(GbltStudentBean gbltStudentBean,Model model,HttpServletRequest request, HttpServletResponse response) {
+	
+
+		model.addAttribute("CourseConfigList", util_service.getCourseConfigList(request));
+		List<Map> list = service.studentOtpReport(gbltStudentBean,request);
+		System.out.println("=======  "+list);
+		model.addAttribute("allPresentCount",list);
+
+		model.addAttribute("allPresentStudent",service.getAllPresentStudentList(gbltStudentBean.getmICourseConfig(),gbltStudentBean.getmClassId(),request));
+
+		return "report/otp_student_report"; 
+	}
+	@PostMapping("/otp")
+	public String postOtp(GbltStudentBean gbltStudentBean,Model model,HttpServletRequest request, HttpServletResponse response) {
+	
+		
+		
+		return studentOtpReport( gbltStudentBean, model, request,  response);
+
+	}
+	
+	
 	
 	@GetMapping("/student")
 	public String studentReport(GbltStudentBean gbltStudentBean,Model model,HttpServletRequest request, HttpServletResponse response) {

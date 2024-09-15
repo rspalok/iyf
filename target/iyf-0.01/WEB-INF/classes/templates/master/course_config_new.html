@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="com/base::layout(~{::body})">
+<head th:include="com/base :: headerFragment"> <title id="pageTitle">Course Configure</title>
+<meta charset="utf-8">
+
+<title>OTP Directory</title>
+
+</head>
+<body>
+	<div class="page-content">
+		<h2>Configure Course</h2>
+		<hr>
+			<form action="#" th:action="@{/course-config/save}" th:object="${iyfCourseConfig}" method="POST">   
+			<div class="row p-t-20">
+			
+			<input type="hidden" th:field="*{mICourseConfig}" />
+				<div class="col-xs-12"> 
+					<div class="col-md-4 col-sm-4">
+						<label for="stName">Course Name</label>  
+						<input class="form-control form-field" required="required" maxlength="125" type="text" th:field="*{stName}" placeholder="Username"  />
+						 
+					</div> 
+					<div class="col-md-4 col-sm-4">
+						<label for="mDtCourseEnd">Batch</label> 
+						<select class="form-control" required="required" th:field="*{mIBatch}" >
+						    <option value="0">select option</option>
+						    <option th:each="option : ${batch}" th:value="${option.IBatch}" th:text="${option.stName}"></option>
+						</select>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<label for="mDtCourseEnd">Course</label> 
+						<select class="form-control" required="required" th:field="*{mICourse}" >
+						    <option value="0">select option</option>
+						    <option th:each="option : ${course}" th:value="${option.mICourse}" th:text="${option.mStName}"></option>
+						</select>
+					</div>
+					<div class="col-md-4 col-sm-4">
+						<label for="mDtCourseStart">Start Date</label> 
+						<div class="input-group">
+							<input class="form-control date-picker" required="required" th:field="*{mDtCourseStart}" type="text" data-date-format="dd-mm-yyyy" /> 
+							<span class="input-group-addon"> <i class="fa fa-calendar bigger-110"></i> </span>
+						</div>
+					</div> 
+					<div class="col-md-4 col-sm-4">
+						<label for="mDtCourseEnd">End Date</label> 
+						<div class="input-group">
+							<input class="form-control date-picker" required="required" th:field="*{mDtCourseEnd}" type="text" data-date-format="dd-mm-yyyy" /> 
+							<span class="input-group-addon"> <i class="fa fa-calendar bigger-110"></i> </span>
+						</div>
+					</div>
+						
+				</div>  
+		 	</div>
+		 	<hr>
+		 	<div class="center">
+		 		<button type="submit" class="btn btn-info">Save</button>
+		 	</div>
+				
+		</form>
+		</div>
+		<a th:href="@{/course-config/list}"> Back to Student List</a>
+	
+	
+</body>
+</html>

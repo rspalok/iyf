@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="com/base::layout(~{::body})">
+<head th:include="com/base :: headerFragment"> <title id="pageTitle">Schedule Class</title>
+<meta charset="utf-8">
+
+<title>OTP Directory</title>
+<style th:inline="text">
+</style>
+
+</head>
+<body>
+	<div class="page-content">
+		<h2>Schedule New Class</h2>
+		<hr>
+			<form action="#" th:action="@{/schedule/save}" th:object="${iyfClassSchedTrn}" method="POST">   
+			<div class="row p-t-20">
+			 
+				<input hidden type="text" th:field="*{mIClassId}" />
+				<div class="col-xs-12"> 
+				
+				<!-- mStName -->
+					<div class="col-md-4 col-sm-4">
+						<label for="stName">Class Name</label>  
+						<input class="form-control form-field" maxlength="125" type="text" th:field="*{mStName}" placeholder="Class Name"  />
+						 
+					</div> 
+					<div class="col-md-4 col-sm-4">
+						<label for="mDtCourseEnd">Course</label> 
+						<select class="form-control" th:field="*{mICourseConfig}" >
+						    <option value="0">select option</option>
+						    <option th:each="option : ${courseConfig}" th:value="${option.mICourseConfig}" th:text="${option.stName}"></option>
+						</select>
+					</div>
+					
+					<div class="col-md-4 col-sm-4">
+						<label for="mIClassType">Class Type</label> 
+						<select class="form-control" th:field="*{mIClassType}" >
+						    <option value="0">select option</option>
+						    <option th:each="option : ${ClassTypeMst}" th:value="${option.mClassType}" th:text="${option.strName}"></option>
+						</select>
+					</div>
+					
+					<div class="col-md-4 col-sm-4">
+						<label for="date-timepicker1">Class Date/Time MM/DD/YYYY HH:MM AM</label>
+	
+						<div class="input-group">
+							<input id="date-timepicker1" th:field="*{mDtschedule}" type="text" placeholder="01/20/2000 10:30 AM" class="form-control" />
+							<span class="input-group-addon">
+								<i class="fa fa-clock-o bigger-110"></i>
+							</span>
+						</div>
+					</div>
+				</div>  
+		 	</div>
+		 	<hr>
+		 	<div class="center">
+		 		<button type="submit" class="btn btn-info">Save</button>
+		 	</div>
+				
+		</form>
+		</div>
+		<a th:href="@{/course-config/list}"> Back to Student List</a>
+		<hr>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="com/base::layout(~{::body})">
+<head th:include="com/base :: headerFragment"> <title id="pageTitle">Batch list</title>
+<meta charset="ISO-8859-1">
+<title>Student Management System</title>
+ 
+</head>
+<body>
+	<div class="page-content"> 
+		<h1>
+			Batch List <i class="bi bi-download"></i>
+		</h1><hr>
+		<a th:href="@{/batch/form}" class="btn btn-primary btn-sm mb-3">
+			Add Batch </a>
+
+		<table class="table table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th><a
+						th:href="@{'/page/' + ${currentPage} + '?sortField=IBatch&sortDir=' + ${reverseSortDir}}">
+						Batch Id </a></th>
+					<th><a
+						th:href="@{'/page/' + ${currentPage} + '?sortField=stName&sortDir=' + ${reverseSortDir}}">
+							Name</a></th>
+					<th><a
+						th:href="@{'/page/' + ${currentPage} + '?sortField=dtBatchStart&sortDir=' + ${reverseSortDir}}">
+							Start Date</a></th>
+					<th><a
+						th:href="@{'/page/' + ${currentPage} + '?sortField=dtBatchEnd&sortDir=' + ${reverseSortDir}}">
+							End Date</a></th>
+					 
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="student : ${listGbltOtpStudentRegTrns}"> 
+					<td th:text="${student.IBatch}"></td>
+					<td th:text="${student.stName}"></td>
+					<td th:text="${student.dtBatchStart}"></td>
+					<td th:text="${student.dtBatchEnd}"></td> 
+					<td>
+					<a th:href="@{/batch/showFormForUpdate/{id}(id=${student.IBatch})}" class="btn btn-minier btn-primary">Update</a> 
+					<a th:href="@{/batch/delete/{id}(id=${student.IBatch})}" class="btn btn-minier btn-danger">Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div th:if="${totalPages > 1}">
+			<div class="row col-sm-10">
+				<div class="col-md-3">Total Rows: [[${totalItems}]]</div>
+				<div class="col-md-7"
+					style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}"> <a
+						th:if="${currentPage != i}"
+						th:href="@{'/batch/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+						<span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp;
+						&nbsp;
+					</span>
+				</div>
+				<div class="col-md-1">
+					<a th:if="${currentPage < totalPages}"
+						th:href="@{'/batch/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+					<span th:unless="${currentPage < totalPages}">Next</span>
+				</div>
+
+				<div class="col-md-1">
+					<a th:if="${currentPage < totalPages}"
+						th:href="@{'/batch/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+					<span th:unless="${currentPage < totalPages}">Last</span>
+				</div>
+			</div>
+		</div>
+ 	</div>
+</body>
+</html>

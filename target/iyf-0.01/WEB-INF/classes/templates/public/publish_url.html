@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="com/base::layout(~{::body})">
+<head th:include="com/base :: headerFragment"> <title id="pageTitle">Course configured</title>
+<meta charset="ISO-8859-1">
+<title>Student Management System</title>
+  
+</head>
+<body  class="no-skin">
+	<div class="page-content"> 
+		<h1>
+			Course Configure List <i class="bi bi-download"></i>
+		</h1><hr>
+		<a th:href="@{/publish/create}" class="btn btn-primary btn-sm mb-3">
+			Configure a course</a>
+
+		<table  class="table table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th>
+					<a th:href="@{'/page/' + ${currentPage} + '?sortField=stName&sortDir=' + ${reverseSortDir}}"> Name</a></th>
+					<th>
+					<a th:href="@{'/page/' + ${currentPage} + '?sortField=stName&sortDir=' + ${reverseSortDir}}"> Batch </a></th>
+					<th>
+					<a th:href="@{'/page/' + ${currentPage} + '?sortField=stName&sortDir=' + ${reverseSortDir}}"> Course Name</a></th>
+					<th>
+					<a th:href="@{'/page/' + ${currentPage} + '?sortField=stName&sortDir=' + ${reverseSortDir}}"> Start Date</a></th>
+					<th>
+					<a th:href="@{'/page/' + ${currentPage} + '?sortField=stName&sortDir=' + ${reverseSortDir}}"> End Date</a></th>
+					<th>
+					<a th:href="@{'/page/' + ${currentPage} + '?sortField=stName&sortDir=' + ${reverseSortDir}}"> is Pulished</a></th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="student : ${urlList}"> 
+					<td th:text="${student.stName}"></td>
+					<td th:text="${student.stURL}"></td>
+					<td th:text="${student.stDescription}"></td>
+					<td th:text="${student.dtPublished}"></td>
+					<td th:text="${student.dtPublishExpiry}"></td>
+					<td th:text="${student.mPublished}"></td> 
+					<td>
+					<a th:href="@{/course-config/showFormForUpdate/{id}(id=${student.mICourseConfig})}" class="btn btn-primary">Update</a> 
+					<a th:href="@{/course-config/delete/{id}(id=${student.mICourseConfig})}" class="btn btn-danger">Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div th:if="${totalPages > 1}">
+			<div class="row col-sm-10">
+				<div class="col-md-3">Total Rows: [[${totalItems}]]</div>
+				<div class="col-md-7"
+					style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}"> <a
+						th:if="${currentPage != i}"
+						th:href="@{'/course-config/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+						<span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp;
+						&nbsp;
+					</span>
+				</div>
+				<div class="col-md-1">
+					<a th:if="${currentPage < totalPages}"
+						th:href="@{'/course-config/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+					<span th:unless="${currentPage < totalPages}">Next</span>
+				</div>
+
+				<div class="col-md-1">
+					<a th:if="${currentPage < totalPages}"
+						th:href="@{'/course-config/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+					<span th:unless="${currentPage < totalPages}">Last</span>
+				</div>
+			</div>
+		</div>
+ 	</div>
+</body>
+</html>

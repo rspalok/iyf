@@ -30,3 +30,19 @@ Database Class Loader started - derby.database.classpath=''
 ----------------------------------------------------------------
 Mon Sep 16 02:19:31 IST 2024:
 Shutting down instance 7bf98244-0191-f76a-a87e-00000952fe38 on database directory memory:/Users/harikirtan/Documents/GitHub/iyf/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@2aae9190 
+----------------------------------------------------------------
+Mon Sep 16 02:24:01 IST 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance 48b5447a-0191-f76a-a87e-00000952fe38 
+on database directory memory:/Users/harikirtan/Documents/GitHub/iyf/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@2aae9190 
+Loaded from file:/Users/harikirtan/.m2/repository/com/innoventsolutions/birt/runtime/org.apache.derby_10.11.1.1_v201605202053/4.8.0/org.apache.derby_10.11.1.1_v201605202053-4.8.0.jar
+java.vendor=Eclipse Adoptium
+java.runtime.version=17.0.5+8
+user.dir=/Users/harikirtan/Documents/GitHub/iyf
+os.name=Mac OS X
+os.arch=aarch64
+os.version=14.6.1
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Mon Sep 16 02:24:16 IST 2024:
+Shutting down instance 48b5447a-0191-f76a-a87e-00000952fe38 on database directory memory:/Users/harikirtan/Documents/GitHub/iyf/testdb with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@2aae9190 

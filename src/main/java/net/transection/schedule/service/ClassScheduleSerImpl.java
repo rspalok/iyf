@@ -27,7 +27,7 @@ public class ClassScheduleSerImpl implements ClassScheduleSer {
 	@Autowired ClassScheduleDao dao;
 	
 	@Override
-	public Page<IyfClassSchedTrn> findPaginated(int pageNo, int pageSize, String sortField, String sortDir,HttpServletRequest request) {
+	public Page<IyfClassSchedTrn> findPaginated(int pageNo, int pageSize, String sortField, String sortDir,HttpServletRequest request,IyfClassSchedTrn iyfClassSchedTrn) {
 		// TODO Auto-generated method stub
 		Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending()
 				: Sort.by(sortField).descending();
@@ -37,6 +37,9 @@ public class ClassScheduleSerImpl implements ClassScheduleSer {
 		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 		String Orgid=obj.getStOrgId();
 		
+		if(iyfClassSchedTrn.getmICourseConfig()!=null) {
+			return this.dao.findAllBymICourseConfigId(1, pageable,Orgid,iyfClassSchedTrn.getmICourseConfig());
+		}
 		return this.dao.findAllByIsvalid(1, pageable,Orgid);
 		// return this.dao.findAll(pageable); 
 	}

@@ -11,7 +11,7 @@ import net.model.transection.pojo.schedule.IyfClassSchedTrn;
 
 public interface ClassScheduleSer {
 
-	Page<IyfClassSchedTrn> findPaginated(int pageNo, int pageSize, String sortField, String sortDir, HttpServletRequest request);
+	Page<IyfClassSchedTrn> findPaginated(int pageNo, int pageSize, String sortField, String sortDir, HttpServletRequest request, IyfClassSchedTrn iyfClassSchedTrn);
 
 	List<IyfClassSchedTrn> getClassScheduleList(Long id,HttpServletRequest request);
 

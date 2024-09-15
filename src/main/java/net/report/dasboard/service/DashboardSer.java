@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import net.model.bean.GbltStudentBean;
 import net.model.transection.pojo.attendance.IyfCoureRegTrn;
@@ -22,8 +23,6 @@ public interface DashboardSer {
 
 	public List<IyfCourseAttenTrn> getAllPresentStudentList(Long getmICourseConfig, Long getmClassId, HttpServletRequest request);
 
-	public List<IyfCoureRegTrn> getAllRegisterdStudentList(Long getmICourseConfig, Long getmClassId, HttpServletRequest request);
-
 	public List<IyfCoureRegTrn>  getRagisterdStudentOnDateandCourseConfig(GbltStudentBean gbltStudentBean, HttpServletRequest request);
 
 	public List<IyfCoureRegTrn> getAllRagisterdCourseList(GbltStudentBean gbltStudentBean, HttpServletRequest request);
@@ -35,5 +34,9 @@ public interface DashboardSer {
 	List<Map> getAttendanceCount(Long getmICourseConfig, HttpServletRequest request);
 
 	public List<Map> studentOtpReport(GbltStudentBean gbltStudentBean, HttpServletRequest request);
+
+	public List<IyfCoureRegTrn> getAllRegisterdStudentList(GbltStudentBean gbltStudentBean, HttpServletRequest request);
+
+	public void genReport(GbltStudentBean gbltStudentBean, HttpServletRequest objRequest_p,HttpServletResponse objResponse_p) throws Exception;
 
 }

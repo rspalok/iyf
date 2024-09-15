@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import net.com.utilityService;
 import net.master.course.service.CourseConfigSer;
 import net.model.transection.pojo.schedule.IyfClassSchedTrn;
 import net.transection.schedule.service.ClassScheduleSer;
@@ -29,19 +30,44 @@ public class ClassScheduleCnt {
 	@Autowired
 	private CourseConfigSer courseConfigSer;
 	
+	@Autowired
+	private utilityService util_service;
+	
+	private Long courseId = null;
+	
 	@GetMapping("/list")
 	public String CourseConfigList(IyfClassSchedTrn iyfClassSchedTrn,Model model,HttpServletRequest request) {
-		return findPaginated(1, "mDtschedule", "desc", model,request);		
+		if(iyfClassSchedTrn.getmICourseConfig()!=null) {
+			this.courseId=iyfClassSchedTrn.getmICourseConfig();
+		}
+		
+		model.addAttribute("CourseConfigList", util_service.getCourseConfigList(request));
+
+		return findPaginated(1, "mDtschedule", "desc", model,request,iyfClassSchedTrn);		
+	}
+	@PostMapping("/lists")
+	public String CourseSpecificConfigList(IyfClassSchedTrn iyfClassSchedTrn,Model model,HttpServletRequest request) {
+		
+		model.addAttribute("CourseConfigList", util_service.getCourseConfigList(request));
+		System.out.println("getmICourseConfig" +iyfClassSchedTrn.getmICourseConfig());
+		if(iyfClassSchedTrn.getmICourseConfig()!=null) {
+			this.courseId=iyfClassSchedTrn.getmICourseConfig();
+		}
+		return findPaginated(1, "mDtschedule", "desc", model,request,iyfClassSchedTrn);		
 	}
 	@GetMapping("/page/{pageNo}")
 	private String findPaginated(@PathVariable (value = "pageNo") int pageNo, 
 				@RequestParam("sortField") String sortField,
 				@RequestParam("sortDir") String sortDir,
-				Model model, HttpServletRequest request) {
+				Model model, HttpServletRequest request,IyfClassSchedTrn iyfClassSchedTrn) {
 			int pageSize = 5;
-			
-			System.out.println("findPaginated"+pageNo+"  pageSize :"+ pageSize+"  sortField: "+sortField+"  sortDir: "+sortDir);
-			Page<IyfClassSchedTrn> page = service.findPaginated(pageNo, pageSize, sortField, sortDir,request);
+			model.addAttribute("CourseConfigList", util_service.getCourseConfigList(request));
+
+			if(iyfClassSchedTrn.getmICourseConfig()==null) {
+				iyfClassSchedTrn.setmICourseConfig(this.courseId);
+			}
+			System.out.println("findPaginated"+pageNo+"  pageSize :"+ pageSize+"  sortField: "+sortField+"  sortDir: "+sortDir +"getmICourseConfig" +iyfClassSchedTrn.getmICourseConfig());
+			Page<IyfClassSchedTrn> page = service.findPaginated(pageNo, pageSize, sortField, sortDir,request,iyfClassSchedTrn);
 			
 			List<IyfClassSchedTrn> listGbltOtpStudentRegTrns = page.getContent();
 			
@@ -69,7 +95,7 @@ public class ClassScheduleCnt {
 		
 		System.out.println("==============batch======"+iyfClassSchedTrn);
 		service.saveClassSchedule(iyfClassSchedTrn, request, response);
-		
+		this.courseId=iyfClassSchedTrn.getmICourseConfig();
 		return "redirect:/schedule/list";
 		//return null;//CourseConfigList(null,model);
 	}

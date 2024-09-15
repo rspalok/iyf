@@ -81,6 +81,8 @@ public class CourseRegAndMarkAttenCnt {
 	public String forRegistration(@PathVariable(value = "Id") Long mICourseConfig, GbltStudentBean gbltStudentBean,
 			Model model, HttpServletRequest request, HttpServletResponse response) {
 
+		gbltStudentBean.setStOccupation("Student");
+		gbltStudentBean.setEmail("@gmail.com");
 		model.addAttribute("CourseList", "/course/list");
 		model.addAttribute("CurrentUrlForRefresh", "/course/registration/" + mICourseConfig);
 		gbltStudentBean.setmICourseConfig(mICourseConfig);
@@ -125,20 +127,30 @@ public class CourseRegAndMarkAttenCnt {
 		gbltStudentBean.setmICourseConfig(mICourseConfig);
 		List<IyfClassSchedTrn> classList = classScheduleService.getClassScheduleList(gbltStudentBean.getmICourseConfig(), request);
 		model.addAttribute("courseConfig", service.getCourseConfigById(gbltStudentBean.getmICourseConfig(), request));
+		
+		Integer regStudentCount=ser.regInfo(mICourseConfig,request);
+		Integer attenStudentCount=0;
+		model.addAttribute("regStudentCount",regStudentCount );
 		if(classList.size()>0) {
 			model.addAttribute("classList", classList);
+			gbltStudentBean.setStOccupation("Student");
+			gbltStudentBean.setEmail("@gmail.com");
 			gbltStudentBean.setmClassId(classList.get(0).getmIClassId());
-	/////		model.addAttribute("allPresentStudent", ser.getAllPresentStudentInClass(gbltStudentBean, request));
+			//model.addAttribute("allPresentStudent", ser.getAllPresentStudentInClass(gbltStudentBean, request));
 
 			model.addAttribute("orgUnits", utilSer.allOrgUnits(request));
 			model.addAttribute("noClassSchedule", "");
-			model.addAttribute("attenStudentCount", ser.attenInfo(mICourseConfig,classList.get(0).getmIClassId(), request));
+			attenStudentCount=ser.attenInfo(mICourseConfig,classList.get(0).getmIClassId(), request);
+			model.addAttribute("attenStudentCount",attenStudentCount );
+			
+			Double res=(double) ((regStudentCount-attenStudentCount)*100/regStudentCount);
+			model.addAttribute("perStudent",100-res );
 			
 		}else {
 			model.addAttribute("noClassSchedule", "/schedule/list");
 		}
-	/////	model.addAttribute("allRegStudent", ser.getAllRegStudent(mICourseConfig, request));
-		model.addAttribute("regStudentCount", ser.regInfo(mICourseConfig,request));
+		//	model.addAttribute("allRegStudent", ser.getAllRegStudent(mICourseConfig, request));
+		
 		
 		return "transection/CourseAttendance";
 

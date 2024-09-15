@@ -58,4 +58,9 @@ public interface GbltOtpStudentRegTrnRepository extends JpaRepository<GbltOtpStu
 	+ " where e.mDtRegistration BETWEEN :dtFrom AND :dtTo  and e.mStOrgId=:mStOrgId")
 	List<IyfCoureRegTrn> getCourseRegisterdStudentBetweenDates(@Param("dtFrom") Date date,@Param("dtTo") Date date1,@Param("mStOrgId")  String org);
 
+
+    @Query("SELECT e from GbltOtpStudentRegTrn e where e.stStudentId = :stStudentId and e.stOrgId =:org") 
+   	List<GbltOtpStudentRegTrn> getStudentByStudentId(@Param("stStudentId") String stStudentId ,@Param("org")  String stOrgId);
+
+
 }

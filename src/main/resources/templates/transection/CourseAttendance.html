@@ -20,7 +20,7 @@
 		<div class="row content">
 		    <div class="col-sm-4">
 			    <div class="easy-pie-chart percentage" th:data-percent="${regStudentCount}" data-color="#87B87F">
-					<span class="percent" th:text="${regStudentCount}">90</span>%
+					Attendance percentage : <span class="percent" th:text="${perStudent}">90</span>%
 				</div>
 		    </div>
 		    <div class="col-sm-4" th:if="${noClassSchedule == ''}"> 
@@ -61,13 +61,14 @@
 				</div> 
 				<div class="col-md-3">
 					<div class="form-group"> 
-						<label for="mDtCourseEnd">Mobile No <span class="text-danger"> *</span></label> 
-						<input th:type="number" required="required" th:field="*{IMobile}" autocomplete="off" th:maxlength="10" onBlur="checkFormDatabase(this.value)" placeholder="Student Mobile" class="form-control mb-4 col-4">
+						<label for="IMobile">Mobile No <span class="text-danger"> *</span></label> 
+						<input th:type="number" required="required" th:field="*{IMobile}" autocomplete="off" 
+						onBlur="checkFormDatabase(this.value)" placeholder="Student Mobile" class="form-control mb-4 col-4">
 					</div> 
 				</div> 	
 				<div class="col-md-3">
 					<div class="form-group">
-						<label class="control-label" for="">Student<span class="text-danger"> *</span> </label> 
+						<label class="control-label" for="">Student <a onclick="copyStudentId()">Copy Id</a><span class="text-danger"> *</span> </label> 
 						<select id="stStudentId" class="form-control custom-select" th:field="*{stStudentId}"
 							data-placeholder="Choose a Category" tabindex="1" th:value="*{stStudentId}" > 
 							<option value=''>New</option>
@@ -98,7 +99,7 @@
 				<div class="col-md-3">
 					<div class="form-group"> 
 						<label for="mDtCourseEnd">Occupation <span class="text-danger"> *</span></label>
-					<input th:type="text" required="required" th:field="*{stOccupation}" placeholder="Student Occupation" class="form-control">
+						<input th:type="text" required="required" th:field="*{stOccupation}" placeholder="Student Occupation" class="form-control">
 					</div></div> 
 				<div class="col-md-3">
 					<div class="form-group"> 

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import net.model.master.pojo.batch.IYFBatchMst;
+import net.model.master.pojo.classtype.BlackListTypeMst;
 import net.model.master.pojo.course.IyfCourseMst;
 import net.model.master.pojo.org.GbltOrgMst;
 import net.model.master.pojo.org.GbltOrgUnitMst;
@@ -36,4 +37,6 @@ public interface utilityService {
 	public List<GbltOrgUnitMst> allOrgUnits(HttpServletRequest request);
 
 	public List<IyfPublicRegUrlTrn> getUrlList(HttpServletRequest request);
+
+	public List<BlackListTypeMst> getBlackListType(HttpServletRequest request);
 }

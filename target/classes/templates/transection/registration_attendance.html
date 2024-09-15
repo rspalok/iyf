@@ -50,8 +50,8 @@ xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 					<td th:text="${#dates.format(student.mDtCourseEnd, 'dd-MMM-yyyy')}"></td>
 					<td>
 
-					<a th:href="@{/course/registration/{id}(id=${student.mICourseConfig})}" class="btn btn-primary">Register Student</a> 
-					<a th:href="@{/course/attendance/{id}(id=${student.mICourseConfig})}" class="btn btn-danger">Take Attendance</a>
+					<a th:href="@{/course/registration/{id}(id=${student.mICourseConfig})}" class="btn btn-minier btn-success">Register Student</a> 
+					<a th:href="@{/course/attendance/{id}(id=${student.mICourseConfig})}" class="btn btn-minier btn-primary">Take Attendance</a>
 					</td>
 				</tr>
 			</tbody>

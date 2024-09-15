@@ -3,7 +3,7 @@ function checkFormDatabase(id){
 	if(id.length <10){
 		return;
 	}
-	var action = "../studentByMobileNo/?mobileNumber=" + id;
+	var action = "../iyf/studentByMobileNo/?mobileNumber=" + id;
 	 
 	console.log("alert is working  "+action);
 	$.ajax({url: action,type:"GET",async:false,dataType:"json" ,success:function(data) {
@@ -51,7 +51,7 @@ function viewSingleDtls(res, mode) {
 	}
 	
 }
-$(function () {
+(function () {
     $('#registrationId').on("change", function() {
        console.log($('#registrationId option:selected').val());
        // your ajax call

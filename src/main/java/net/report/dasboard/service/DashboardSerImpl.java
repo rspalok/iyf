@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
@@ -21,6 +22,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+import net.com.ReportUtil;
 import net.model.bean.GbltStudentBean;
 import net.model.bean.GbltUserBean;
 import net.model.transection.pojo.attendance.IyfCoureRegTrn;
@@ -34,6 +36,8 @@ import net.transection.schedule.dao.ClassScheduleDao;
 @Service
 @Transactional
 public class DashboardSerImpl implements DashboardSer {
+	
+	private static final String ReportType = "PDF";
 	
 	@Autowired
 	private DashBoardDao dao;
@@ -108,18 +112,24 @@ public class DashboardSerImpl implements DashboardSer {
 		HttpSession session = request.getSession(); 
 		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 		String Orgid=obj.getStOrgId();
+		List<IyfCourseAttenTrn> alist=attenDao.getAllPresentStudentInClass(getmICourseConfig, getmClassId, Orgid);
 		
-		return attenDao.getAllPresentStudentInClass(getmICourseConfig, getmClassId, Orgid);
+		List<IyfCourseAttenTrn> alistNew = new ArrayList<IyfCourseAttenTrn>();
+		for (IyfCourseAttenTrn iyfCourseAttenTrn : alist) {
+			if(iyfCourseAttenTrn.getObjGbltOtpStudentRegTrns().getIIsValid()==1)
+				alistNew.add(iyfCourseAttenTrn);
+		}
+		
+		return alistNew;// attenDao.getAllPresentStudentInClass(getmICourseConfig, getmClassId, Orgid);
 	}
 
 	@Override
-	public List<IyfCoureRegTrn> getAllRegisterdStudentList(Long mICourseConfig, Long getmClassId,
-			HttpServletRequest objRequest_p) {
+	public List<IyfCoureRegTrn> getAllRegisterdStudentList( GbltStudentBean gbltStudentBean,HttpServletRequest objRequest_p) {
 		// TODO Auto-generated method stub
 		HttpSession session = objRequest_p.getSession(); 
 		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 		String Orgid=obj.getStOrgId();
-		List<IyfCoureRegTrn> list=regDao.getCourseRegValidStudentObj( mICourseConfig,  Orgid);
+		List<IyfCoureRegTrn> list=regDao.getCourseRegValidStudentObj( gbltStudentBean.getmICourseConfig(),gbltStudentBean.getmICourseConfig1(),  Orgid);
 		
 		
 		SimpleDateFormat sdformat = new SimpleDateFormat("yyyy-MM-dd");
@@ -129,24 +139,23 @@ public class DashboardSerImpl implements DashboardSer {
 		List<IyfCoureRegTrn> list2 = new ArrayList<>();
 		for (IyfCoureRegTrn iyfCoureRegTrn : list) {
 			System.out.println("====iyfCoureRegTrn==="+iyfCoureRegTrn);
-			
-			try {
-				Date d1 = sdformat.parse(now.toString());
-			    Date d2 = sdformat.parse(iyfCoureRegTrn.getmDtRegistration().toString());
-				if(d1.compareTo(d2) == 0) {
-					iyfCoureRegTrn.setTempStatus(iyfCoureRegTrn.getObjGbltOtpStudentRegTrns().getLastName() + " (New)");
-				}else {
-					iyfCoureRegTrn.setTempStatus(iyfCoureRegTrn.getObjGbltOtpStudentRegTrns().getLastName());
+			if(iyfCoureRegTrn.getObjGbltOtpStudentRegTrns().getIIsValid()==1) {
+				try {
+					Date d1 = sdformat.parse(now.toString());
+				    Date d2 = sdformat.parse(iyfCoureRegTrn.getmDtRegistration().toString());
+					if(d1.compareTo(d2) == 0) {
+						iyfCoureRegTrn.setTempStatus(iyfCoureRegTrn.getObjGbltOtpStudentRegTrns().getLastName() + " (New)");
+					}else {
+						iyfCoureRegTrn.setTempStatus(iyfCoureRegTrn.getObjGbltOtpStudentRegTrns().getLastName());
+					}
+					list2.add(iyfCoureRegTrn);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				list2.add(iyfCoureRegTrn);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			}
 		}
-
-		System.out.println("====iyfCoureRegTrn==="+list2);
-		return list;
+		return list2;
 	}
 
 	@Override
@@ -160,15 +169,11 @@ public class DashboardSerImpl implements DashboardSer {
 		
 		String sDate1=gbltStudentBean.getDtRegistration();
 
-		Date date1 = null; 
-	    try {
-			 date1=new SimpleDateFormat("dd-MM-yyyy").parse(sDate1);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}  
-		
-		return dao.getRagisterdStudentOnDateandCourseConfig(date1,gbltStudentBean.getmICourseConfig(),org);
+		String[] str=sDate1.split("-");
+	    
+		return dao.getRagisterdStudentOnDateandCourseConfig(Integer.parseInt(str[0]),Integer.parseInt(str[1]),Integer.parseInt(str[2]),gbltStudentBean.getmICourseConfig(),gbltStudentBean.getmICourseConfig1(),org);
+
+		//return dao.getRagisterdStudentOnDateandCourseConfig(stre,gbltStudentBean.getmICourseConfig(),org);
 	}
 
 	@Override
@@ -232,8 +237,7 @@ public class DashboardSerImpl implements DashboardSer {
 
 		List<Map> ClassAttendance = null;
 		if(mICourseConfig != null) {
-				 ClassAttendance=dao.getAttendanceCount(mICourseConfig,org);
-				
+			 ClassAttendance=dao.getAttendanceCount(mICourseConfig,org);
 		}
 		return ClassAttendance;
 	}
@@ -253,6 +257,22 @@ public class DashboardSerImpl implements DashboardSer {
 		studentOtpAttendance=dao.getAttendanceCount(org,gbltStudentBean);
 		
 		return studentOtpAttendance;
+	}
+
+	@Override
+	public void genReport(GbltStudentBean gbltStudentBean, HttpServletRequest objRequest_p,
+			HttpServletResponse objResponse_p) throws Exception {
+		// TODO Auto-generated method stub
+			Map<String, Object> params = new HashMap<String, Object>();
+			String reportPath ="";
+		 reportPath ="iyf/src/main/java/net/report/attendance/atten_report.rptdesign";
+		 
+		 params.put("isHeaderReq", "");
+		 params.put("isFooterReq", "");
+			//String date = sf.format(dateObj);
+		ReportUtil ts = new ReportUtil();
+		ts.displayReport(objRequest_p, objResponse_p, reportPath, ReportType, params);
+		
 	}
 	
 	

@@ -33,5 +33,7 @@ public interface GbltOtpStudentRegTrnService {
 
 	public List<GbltOtpStudentRegTrn> allCurrentRegStudent( HttpServletRequest objRequest_p);
 
+	public String studentByStudentId(String stStudentId, HttpServletRequest objRequest_p);
+
 	
 }

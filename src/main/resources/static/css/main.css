@@ -67,3 +67,9 @@ html, body {
 #myTable1 tr.header, #myTable1 tr:hover {
   background-color: #f1f1f1;
 } 
+.error1{
+	color:red !important;
+}
+.success1{
+	color:green !important;
+}

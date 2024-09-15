@@ -17,6 +17,7 @@ public interface UserService {
 	GbltOtpStudentRegTrn findByregistrationId(String registrationId,HttpServletRequest objRequest_p);
 
 	public void resetPassword(CrmUser theCrmUser, HttpServletRequest request);
-	public GbltOrgMst allOrgDetails(GbltUserMst gbltUserMst); 
+	public GbltOrgMst allOrgDetails(GbltUserMst gbltUserMst);
+	
 
 }

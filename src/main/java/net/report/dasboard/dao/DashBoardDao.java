@@ -15,8 +15,8 @@ public interface DashBoardDao {
 
 	public List<IyfCourseAttenTrn> getCourseAllCourserRegByMobileNo(String orgId, Long mobileNumber);
 
-	public List<IyfCoureRegTrn> getRagisterdStudentOnDateandCourseConfig(Date date1, Long getmICourseConfig,
-			String org);
+	public List<IyfCoureRegTrn> getRagisterdStudentOnDateandCourseConfig(Integer date, Integer month, Integer year, Long getmICourseConfig,
+			List<Long> getmICourseConfig1, String org);
 
 	public  List<Map> ClassAttendance(String studentId, Set<Long> courseSet, String org);
 

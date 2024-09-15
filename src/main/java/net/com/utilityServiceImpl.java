@@ -15,6 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import net.master.course.dao.CourseConfigDao;
 import net.model.bean.GbltUserBean;
 import net.model.master.pojo.batch.IYFBatchMst;
+import net.model.master.pojo.classtype.BlackListTypeMst;
 import net.model.master.pojo.course.IyfCourseMst;
 import net.model.master.pojo.org.GbltOrgMst;
 import net.model.master.pojo.org.GbltOrgUnitMst;
@@ -137,5 +138,13 @@ public class utilityServiceImpl implements utilityService {
 		Object theUser = session.getAttribute("user");
 		GbltUserBean obj = (GbltUserBean) theUser;
 		return dao.getUrlList(obj.getStOrgId());
+	}
+	@Override
+	public List<BlackListTypeMst> getBlackListType(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		HttpSession session = request.getSession();
+		Object theUser = session.getAttribute("user");
+		GbltUserBean obj = (GbltUserBean) theUser;
+		return dao.getBlackListType(obj.getStOrgId());
 	}
 }

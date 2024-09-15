@@ -41,10 +41,10 @@
 					</div>
 					
 					<div class="col-md-4 col-sm-4">
-						<label for="date-timepicker1">Class Date/Time</label>
+						<label for="date-timepicker1">Class Date/Time MM/DD/YYYY HH:MM AM</label>
 	
 						<div class="input-group">
-							<input id="date-timepicker1" th:field="*{mDtschedule}" type="text" class="form-control" />
+							<input id="date-timepicker1" th:field="*{mDtschedule}" type="text" placeholder="01/20/2000 10:30 AM" class="form-control" />
 							<span class="input-group-addon">
 								<i class="fa fa-clock-o bigger-110"></i>
 							</span>
@@ -62,6 +62,5 @@
 		<a th:href="@{/course-config/list}"> Back to Student List</a>
 		<hr>
 
-	
 </body>
 </html>

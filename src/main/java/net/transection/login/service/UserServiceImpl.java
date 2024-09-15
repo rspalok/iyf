@@ -104,4 +104,5 @@ public class UserServiceImpl implements UserService{
 		return userDao.allOrgDetails(gbltUserMst.getStOrgId());
 	}
 
+
 }

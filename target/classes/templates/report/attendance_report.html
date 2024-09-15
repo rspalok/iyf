@@ -73,6 +73,7 @@
 		      <th scope="col">StudentId</th>
 		      <th scope="col">Address</th>
 		      <th scope="col">Occupation</th> 
+		      <th scope="col">Chanting Round</th> 
 		      <th scope="col">Present</th> 
 		  </tr>
 			
@@ -85,6 +86,7 @@
 				<td th:text="${student.stStudentId}"></td>
 				<td th:text="${student.stAddress}"></td>
 				<td th:text="${student.stOccupation}"></td> 
+				<td th:text="${student.mChanting}"></td> 
 				<td th:text="${student.present}"></td> 
 			</tr>
 		   <tr th:each="student,count  : ${allPresentStudent}">
@@ -96,6 +98,7 @@
 				<td th:text="${student.stStudentId}"></td>
 				<td th:text="${student.objGbltOtpStudentRegTrns.stAddress}"></td>
 				<td th:text="${student.objGbltOtpStudentRegTrns.stOccupation}"></td> 
+				<td th:text="${student.objGbltOtpStudentRegTrns.mChanting}"></td> 
 				<td>1</td> 
 			</tr>
 		</table>
@@ -122,6 +125,8 @@
 	        column5 = row.cells[4].innerText;
 	        column6 = row.cells[5].innerText;
 	        column7 = row.cells[6].innerText;
+	        column8 = row.cells[7].innerText;
+	        column9 = row.cells[8].innerText;
 	 
 	    /* add a new records in the array */
 	        rows.push(
@@ -132,7 +137,9 @@
 	                column4,
 	                column5,
 	                column6,
-	                column7
+	                column7,
+	                column8,
+	                column9
 	            ]
 	        );
 	 

@@ -2,7 +2,8 @@ package net.model.bean;
 
 import java.io.Serializable;
 import java.util.Date;
- 
+import java.util.List;
+
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -57,6 +58,7 @@ public class GbltStudentBean implements Serializable{
 	private Long mICourse;
 	private Long mIBatch;
 	private Long mICourseConfig;
+	private List<Long> mICourseConfig1;
  
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
     @Temporal(TemporalType.TIMESTAMP) 
@@ -81,6 +83,7 @@ public class GbltStudentBean implements Serializable{
     public GbltStudentBean() {
 		// TODO Auto-generated constructor stub
 	}
+    
     
 	public Integer getmRegType() {
 		return mRegType;
@@ -298,7 +301,14 @@ public class GbltStudentBean implements Serializable{
 		this.mICourseConfig = mICourseConfig;
 	}
  
+	public List<Long> getmICourseConfig1() {
+		return mICourseConfig1;
+	}
 
+	public void setmICourseConfig1(List<Long> mICourseConfig1) {
+		this.mICourseConfig1 = mICourseConfig1;
+	}
+	
 	public String getDtRegistration() {
 		return dtRegistration;
 	}
@@ -322,7 +332,7 @@ public class GbltStudentBean implements Serializable{
 				+ stAddress + ", IMobile=" + IMobile + ", mChanting=" + mChanting + ", mClassId=" + mClassId
 				+ ", stOccupation=" + stOccupation + ", stStage=" + stStage + ", ICounselor=" + ICounselor
 				+ ", IFacilitator=" + IFacilitator + ", IIsValid=" + IIsValid + ", mICourseConfig=" + mICourseConfig
-				+ ", stName=" + stName + ", mICourse=" + mICourse + ", mIBatch=" + mIBatch + ", mDtCourseStart="
+				+ ", mICourseConfig1=" + mICourseConfig1+ ", stName=" + stName + ", mICourse=" + mICourse + ", mIBatch=" + mIBatch + ", mDtCourseStart="
 				+ mDtCourseStart + ", mDtCourseEnd=" + mDtCourseEnd + ", mDtEntry=" + mDtEntry + ", dtRegistration="
 				+ dtRegistration + ", dtEntry=" + dtEntry + "]";
 	}

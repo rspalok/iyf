@@ -39,7 +39,7 @@ public class GbltOtpStudentRegTrn implements Serializable{
 	@Column(name = "str_first_name", columnDefinition = "character varying (100)")
 	private String firstName;
 	
-	@Column(name = "str_last_name", columnDefinition = "character varying (20)")
+	@Column(name = "str_last_name", columnDefinition = "character varying (100)")
 	private String lastName;//stLastName;
 	
 	@Column(name = "str_email", columnDefinition = "character varying (50)")
@@ -274,6 +274,4 @@ public class GbltOtpStudentRegTrn implements Serializable{
 				+ ", ICounselor=" + ICounselor + ", IFacilitator=" + IFacilitator + ", IIsValid=" + IIsValid
 				+ ", dtRegistration=" + dtRegistration + ", dtEntry=" + dtEntry + "]";
 	}
-
-	
 }

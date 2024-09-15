@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import net.model.master.pojo.classtype.BlackListTypeMst;
 import net.model.master.pojo.org.GbltOrgMst;
 import net.model.master.pojo.org.GbltOrgUnitMst;
 import net.model.master.pojo.role.GbltRolMst;
@@ -33,4 +34,7 @@ public interface UtilityDao extends JpaRepository<GbltOrgMst, String> {
 
 	@Query("SELECT e from IyfPublicRegUrlTrn e where e.mStOrgId =:stOrgId ") 
 	List<IyfPublicRegUrlTrn> getUrlList(String stOrgId);
+
+	@Query("SELECT e from BlackListTypeMst e where e.stOrgId =:stOrgId ") 
+	List<BlackListTypeMst> getBlackListType(String stOrgId);
 }

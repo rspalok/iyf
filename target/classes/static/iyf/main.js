@@ -1,12 +1,29 @@
 //alert("alert is working");
 var student_list;
+function alidatePhoneNo(mobileNo){
+	var regx = /^[6-9]\d{9}$/ ;
+	var next=false;
+	var clsId=document.getElementById("IMobile");
+    if(regx.test(mobileNo)) {
+        clsId.classList.remove("error1");
+         clsId.classList.add("success1");
+        next= true;
+    }
+    else {
+        clsId.classList.remove("success1");
+        clsId.classList.add("error1");
+        next= false;
+        
+    }
+    return next;
+}
 function checkFormDatabase(id){
-	if(id.length <10){
+	var next =alidatePhoneNo(id);
+	
+	if(id.length <10 || !next){
 		return;
 	}
 	var action = "../studentByMobileNo/?mobileNumber=" + id;
-	 
-	//alert("alert is working  "+action);
 	$.ajax({url: action,type:"GET",async:false,dataType:"json" ,success:function(data) {
 			result = viewSingleDtls(data,1);
 		},error: function(errorMsg,textstatus,errorthrown) {
@@ -15,6 +32,15 @@ function checkFormDatabase(id){
 	});
 }
 
+function checkStudentDatabase(id){
+	var action = "/studentByStudentId/?stStudentId=" + id;
+	$.ajax({url: action,type:"GET",async:false,dataType:"json" ,success:function(data) {
+			result = viewSingleDtls(data,1);
+		},error: function(errorMsg,textstatus,errorthrown) {
+			alert('getStudenInfo '+errorMsg+" textstatus::"+textstatus+" errorthrown::"+errorthrown);
+		}
+	});
+}
 function viewSingleDtls(res, mode) {
 	//var parsedData = JSON.parse(res); 
 	student_list=res;
@@ -23,7 +49,7 @@ function viewSingleDtls(res, mode) {
 	var temp = "<option value=''>New</option>";
 	for (var i = 0; i < parsedData.length; i++) {
 		
-		temp += "<option value='" + parsedData[i].stStudentId + "'>"
+		temp += "<option value='" + parsedData[i].stStudentId+ "'>"
 			+ parsedData[i].firstName+" "+ parsedData[i].lastName+ " ( "+parsedData[i].stStudentId +" )"+" </option>";
 	}
 	$('#stStudentId').html(temp);
@@ -41,7 +67,8 @@ function viewSingleDtls(res, mode) {
 		$('#mChanting').val(res[0].mChanting);
 		$('#stAddress').val(res[0].stAddress);
 		$('#stStudentId').val(res[0].stStudentId);
-		$('#mOrgUnit').val(res.mOrgUnit);
+		$('#mOrgUnit').val(res[0].mOrgUnit);
+		$('#IMobile').val(res[0].imobile);
 	}else{
 		$('#stOccupation').val('');
 		$('#firstName').val('');
@@ -51,6 +78,7 @@ function viewSingleDtls(res, mode) {
 		$('#stAddress').val('');
 		$('#stStudentId').val('');
 		$('#mOrgUnit').val(0);
+		$('#IMobile').val();
 	}
 	
 }
@@ -99,3 +127,95 @@ function milisecondToDateFormat(dateDetails){
 	}
 	return day+"/"+month+"/"+year;
 }
+
+getPresentStudentList = function (){
+		var mICourseConfig=$('#mICourseConfig').val();
+		var mClassId=$('#mClassId').val();
+		if(mICourseConfig!="" && mClassId!=""){
+			var action = "../getPresentStudentList/?mICourseConfig="+mICourseConfig+"&mClassId="+ mClassId;
+		 
+			console.log("alert is working  "+action);
+			$.ajax({url: action,type:"GET",async:false,dataType:"json" ,success:function(data) {
+					result = RegiteredStudent(data,1);
+				},error: function(errorMsg,textstatus,errorthrown) {
+					alert('getStudenInfo '+errorMsg+" textstatus::"+textstatus+" errorthrown::"+errorthrown);
+				}
+			});
+		}
+		
+	}
+	
+	getRegiteredStudentList = function() {
+		var mICourseConfig=$('#mICourseConfig').val();
+		//var action = "../follow_up/getStudentForFolloup/?stStudentId="+stStudentId +"&followUpId="+ followUpId;
+		var action = "../getRegiteredStudentList/?mICourseConfig="+mICourseConfig;// +"&followUpId="+ followUpId;
+		 
+		console.log("alert is working  "+action);
+		$.ajax({url: action,type:"GET",async:false,dataType:"json" ,success:function(data) {
+				result = RegiteredStudent(data,1);
+			},error: function(errorMsg,textstatus,errorthrown) {
+				alert('getStudenInfo '+errorMsg+" textstatus::"+textstatus+" errorthrown::"+errorthrown);
+			}
+		});
+	}
+	RegiteredStudent = function (res, mode) {
+		
+		var parsedData = res;
+		console.log(parsedData);
+		$('#reportMainBodyDivId').html("");
+		var headerRow="", dtlRow="", footerRow="";
+		rptHeadingOrTitle="Notice List Report - Active";
+		//var globalRptPrintRow=getRptPrintOption("1");
+		//var globalRptHeadingOrTitle=rptHeadingOrTitle;
+		//var globalRptHeaderRow=getRptHeader("1");
+		//var globalRptDateAndTimeRow=getRptDateAndTime("1",resJsonObj['Date'],resJsonObj['Time'] );
+		//var globalRptHeadingRow=getRptHeading("2",globalRptHeadingOrTitle);
+		//var globalRptFooterRow=getRptFooter("1");
+			
+		headerRow="";//globalRptPrintRow+globalRptHeaderRow+globalRptDateAndTimeRow+globalRptHeadingRow;
+		$("#reportMainHeaderDivId").html(headerRow);
+		footerRow="";//globalRptFooterRow;
+		$("#reportMainFooterDivId").html(footerRow);
+		$("#reportModalHeadingId").html(rptHeadingOrTitle);	
+		
+		var parsedData=res;//resJsonObj['Data'];
+		var rowCount = parsedData.length;
+		dtlRow +=" <h6 class='pull-right green'><strong><span id='countRowsId'>Total Rows : "+ rowCount +"</span></strong></h6> "+
+			" <table id='reportTableID' class='table table-bordered'> "+
+			" <thead  id='reportTHeadId'> <tr> "+
+			" <th>Student Id</th> "+
+			" <th>Name</th> "+
+			" <th>Mobile</th> "+
+			" <th>Address</th> "+
+			" <th class='hidden-480'>Profetion</th> "+
+			" </tr> </thead> "+
+			" <tbody id='reportTBodyId'> ";
+			
+		for(var i=0;i<parsedData.length;i++)
+		{	
+			dtlRow +="<tr><td>"+parsedData[i].stStudentId+"</td> " +
+			"<td>"+parsedData[i].objGbltOtpStudentRegTrns.firstName+" "+parsedData[i].objGbltOtpStudentRegTrns.lastName+"</td> " +
+			"<td>"+parsedData[i].objGbltOtpStudentRegTrns.imobile+"</td> " +
+			"<td>"+parsedData[i].objGbltOtpStudentRegTrns.stAddress+"</td> " +
+			"<td>"+parsedData[i].objGbltOtpStudentRegTrns.stOccupation+"</td> " +
+			//"<td class='hidden-480'>"+returnParsedDate(parsedData[i].m_dtEntry)+"</td> " +
+			"</tr>";//<span class='"+parsedData[i].cssClass+"'>"+parsedData[i].m_stStatus+"</span>
+		}
+		dtlRow +=" </tbody> </table> ";
+		
+		$('#reportMainBodyDivId').html(dtlRow);
+		$('#myModal').modal('show'); 
+		//setTimeout(function() {
+		//	$("#wait").hide();
+		//}, 500);
+		
+	}
+	
+	copyStudentId = function(){
+		var copyText =$('#stStudentId').val();// document.getElementById("stStudentId");
+
+		navigator.clipboard.writeText(copyText);
+
+		// Alert the copied text
+		alert("Copied the text: " + copyText);
+	}

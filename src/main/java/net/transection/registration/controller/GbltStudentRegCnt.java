@@ -90,6 +90,12 @@ public class GbltStudentRegCnt {
   
 		return service.studentByMobileNo(mobileNumber, objRequest_p);
 	}
+	@GetMapping("/studentByStudentId")
+	public @ResponseBody String getStuData( HttpServletRequest objRequest_p,
+			@RequestParam(value = "stStudentId", required = true) String stStudentId ,HttpServletRequest request) {
+  
+		return service.studentByStudentId(stStudentId, objRequest_p);
+	}
 	@GetMapping("/search")
 	public String delete(@RequestParam("gbltOtpStudentRegTrnName") String theName, Model model,HttpServletRequest request) {
 		System.out.println("============  "+theName);

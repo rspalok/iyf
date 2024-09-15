@@ -200,7 +200,35 @@ public class GbltOtpStudentRegTrnServiceImpl implements GbltOtpStudentRegTrnServ
 
 		return data;
 	}
+	@Override
+	public String studentByStudentId(String stStudentId, HttpServletRequest objRequest_p) {
+		// TODO Auto-generated method stub
+		HttpSession session = objRequest_p.getSession(); 
+		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
+		String org= theUser.getStOrgId();
 
+		System.out.println(stStudentId+"====DOB=======");
+		System.out.println(org+"====DOB=======");
+		List<GbltOtpStudentRegTrn> list = dao.getStudentByStudentId(stStudentId,org);
+		for (GbltOtpStudentRegTrn gbltOtpStudentRegTrn : list) {
+			gbltOtpStudentRegTrn.getDtBirth();
+			System.out.println(gbltOtpStudentRegTrn.getDtBirth()+"====DOB=======");
+		}
+		
+		
+		ObjectMapper mapper = new ObjectMapper();
+
+		String data = null;
+		try {
+			data = mapper.writeValueAsString(list);
+			System.out.println("===studentByMobileNo==00000=====" + mapper.writeValueAsString(list));
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return data;
+	}
 
 	@Override
 	public List<GbltOtpStudentRegTrn> allCurrentRegStudent(HttpServletRequest request) {

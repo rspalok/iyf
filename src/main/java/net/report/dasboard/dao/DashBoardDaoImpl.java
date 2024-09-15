@@ -38,7 +38,7 @@ public class DashBoardDaoImpl implements DashBoardDao {
 	@Override
 	public List<IyfCourseAttenTrn> getCourseAllCourserRegByMobileNo(String orgId, Long mobileNumber) {
 		Session sf = entityManeger.unwrap(Session.class);
-		String Query="select s from IyfCourseAttenTrn s where s.objGbltOtpStudentRegTrns.IMobile=:IMobile";
+		String Query="select s from IyfCourseAttenTrn s where s.objGbltOtpStudentRegTrns.IMobile=:IMobile and s.objGbltOtpStudentRegTrns.IIsValid=1";
 		
 		List<IyfCourseAttenTrn> result =sf.createQuery(Query,IyfCourseAttenTrn.class)
 
@@ -49,16 +49,26 @@ public class DashBoardDaoImpl implements DashBoardDao {
 	}
 
 	@Override
-	public List<IyfCoureRegTrn> getRagisterdStudentOnDateandCourseConfig(Date mDtRegistration, Long mICourseConfig,
+	public List<IyfCoureRegTrn> getRagisterdStudentOnDateandCourseConfig(Integer date, Integer month, Integer year, Long mICourseConfig,List<Long> mICourseConfig1,
 			String mStOrgId) {
+		System.out.println("========"+year);
 		Session sf = entityManeger.unwrap(Session.class);
 		String Query="SELECT e from IyfCoureRegTrn e JOIN e.objGbltOtpStudentRegTrns  JOIN e.ObjIYFCourseConfig  "
-				+ " where e.mDtRegistration =:mDtRegistration and e.mICourseConfig=:mICourseConfig  and e.mStOrgId=:mStOrgId";
+				+ " where DAY(e.mDtRegistration) =:date "
+				+ " and MONTH(e.mDtRegistration) =:month "
+				+ " and YEAR(e.mDtRegistration) =:year "
+				+ " and e.mICourseConfig =:mICourseConfig "
+				+ " and e.stStudentId not in (select s.stStudentId from IyfCoureRegTrn s where s.mICourseConfig in (:mICourseConfig1)) "
+				+ " and e.mStOrgId=:mStOrgId "
+				+ " and e.objGbltOtpStudentRegTrns.IIsValid=1 ";
 		
 		List<IyfCoureRegTrn> result =sf.createQuery(Query,IyfCoureRegTrn.class)
 
-				.setParameter("mDtRegistration", mDtRegistration)
+				.setParameter("date", date)
+				.setParameter("month", month)
+				.setParameter("year", year)
 				.setParameter("mICourseConfig", mICourseConfig)
+				.setParameter("mICourseConfig1", mICourseConfig1)
 				.setParameter("mStOrgId", mStOrgId)
 				.getResultList();
  
@@ -79,7 +89,7 @@ public class DashBoardDaoImpl implements DashBoardDao {
 				+ " (select count(mIClassId) from IyfCourseAttenTrn at where "
 				+ " at.mIClassId=a.mIClassId and at.mICourseConfig=a.mICourseConfig and at.stStudentId =:stStudentId) as present   " 
 		+ " ) from IyfClassSchedTrn  a , IYFCourseConfig  b  where a.mICourseConfig in :mICourseConfig and a.mICourseConfig =b.mICourseConfig "
-		+ " and a.mStOrgId=:mStOrgId order by present desc ";
+		+ " and a.mStOrgId=:mStOrgId and a. order by present desc ";
 
 		 //where a.num_course_config_id=1 and a.num_course_config_id =b.num_course_config_id*/
 
@@ -110,7 +120,7 @@ public class DashBoardDaoImpl implements DashBoardDao {
 				+ "  at.stStudentId=a.stStudentId and at.mICourseConfig = a.mICourseConfig ) as present   " 
 		+ " ) from IyfCoureRegTrn  a ,GbltOtpStudentRegTrn s  where a.mICourseConfig = :mICourseConfig "
 		+ " and a.stStudentId =s.stStudentId "
-		+ " and a.mStOrgId=:mStOrgId order by present desc";
+		+ " and a.mStOrgId=:mStOrgId and s.IIsValid=1 order by present desc";
 
 
 		System.out.println("resultresult "+Query1);
@@ -141,7 +151,7 @@ public class DashBoardDaoImpl implements DashBoardDao {
 		+ " ) from IyfCoureRegTrn  a ,GbltOtpStudentRegTrn s  where a.mICourseConfig = :mICourseConfig "
 		+ " and a.stStudentId =s.stStudentId and  a.stStudentId not in (select w.stStudentId from "
 		+ " IyfCoureRegTrn as w where w.mICourseConfig !=a.mICourseConfig )"
-		+ " and a.mStOrgId=:mStOrgId order by present desc";
+		+ " and a.mStOrgId=:mStOrgId and s.IIsValid=1 order by present desc";
 
 
 		System.out.println("resultresult "+Query1);

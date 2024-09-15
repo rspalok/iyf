@@ -1,12 +1,6 @@
-$(document).ready(function() {
-					 
-					 
-}); 
 
 var student_list;
 function updateAyyendance(id){
-				
-	
 	$("#stStudentId").val(id); 
 	$( "#target" ).submit();
 
@@ -56,9 +50,28 @@ function myFunction1() {
     }       
   }
 }	
-	
+function alidatePhoneNo(mobileNo){
+	var regx = /^[6-9]\d{9}$/ ;
+	var next=false;
+	var clsId=document.getElementById("IMobile");
+    if(regx.test(mobileNo)) {
+        clsId.classList.remove("error1");
+         clsId.classList.add("success1");
+        next= true;
+    }
+    else {
+        clsId.classList.remove("success1");
+        clsId.classList.add("error1");
+        next= false;
+    }
+    return next;
+}
 function checkFormDatabase(id){
-	if(id.length <10){
+	
+	
+	var next =alidatePhoneNo(id);
+	
+	if(id.length <10 || !next){
 		return;
 	}
 	var action = "../studentByMobileNo/?mobileNumber=" + id;

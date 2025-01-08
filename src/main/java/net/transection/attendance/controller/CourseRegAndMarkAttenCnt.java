@@ -90,7 +90,7 @@ public class CourseRegAndMarkAttenCnt {
 
 		model.addAttribute("orgUnits", utilSer.allOrgUnits(request));
 		model.addAttribute("courseConfig", service.getCourseConfigById(gbltStudentBean.getmICourseConfig(), request));
-		model.addAttribute("allRegStudent", ser.getAllRegStudent(gbltStudentBean.getmICourseConfig(), request));
+		//model.addAttribute("allRegStudent", ser.getAllRegStudent(gbltStudentBean.getmICourseConfig(), request));
 		return "transection/CourseRegistration";
 	}
 

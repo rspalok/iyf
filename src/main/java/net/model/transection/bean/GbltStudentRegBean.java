@@ -13,19 +13,7 @@ import javax.validation.constraints.Pattern;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Data
-@Builder
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+ 
 public class GbltStudentRegBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
+import org.apache.cassandra.thrift.Cassandra.system_add_column_family_args;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -61,8 +63,9 @@ public class CourseRegistrationSerImp implements CourseRegistrationSer {
 		String Org=theUser.getStOrgId();
 		List<IyfCoureRegTrn> list =dao.getAllStudentId(mICourseConfig,Org);
 
-
-		ObjectMapper mapper = new ObjectMapper();
+		System.out.println("===============+ "+list);
+		
+		/*ObjectMapper mapper = new ObjectMapper();
 
 		mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
 		String data = null;
@@ -72,8 +75,12 @@ public class CourseRegistrationSerImp implements CourseRegistrationSer {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		*/
+		JSONObject json = new JSONObject(list);
 
-		return data;//list.toString();
+		System.out.println("===============+ "+json);
+		
+		return json.toString();//list.toString();
 	}
 
 	@Override

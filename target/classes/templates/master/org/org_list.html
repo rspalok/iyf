@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="com/base::layout(~{::body})">
+<head th:include="com/base :: headerFragment"> <title id="pageTitle">Batch list</title>
+<meta charset="ISO-8859-1">
+<title>Student Management System</title>
+ 
+</head>
+<body>
+	<div class="page-content"> 
+		<h1>
+			Base List <i class="bi bi-download"></i>
+		</h1><hr>
+		<a th:href="@{/org/form}" class="btn btn-primary btn-sm mb-3">
+			Add Base </a>
+
+		<table class="table table-striped table-responsive-md">
+			<thead>
+				<tr>
+					<th><a
+						th:href="@{'/page/' + ${currentPage} + '?sortField=mOrgUnit&sortDir=' + ${reverseSortDir}}">
+						Base Id </a></th>
+					<th><a
+						th:href="@{'/page/' + ${currentPage} + '?sortField=strName&sortDir=' + ${reverseSortDir}}">
+						Base</a></th>
+					<th><a
+						th:href="@{'/page/' + ${currentPage} + '?sortField=strAddress&sortDir=' + ${reverseSortDir}}">
+						Address</a></th>
+					<th><a
+						th:href="@{'/page/' + ${currentPage} + '?sortField=stOrgId&sortDir=' + ${reverseSortDir}}">
+						Org</a></th>
+					 
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="student : ${listGbltOtpStudentRegTrns}"> 
+					<td th:text="${student.mOrgUnit}"></td>
+					<td th:text="${student.strName}"></td>
+					<td th:text="${student.strAddress}"></td>
+					<td th:text="${student.stOrgId}"></td> 
+					<td>
+					<a th:href="@{/org/showFormForUpdate/{id}(id=${student.mOrgUnit})}" class="btn btn-primary">Update</a> 
+					<a th:href="@{/org/delete/{id}(id=${student.mOrgUnit})}" class="btn btn-danger hidden">Delete</a></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div th:if="${totalPages > 1}">
+			<div class="row col-sm-10">
+				<div class="col-md-3">Total Rows: [[${totalItems}]]</div>
+				<div class="col-md-7"
+					style="text-overflow: ellipsis; overflow: hidden; white-space: nowrap;">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}"> <a
+						th:if="${currentPage != i}"
+						th:href="@{'/org/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+						<span th:unless="${currentPage != i}">[[${i}]]</span> &nbsp;
+						&nbsp;
+					</span>
+				</div>
+				<div class="col-md-1">
+					<a th:if="${currentPage < totalPages}"
+						th:href="@{'/org/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+					<span th:unless="${currentPage < totalPages}">Next</span>
+				</div>
+
+				<div class="col-md-1">
+					<a th:if="${currentPage < totalPages}"
+						th:href="@{'/org/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+					<span th:unless="${currentPage < totalPages}">Last</span>
+				</div>
+			</div>
+		</div>
+ 	</div>
+</body>
+</html>

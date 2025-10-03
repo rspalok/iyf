@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="com/base::layout(~{::body})"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head th:include="com/base :: headerFragment">
+<title id="pageTitle">Menu</title>
+<title>OTP Directory</title>
+<meta charset="utf-8">
+
+
+</head>
+<body>
+
+	<div class="page-content">
+		<div align="center">
+			<div sec:authorize="isAuthenticated()">
+			 Welcome <span th:text="${session.user.stFirstName}">Pepper</span>&nbsp;
+			 <span th:text="${session.user.stLastName}">Pepper</span>
+			 
+				<!--   <b><span sec:authentication="name">User Name</span></b>-->
+				&nbsp; <i><span sec:authentication="principal.authorities">Roles</span></i>
+			</div>
+		</div>
+		<div class="row p-t-20">
+			<div class="col-md-4">
+				
+				<table>
+					<thead>
+						<tr>
+							<th>
+								<h2>
+									<i class="pink ace-icon fa fa-tachometer bigger-310"></i>Transactions
+								</h2>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="element : ${transections}">
+							<td><a th:href="@{${element.mStURL}}" th:text="${element.mStMenuName}"> </a></td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+			<div class="col-md-4">
+
+				<h2>
+					<i class="pink ace-icon fa fa-cog bigger-310"></i> Setup
+				</h2>
+				<table>
+					<tr th:each="element : ${setups}">
+						<td><a th:href="@{${element.mStURL}}" th:text="${element.mStMenuName}"> </a></td>
+					</tr>
+				</table>
+			</div>
+			<div class="col-md-4">
+				<h2>
+					<i class="pink ace-icon fa fa-print bigger-310"></i> Report
+				</h2>
+				<table>
+					<tr th:each="element : ${reports}">
+						<td><a th:href="@{${element.mStURL}}" th:text="${element.mStMenuName}"> </a></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		
+		
+		<div sec:authorize="hasRole('ADMIN')">
+		  This content is only shown to administrators.
+		</div>
+	</div>
+	<!--  page   <p th:text="${#request.getParameter('user')}" th:unless="${#request.getParameter('user') == null}">Test</p>
+		    <p th:text="${param.q[0] + ' ' + param.q[1]}" th:unless="${param.q == null}">Test</p>
+		   <div th:object="${session.user}">
+			  <p>Name: <span th:text="*{stUserName}">Sebastian</span>.</p>
+			  <p>Surname: <span th:text="${session.user.stLastName}">Pepper</span>.</p>
+			  <p>Surname: <span th:text="${session.user.stOrgNameId}">Pepper</span>.</p>
+			</div>
+			 <span th:text="${session.user.stLastName}"></span>
+	<div th:if="${session.user.stOrgId} == 'ADMIN'">ADMIN</div>--> 
+</body>
+</html>

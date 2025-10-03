@@ -15,5 +15,4 @@ public class IYFWebAppApplication extends SpringBootServletInitializer{
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 	    return application.sources(IYFWebAppApplication.class);
 	}
-
 }

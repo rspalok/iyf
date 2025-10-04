@@ -75,7 +75,7 @@ public class FollowUpTrn implements Serializable {
 	private Date dtEvent;
 	
 	public FollowUpTrn() {
-		// TODO Auto-generated constructor stub
+		// TO DO Auto-generated constructor stub
 	}
 
 	public Integer getFollowUpId() {

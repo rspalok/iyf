@@ -45,7 +45,7 @@ public class DecisionServiceImpl  implements DecisionService {
 
 	@Override
 	public List<GbltOtpStudentRegTrn> allCurrentRegStudent(HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String Org=theUser.getStOrgId(); 
@@ -55,7 +55,7 @@ public class DecisionServiceImpl  implements DecisionService {
 	@Override
 	public void saveGbltOtpStudentRegTrn(GbltStudentRegBean gbltStudentRegBean, HttpServletRequest request,
 			HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String Org=theUser.getStOrgId(); 

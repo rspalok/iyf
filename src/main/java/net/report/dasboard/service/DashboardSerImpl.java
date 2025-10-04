@@ -50,7 +50,7 @@ public class DashboardSerImpl implements DashboardSer {
 	public CourseRegistrationDao regDao;	
 	@Override
 	public String getAllCourserRegStudentByStudentId(String mStudentId, HttpServletRequest objRequest_p) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = objRequest_p.getSession(); 
 		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 		String OrgId=obj.getStOrgId();
@@ -67,7 +67,7 @@ public class DashboardSerImpl implements DashboardSer {
 			data = mapper.writeValueAsString(list);
 			System.out.println("=====00000=====" + mapper.writeValueAsString(list));
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
+			// TO DO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -89,7 +89,7 @@ public class DashboardSerImpl implements DashboardSer {
 			data = mapper.writeValueAsString(list);
 			System.out.println("=====00000=====" + mapper.writeValueAsString(list));
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
+			// TO DO Auto-generated catch block
 			e.printStackTrace();
 		}
 

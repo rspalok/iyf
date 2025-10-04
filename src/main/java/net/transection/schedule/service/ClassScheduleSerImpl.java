@@ -28,7 +28,7 @@ public class ClassScheduleSerImpl implements ClassScheduleSer {
 	
 	@Override
 	public Page<IyfClassSchedTrn> findPaginated(int pageNo, int pageSize, String sortField, String sortDir,HttpServletRequest request,IyfClassSchedTrn iyfClassSchedTrn) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending()
 				: Sort.by(sortField).descending();
 
@@ -46,7 +46,7 @@ public class ClassScheduleSerImpl implements ClassScheduleSer {
 	
 	@Override
 	public List<IyfClassSchedTrn> getClassScheduleList(Long id,HttpServletRequest request) {
-		// TODO Auto-generated method stub  
+		// TO DO Auto-generated method stub  
 		HttpSession session = request.getSession(); 
 		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 		String Orgid=obj.getStOrgId();
@@ -65,7 +65,7 @@ public class ClassScheduleSerImpl implements ClassScheduleSer {
 		HttpSession session = request.getSession(); 
 		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 		String Orgid=obj.getStOrgId();
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		iyfClassSchedTrn.setmDtEntry(new Date());
 		iyfClassSchedTrn.setmIsValid(1);
 		iyfClassSchedTrn.setmStOwnerId(obj.getIUserId());
@@ -76,7 +76,7 @@ public class ClassScheduleSerImpl implements ClassScheduleSer {
 
 	@Override
 	public IyfClassSchedTrn getClassScheduleById(Long id,Long course,HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 		String Orgid=obj.getStOrgId();

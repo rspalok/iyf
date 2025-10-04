@@ -35,37 +35,37 @@ public class MyUserDetailsService implements UserDetails {
 	
 	@Override
 	public String getPassword() {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		return user.getStPassword();
 	}
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		return user.getStUserName();//user.getStFirstName()+" "+user.getStLastName();
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		boolean isEnabled=false;
 		if(user.getIIsValid()==1) {
 			isEnabled=true;
@@ -74,7 +74,7 @@ public class MyUserDetailsService implements UserDetails {
 	}
 	
 	public String userFirstName() {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		return user.getStFirstName();
 	}
 

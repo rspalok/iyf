@@ -44,7 +44,7 @@ public class CourseConfigSerImp implements CourseConfigSer {
 	
 	@Override
 	public Page<IYFCourseConfig> findPaginated(int pageNo, int pageSize, String sortField, String sortDir,HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
 			Sort.by(sortField).descending();
 		HttpSession session = request.getSession(); 
@@ -57,7 +57,7 @@ public class CourseConfigSerImp implements CourseConfigSer {
 
 	@Override
 	public void saveIYFCourseConfig(IYFCourseConfig batch, HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
@@ -96,7 +96,7 @@ public class CourseConfigSerImp implements CourseConfigSer {
 
 	@Override
 	public List<IYFBatchMst> getBatchList(HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		//HttpSession session = request.getSession(); 
 		//GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		//String org= theUser.getStOrgId();
@@ -108,7 +108,7 @@ public class CourseConfigSerImp implements CourseConfigSer {
 		//HttpSession session = request.getSession(); 
 		//GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		//String org= theUser.getStOrgId();
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		return this.cdao.findAll();
 	}
 
@@ -117,7 +117,7 @@ public class CourseConfigSerImp implements CourseConfigSer {
 		HttpSession session = objRequest_p.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		List<Object> list = dao.getStudentByMobile(mobileNumber,org);
 		ObjectMapper mapper = new ObjectMapper();
 
@@ -125,7 +125,7 @@ public class CourseConfigSerImp implements CourseConfigSer {
 		try {
 			data = mapper.writeValueAsString(list);
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
+			// TO DO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -134,7 +134,7 @@ public class CourseConfigSerImp implements CourseConfigSer {
 
 	@Override
 	public List<IYFCourseConfig> getCourseConfigList(HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
@@ -143,7 +143,7 @@ public class CourseConfigSerImp implements CourseConfigSer {
 
 	@Override
 	public List<ClassTypeMst> getClassTypeMstList(HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();

@@ -55,7 +55,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 	
 	@Override
 	public List<FollowUpTrn> getFolowUpTrnList(HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String Org=theUser.getStOrgId();
@@ -64,7 +64,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 	}
 	@Override
 	public List<FollowUpMaster> getFolowUpMstList(HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String Org=theUser.getStOrgId();
@@ -73,7 +73,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 	}
 	@Override
 	public List<IYFCourseConfig> getCourseConfigList(HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String Org=theUser.getStOrgId();
@@ -82,7 +82,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 	}
 	@Override
 	public List<GbltUserMst> getCallerListFromOTPStudent(HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String Org=theUser.getStOrgId();
@@ -91,7 +91,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 	}
 	@Override
 	public void saveFollowUpDetails(FollowUpBean followUpBean, HttpServletRequest request) throws ParseException {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		String[] callerList = followUpBean.getDuallistbox_demo1();
 		Integer CallerCount=callerList.length;
 		//Integer followUpSize=0;
@@ -250,7 +250,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 	}
 	@Override
 	public void saveFollowUpResponse(FollowUpBean followUpBean, HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
@@ -270,7 +270,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 	}
 	@Override
 	public List<FollowUpResponseTrn> getFolowUpStudentList(FollowUpBean followUpBean,HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String Org=theUser.getStOrgId();
@@ -279,7 +279,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 	}
 	@Override
 	public List<FollowUpResponseTrn> getMyFolowUpStudentList(FollowUpBean followUpBean,HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String Org=theUser.getStOrgId();
@@ -292,7 +292,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 		HttpSession session = objRequest_p.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		List<FollowUpResponseTrn> list = dao.getStudentForFolloup(stStudentId,followUpId,org);
 		
 		ObjectMapper mapper = new ObjectMapper();
@@ -302,7 +302,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 		try {
 			data = mapper.writeValueAsString(list);
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
+			// TO DO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -343,7 +343,7 @@ public class FollowUpSerImpl implements FollowUpSer {
 	}
 	@Override
 	public List<FollowUpTrn> getconfigFolowUpList(HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		return fdao.findAll();
 	}
 	

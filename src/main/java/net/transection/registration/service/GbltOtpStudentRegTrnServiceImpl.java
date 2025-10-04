@@ -133,7 +133,7 @@ public class GbltOtpStudentRegTrnServiceImpl implements GbltOtpStudentRegTrnServ
 
 	@Override
 	public List<GbltOtpStudentRegTrn> getAllValidStudent(HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
@@ -176,7 +176,7 @@ public class GbltOtpStudentRegTrnServiceImpl implements GbltOtpStudentRegTrnServ
 
 	@Override
 	public String studentByMobileNo(Long mobileNumber, HttpServletRequest objRequest_p) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = objRequest_p.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
@@ -194,7 +194,7 @@ public class GbltOtpStudentRegTrnServiceImpl implements GbltOtpStudentRegTrnServ
 			data = mapper.writeValueAsString(list);
 			System.out.println("===studentByMobileNo==00000=====" + mapper.writeValueAsString(list));
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
+			// TO DO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -202,7 +202,7 @@ public class GbltOtpStudentRegTrnServiceImpl implements GbltOtpStudentRegTrnServ
 	}
 	@Override
 	public String studentByStudentId(String stStudentId, HttpServletRequest objRequest_p) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = objRequest_p.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
@@ -223,7 +223,7 @@ public class GbltOtpStudentRegTrnServiceImpl implements GbltOtpStudentRegTrnServ
 			data = mapper.writeValueAsString(list);
 			System.out.println("===studentByMobileNo==00000=====" + mapper.writeValueAsString(list));
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
+			// TO DO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -232,7 +232,7 @@ public class GbltOtpStudentRegTrnServiceImpl implements GbltOtpStudentRegTrnServ
 
 	@Override
 	public List<GbltOtpStudentRegTrn> allCurrentRegStudent(HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		
 		HttpSession session = request.getSession();
 		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
@@ -256,7 +256,7 @@ public class GbltOtpStudentRegTrnServiceImpl implements GbltOtpStudentRegTrnServ
 		try {
 			result = dao.allCurrentRegStudent(obj.getStOrgId(),1,currentDay,month,currentYear,1);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			// TO DO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

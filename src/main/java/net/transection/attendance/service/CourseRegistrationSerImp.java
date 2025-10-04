@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 
-import org.apache.cassandra.thrift.Cassandra.system_add_column_family_args;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,7 +44,7 @@ public class CourseRegistrationSerImp implements CourseRegistrationSer {
 	
 	@Override //registerStudentForTheCourse
 	public void registerStudentForTheCourse(GbltStudentBean gbltStudentBean, HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 
 		//Add new Student or update Existing Student if change in existing data
 		GbltOtpStudentRegTrn gbltOtpStudentRegTrn = addNewOrUpdateStudent(gbltStudentBean, request, response,2);
@@ -72,7 +71,7 @@ public class CourseRegistrationSerImp implements CourseRegistrationSer {
 		try {
 			data = mapper.writeValueAsString(list);
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
+			// TO DO Auto-generated catch block
 			e.printStackTrace();
 		}
 		*/
@@ -86,7 +85,7 @@ public class CourseRegistrationSerImp implements CourseRegistrationSer {
 	@Override
 	public void removeRegistration(GbltStudentBean gbltStudentBean, HttpServletRequest request,
 			HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String Org=theUser.getStOrgId();
@@ -102,7 +101,7 @@ public class CourseRegistrationSerImp implements CourseRegistrationSer {
 	
 	@Override
 	public String markattn(GbltStudentBean gbltStudentBean, HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String Org=theUser.getStOrgId();
@@ -188,7 +187,7 @@ public class CourseRegistrationSerImp implements CourseRegistrationSer {
 		try {
 			data = mapper.writeValueAsString(list);
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
+			// TO DO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return data;
@@ -309,7 +308,7 @@ public class CourseRegistrationSerImp implements CourseRegistrationSer {
 
 	@Override
 	public Integer attenInfo(Long mICourseConfig,Long classId, HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 		

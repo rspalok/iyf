@@ -42,7 +42,7 @@ public class YatraMngSerImp implements YatraMngSer {
 	@Override
 	public Page<YatraCruiseTrn> findPaginated(int pageNo, int pageSize, String sortField, String sortDir,
 			HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		
 		Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
 			Sort.by(sortField).descending();
@@ -56,7 +56,7 @@ public class YatraMngSerImp implements YatraMngSer {
 
 	@Override
 	public List<YatraCruiseTrn> getYatraCruiseById(Long yatraCruiseId, HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
@@ -102,17 +102,17 @@ public class YatraMngSerImp implements YatraMngSer {
 
 	@Override
 	public List<IYFFacilitatorMst> getfacilitatorList(HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		return fdao.findAll();
 	}
 
 	@Override
 	public String studentByMobileNofromYatraTable(String StudentId, Long yatraCruiseId,HttpServletRequest objRequest_p) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = objRequest_p.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		List<Object> list = dao.studentByMobileNofromYatraTable(StudentId,yatraCruiseId,org);
 		System.out.println(list.toString());
 		ObjectMapper mapper = new ObjectMapper();
@@ -124,7 +124,7 @@ public class YatraMngSerImp implements YatraMngSer {
 		try {
 			data = mapper.writeValueAsString(list);
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
+			// TO DO Auto-generated catch block
 			e.printStackTrace();
 		}
 

@@ -39,7 +39,7 @@ public class BlackListTypeMst implements Serializable {
 	private String stOrgId;
 	
 	public BlackListTypeMst() {
-		// TODO Auto-generated constructor stub
+		// TO DO Auto-generated constructor stub
 	}
 
 	public String getStrName() {

@@ -54,7 +54,7 @@ public class IYFBatchMst implements Serializable{
 	private Date dtEntry;
     
     public IYFBatchMst() {
-		// TODO Auto-generated constructor stub
+		// TO DO Auto-generated constructor stub
 	}
 
 	public Long getIBatch() {

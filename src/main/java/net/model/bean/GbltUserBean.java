@@ -43,7 +43,7 @@ public class GbltUserBean implements Serializable {
 	private Date dtEntry;
 
 	public GbltUserBean() {
-		// TODO Auto-generated constructor stub
+		// TO DO Auto-generated constructor stub
 	}
 
 	public String getIUserId() {

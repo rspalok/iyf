@@ -11,7 +11,7 @@ public class IYFBatchMstPk implements Serializable {
 	private String stOrgId;
 
 	public IYFBatchMstPk() {
-		// TODO Auto-generated constructor stub
+		// TO DO Auto-generated constructor stub
 	}
 
 	public Long getIBatch() {

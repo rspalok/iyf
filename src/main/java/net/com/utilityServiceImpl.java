@@ -34,7 +34,7 @@ public class utilityServiceImpl implements utilityService {
 	@Autowired UtilityDao dao;
 	@Override
 	public List<GbltOrgMst> getAllOrgDetails() {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		return dao.findAll();
 	}
 	@Override
@@ -46,22 +46,22 @@ public class utilityServiceImpl implements utilityService {
 		//gbltOtpStudentRegTrn.setStOwnerId(String.valueOf(((GbltUserMst) theUser).getIUserId()));
 		//gbltOtpStudentRegTrn.setStOrgId(String.valueOf(((GbltUserMst) theUser).getstOrgId()));
 		 
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		return dao.getAllRoleDetails();
 	}
 	@Override
 	public List<IYFBatchMst> getBatchList(HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		return null;
 	}
 	@Override
 	public List<IyfCourseMst> getCourseList(HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		return null;
 	}
 	@Override
 	public List<IYFCourseConfig> getCourseConfigList(HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
@@ -72,7 +72,7 @@ public class utilityServiceImpl implements utilityService {
 		HttpSession session = objRequest_p.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		List<Object> list = dao.getStudentByMobile(mobileNumber,org);
 		ObjectMapper mapper = new ObjectMapper();
 
@@ -80,7 +80,7 @@ public class utilityServiceImpl implements utilityService {
 		try {
 			data = mapper.writeValueAsString(list);
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
+			// TO DO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -91,7 +91,7 @@ public class utilityServiceImpl implements utilityService {
 		HttpSession session = objRequest_p.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		List<GbltOtpStudentRegTrn> list = dao.studentByStudentId(stStudentId,org);
 		ObjectMapper mapper = new ObjectMapper();
 
@@ -99,7 +99,7 @@ public class utilityServiceImpl implements utilityService {
 		try {
 			data = mapper.writeValueAsString(list);
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
+			// TO DO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -119,7 +119,7 @@ public class utilityServiceImpl implements utilityService {
 		HttpSession session = objRequest_p.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		List<GbltOtpStudentRegTrn> list = dao.getStudentListByMobile(mobileNumber,org);
 		System.out.println("====== "+list);
 		return list; 
@@ -133,7 +133,7 @@ public class utilityServiceImpl implements utilityService {
 	}
 	@Override
 	public List<IyfPublicRegUrlTrn> getUrlList(HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = request.getSession();
 		Object theUser = session.getAttribute("user");
 		GbltUserBean obj = (GbltUserBean) theUser;
@@ -141,7 +141,7 @@ public class utilityServiceImpl implements utilityService {
 	}
 	@Override
 	public List<BlackListTypeMst> getBlackListType(HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = request.getSession();
 		Object theUser = session.getAttribute("user");
 		GbltUserBean obj = (GbltUserBean) theUser;

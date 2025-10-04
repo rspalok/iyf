@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public GbltOtpStudentRegTrn findByregistrationId(String registrationId,HttpServletRequest objRequest_p) {
-		// TODO Auto-generated method stub		
+		// TO DO Auto-generated method stub		
 		HttpSession session = objRequest_p.getSession(); 
 		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 
@@ -89,7 +89,7 @@ public class UserServiceImpl implements UserService{
 
 	@Override
 	public void resetPassword(CrmUser theCrmUser, HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		GbltUserMst user = findByUserUserId(theCrmUser.getUserName()); 
 		user.setDtEntry(new Date());
 		user.setStPassword(passwordEncoder.encode(theCrmUser.getPassword()));
@@ -100,7 +100,7 @@ public class UserServiceImpl implements UserService{
 	@Override
 	@Transactional
 	public GbltOrgMst allOrgDetails(GbltUserMst gbltUserMst) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		return userDao.allOrgDetails(gbltUserMst.getStOrgId());
 	}
 

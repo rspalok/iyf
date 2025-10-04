@@ -34,7 +34,7 @@ public class CourseSerImp implements CourseSer {
 
 	@Override
 	public Page<IyfCourseMst> findPaginated(int pageNo, int pageSize, String sortField, String sortDir,HttpServletRequest objRequest_p) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		Sort sort = sortDir.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(sortField).ascending() :
 			Sort.by(sortField).descending();
 		HttpSession session = objRequest_p.getSession(); 
@@ -48,7 +48,7 @@ public class CourseSerImp implements CourseSer {
 
 	@Override
 	public void saveIyfCourseMst(IyfCourseMst iyfCourseMst, HttpServletRequest request, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
@@ -95,7 +95,7 @@ public class CourseSerImp implements CourseSer {
 
 	@Override
 	public List<GbltOrgMst> getOrgList(HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		
 		return utilService.getAllOrgDetails();
 	}

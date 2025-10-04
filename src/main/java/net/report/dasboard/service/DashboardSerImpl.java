@@ -101,14 +101,14 @@ public class DashboardSerImpl implements DashboardSer {
 		HttpSession session = request.getSession(); 
 		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 		String Orgid=obj.getStOrgId();
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		return classDao.getCourseClassScheduleById(mICourseConfig, Orgid);
 	}
 
 	@Override
 	public List<IyfCourseAttenTrn> getAllPresentStudentList(Long getmICourseConfig, Long getmClassId,
 			HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 		String Orgid=obj.getStOrgId();
@@ -125,7 +125,7 @@ public class DashboardSerImpl implements DashboardSer {
 
 	@Override
 	public List<IyfCoureRegTrn> getAllRegisterdStudentList( GbltStudentBean gbltStudentBean,HttpServletRequest objRequest_p) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = objRequest_p.getSession(); 
 		GbltUserBean obj =(GbltUserBean) session.getAttribute("user");
 		String Orgid=obj.getStOrgId();
@@ -150,7 +150,7 @@ public class DashboardSerImpl implements DashboardSer {
 					}
 					list2.add(iyfCoureRegTrn);
 				} catch (ParseException e) {
-					// TODO Auto-generated catch block
+					// TO DO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -178,7 +178,7 @@ public class DashboardSerImpl implements DashboardSer {
 
 	@Override
 	public List<IyfCoureRegTrn> getAllRagisterdCourseList(GbltStudentBean gbltStudentBean, HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
@@ -244,7 +244,7 @@ public class DashboardSerImpl implements DashboardSer {
 
 	@Override
 	public List<Map> studentOtpReport(GbltStudentBean gbltStudentBean, HttpServletRequest request) {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 		HttpSession session = request.getSession(); 
 		GbltUserBean theUser =(GbltUserBean) session.getAttribute("user");
 		String org= theUser.getStOrgId();
@@ -262,7 +262,7 @@ public class DashboardSerImpl implements DashboardSer {
 	@Override
 	public void genReport(GbltStudentBean gbltStudentBean, HttpServletRequest objRequest_p,
 			HttpServletResponse objResponse_p) throws Exception {
-		// TODO Auto-generated method stub
+		// TO DO Auto-generated method stub
 			Map<String, Object> params = new HashMap<String, Object>();
 			String reportPath ="";
 		 reportPath ="iyf/src/main/java/net/report/attendance/atten_report.rptdesign";
